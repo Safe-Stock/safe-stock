@@ -1,6 +1,9 @@
 <?php 
     if(isset($_GET['route'])) {
         switch($_GET['route']) {
+            case "login":
+                include('./view/login.html');
+                break;
             default:
                 include('./view/404.html');
                 break;
