@@ -1,7 +1,19 @@
 <?php 
     if(isset($_GET['route'])) {
         switch($_GET['route']) {
-            default:
+            case"test":
+                include('./view/test.html');
+                break;
+
+            case"blank1":
+                include('./view/blank.html');
+                break;
+            
+            case"themetest":
+                include('./view/theme/themetest.html');
+                break;    
+                
+                default:
                 include('./view/404.html');
                 break;
         }
