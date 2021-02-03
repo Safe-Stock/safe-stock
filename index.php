@@ -16,6 +16,9 @@ require('./class/UITools.php');
             case "login":
                 include('./view/login.html');
                 break;
+            case "profil":
+                    include('./view/profil.html');
+                    break;
             default:
                 include('./view/404.html');
                 break;
