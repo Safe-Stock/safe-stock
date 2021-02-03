@@ -110,11 +110,11 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href= 'index.php?route=themetest'>Theme</a>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <?php
+                $req = PDORequest::GetAllThemes();    
+                while($themes = $req->fetch()) { ?>
+                <a class="collapse-item" href= 'index.php?route=themetest'><?php echo $themes['NomTheme'] ?></a>
+                <?php } ?>
             </div>
         </div>
     </li>
