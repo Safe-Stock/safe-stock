@@ -15,7 +15,7 @@ require('./class/UITools.php');
                 include('./view/theme/themetest.html');
                 break;    
             case "login":
-                include('./view/login.html');
+                include('./routeur/login.php');
                 break;
             case "profil":
                     include('./view/profil.html');
