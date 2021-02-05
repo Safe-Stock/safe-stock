@@ -113,7 +113,7 @@
                 <?php
                 $req = PDORequest::GetAllThemes();    
                 while($themes = $req->fetch()) { ?>
-                <a class="collapse-item" href= 'index.php?route=themetest'><?php echo $themes['NomTheme'] ?></a>
+                <a class="collapse-item" href= "index.php?route=theme&id=<?php echo $themes['IdTheme'] ?>"><?php echo $themes['NomTheme'] ?></a>
                 <?php } ?>
             </div>
         </div>

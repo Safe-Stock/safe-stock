@@ -20,6 +20,9 @@ require('./class/UITools.php');
             case "profil":
                     include('./view/profil.html');
                     break;
+            case "theme":
+                include('./view/theme.php');
+                break;
             default:
                 include('./view/404.html');
                 break;
