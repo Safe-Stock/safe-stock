@@ -38,7 +38,7 @@
                                     include('./view/components/file_card_max.html');
                                 }
                             } else { ?>
-                               <div class="h5"> <?php echo 'Aucun document pour ce thême =(' ?> </div>
+                               <div class="h5"> <?php echo 'Aucun document pour ce thème =(' ?> </div>
                            <?php }  ?>
                      </div>
                      <h2 class="h4 mb-4 text-gray-500 mt-4">Tout les fichiers</h2>
