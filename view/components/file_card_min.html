@@ -1,7 +1,7 @@
 <button type="button" class="bg-white border rounded shadow-sm py-3 mx-4 my-2" data-toggle="modal" data-target="#exampleModalCenter">
     <div style="width: 150px !important;" class="d-flex flex-column justify-content-center align-items-center">
-        <img width="100px" src="./assets/icon/svg/pdf.svg">
-        <p class="text-center mb-0 mt-3">Voici un titre</p>
+        <img width="100px" src="./assets/icon/svg/<?php echo $doc['TypeDoc'] ?>.svg">
+        <p class="text-center mb-0 mt-3"><?php echo $doc['NomDoc'] ?></p>
     </div>
 </button>
 <!-- Button trigger modal -->

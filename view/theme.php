@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>FilesFrank</title>
+    <title>FilesFranck - Thêmes</title>
     <!-- Custom fonts for this template-->
     <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -27,26 +27,29 @@
                 <?php include('./view/components/navigation.html') ?>
                 <div class="container-fluid">
                     <!-- Contenu de la page-->
-                    <h1 class="h1 mb-4 text-gray-800">Accueil</h1>
+                    <h1 class="h1 mb-4 text-gray-800">Thème : <?php echo PDORequest::GetNameTheme($_GET['id'])->fetch()['NomTheme'] ?></h1>
                     <h2 class="h4 mb-4 text-gray-500">Fichiers récents</h2>
 
                     <div class="d-flex flex-row flex-wrap">
-                       <?php 
-                            $req = PDORequest::GetLatestDocuments();
-                            while($doc = $req->fetch()) {
-                                include('./view/components/file_card_max.html');
-                            }
-                       ?>
-                    </div>
-                    <h2 class="h4 mb-4 text-gray-500 mt-4">Tout les fichiers</h2>
-                    <div class="d-flex flex-row flex-wrap mb-5 mt-2">
-                        <?php
-                        $req = PDORequest::GetLatestDocuments();
-                        while($doc = $req->fetch()) {
-                            include('./view/components/file_card_min.html');
-                        } 
-                        ?>
-                    </div>
+                        <?php 
+                             if(count(PDORequest::GetLatestDocumentsByTheme($_GET['id'])->fetchAll()) >= 1) {
+                                $req = PDORequest::GetLatestDocumentsByTheme($_GET['id']);
+                                while($doc = $req->fetch()) {
+                                    include('./view/components/file_card_max.html');
+                                }
+                            } else { ?>
+                               <div class="h5"> <?php echo 'Aucun document pour ce thème =(' ?> </div>
+                           <?php }  ?>
+                     </div>
+                     <h2 class="h4 mb-4 text-gray-500 mt-4">Tout les fichiers</h2>
+                     <div class="d-flex flex-row flex-wrap mb-5 mt-2">
+                         <?php
+                         $req = PDORequest::GetDocumentsByTheme($_GET['id']);
+                         while($doc = $req->fetch()) {
+                             include('./view/components/file_card_min.html');
+                         } 
+                         ?>
+                     </div>
                 </div>
             </div>
             <!-- Footer -->
