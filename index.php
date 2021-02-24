@@ -28,6 +28,6 @@ require('./class/UITools.php');
                 break;
         }
     } else {
-        include('./view/home.html');
+        include('./view/home.php');
     }
 ?>

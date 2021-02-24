@@ -34,7 +34,7 @@
                        <?php 
                             $req = PDORequest::GetLatestDocuments();
                             while($doc = $req->fetch()) {
-                                include('./view/components/file_card_max.html');
+                                include('./view/components/file_card_max.php');
                             }
                        ?>
                     </div>
@@ -43,7 +43,7 @@
                         <?php
                         $req = PDORequest::GetLatestDocuments();
                         while($doc = $req->fetch()) {
-                            include('./view/components/file_card_min.html');
+                            include('./view/components/file_card_min.php');
                         } 
                         ?>
                     </div>
