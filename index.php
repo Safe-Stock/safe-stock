@@ -18,7 +18,10 @@ require('./class/UITools.php');
                 include('./view/login.html');
                 break;
             case "profil":
-                    include('./view/profil.html');
+                    include('./view/profil.php');
+                    break;
+            case "settings":
+                    include('./view/settings.php');
                     break;
             case "theme":
                 include('./view/theme.php');
