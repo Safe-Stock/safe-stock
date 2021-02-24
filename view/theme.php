@@ -35,7 +35,7 @@
                              if(count(PDORequest::GetLatestDocumentsByTheme($_GET['id'])->fetchAll()) >= 1) {
                                 $req = PDORequest::GetLatestDocumentsByTheme($_GET['id']);
                                 while($doc = $req->fetch()) {
-                                    include('./view/components/file_card_max.html');
+                                    include('./view/components/file_card_max.php');
                                 }
                             } else { ?>
                                <div class="h5"> <?php echo 'Aucun document pour ce thème =(' ?> </div>
@@ -46,7 +46,7 @@
                          <?php
                          $req = PDORequest::GetDocumentsByTheme($_GET['id']);
                          while($doc = $req->fetch()) {
-                             include('./view/components/file_card_min.html');
+                             include('./view/components/file_card_min.php');
                          } 
                          ?>
                      </div>
