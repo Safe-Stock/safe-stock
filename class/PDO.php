@@ -47,5 +47,17 @@
             $req->execute(array($id));
             return $req;
         }
+
+        public static function GetAllMotsCle() {
+            self::open();
+            $req = self::$bdd->query("SELECT * FROM `mot-cle` ORDER BY IdMC ASC");
+            return $req;
+        }
+
+        public static function DeleteMotCle($idmc) {
+            self::open();
+            $req = self::$bdd->prepare('DELETE FROM `mot-cle` WHERE IdMC = ?');
+            $req->execute(array($idmc));
+        }
     }
 ?>

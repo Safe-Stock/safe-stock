@@ -15,7 +15,7 @@ require('./class/UITools.php');
                 include('./view/theme/themetest.html');
                 break;    
             case "login":
-                include('./view/login.html');
+                include('./routeur/login.php');
                 break;
             case "profil":
                     include('./view/profil.php');
@@ -25,6 +25,9 @@ require('./class/UITools.php');
                     break;
             case "theme":
                 include('./view/theme.php');
+                break;
+            case "mcgestion":
+                include('./view/AdminGestion/MotsCleGestion.php');
                 break;
             default:
                 include('./view/404.html');
