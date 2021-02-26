@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +10,12 @@
     <title>FilesFranck - Blank</title>
     <!-- Custom fonts for this template-->
     <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -28,36 +28,80 @@
                 <div class="container-fluid">
                     <!-- Contenu de la page-->
                     <h1 class="h4 mb-3 b-5 text-gray-800">Paramètres</h1>
-                        <br>
-                        <h5 class="mb-3 b-5 text-gray">Gestion de thèmes</h5>
-                            <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nom</th>
+                    <br>
+                    <h5 class="mb-3 b-5 text-gray">Gestion de thèmes</h5>
+                    <table class="table table-bordered m-3" style="width: 1000px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nom du thème</th>
                                 <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <?php
-                                $req = PDORequest::GetAllThemes();
-                                while( $fillthemes = $req->fetch()){
-                                ?>   
-                               
-                               <td><?php echo $fillthemes['IdTheme'] ?></td>
-            
-                                <?php
-                                }
-                                ?>
-                              </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            $req = PDORequest::GetAllThemes();
+                            while ($fillthemes = $req->fetch()) {
+
+
+                                echo "<tr>";
+                                echo "<th scope=\"row\">" . $fillthemes['IdTheme'] . "</th>";
+                                $themefill = $fillthemes['IdTheme'];
+                                echo "<td>" . $fillthemes['NomTheme'] . "</td>";
+                                echo "<td><a";
+                                echo " <a class='btn btn-outline-warning' data-toggle=\"modal\" data-target=\"#UpdateTheme\">Modifier";
+                                echo "<td><a";
+                                echo " <a class='btn btn-outline-danger' href=\"./view/themedel.php?var=$themefill\">Supprimer";
+                                echo "</tr>";
+                            }
+                            ?>
+
+                            <!-- Modal pour créer un thème -->
+                            <div class="container-fluid">
+                                <form action="./view/themecreate.php" method="post">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Creer un thème</label>
+                                        <input type="text" class="form-control" id="CreateTheme" name="name" aria-describedby="RequestCreateTheme">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Creer</button>
+                                </form>
+                            </div>
+
+                            <!-- Modal pour modifié un thème-->
+                            <div class="modal fade" id="UpdateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="./view/themeupdate.php" method="post">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modifier le thème</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="text" class="form-control" name="updatename" placeholder=<?php echo $fillthemes['NomTheme'] ?>>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                            </div>
+                                </form>
+                            </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <?php include('./view/components/footer.html') ?>
+            </tbody>
         </div>
     </div>
-   
+
+    <div class="panel-footer navbar-bottom">
+        <!-- Footer -->
+        <?php include('./view/components/footer.html') ?>
+    </div>
+    </div>
+    </div>
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="./assets/vendor/jquery/jquery.min.js"></script>

@@ -59,5 +59,26 @@
             $req = self::$bdd->prepare('DELETE FROM `mot-cle` WHERE IdMC = ?');
             $req->execute(array($idmc));
         }
+        
+        public static function DeleteTheme($idtheme) {
+            self::open();
+            $req = self::$bdd->prepare('DELETE FROM theme WHERE IdTheme = ?' );
+            $req->execute(array($idtheme));
+        }
+    
+        public static function CreateTheme($idtheme) {
+            self::open();
+            $req = self::$bdd->prepare('INSERT INTO theme( NomTheme) VALUES( ? )' );
+            $req->execute(array($idtheme));
+        }
+        
+        public static function UpdateTheme($idtheme) {
+            self::open();
+            $req = self::$bdd->prepare('UPDATE theme SET NomTheme = ? WHERE IdTheme = ?' );
+            $req->execute(array($idtheme));
+        }
+    
+    
+    
     }
 ?>
