@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>FilesFranck - Blank</title>
+    <title>FilesFranck - Gestion Mots Cle</title>
     <!-- Custom fonts for this template-->
     <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -23,19 +23,23 @@
     <?php include('./view/components/sidebar.html') ?>
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
+
             <!-- Topbar -->
             <?php include('./view/components/navigation.html') ?>
             <div class="container-fluid">
+
                 <!-- Contenu de la page-->
-                <h1 class="h3 mb-4 text-gray-800">Gestion Mots clé </h1>
+                <h1 class="h3 mb-4 text-gray-800">Gestion Mots clé</h1>
 
             </div>
+
+            <!--Affichage de tout les mots clé-->
 
             <div class="container-fluid">
                 <table class="table table-bordered col-md-5">
                     <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <!-- <th scope="col">ID</th> -->
                         <th scope="col">Nom</th>
                         <th scope="col">Date Validation</th>
                         <th scope="col">Modifier</th>
@@ -44,15 +48,17 @@
                     </thead>
                     <tbody>
                     <?php
+                        $iMotCle = 0;
                         $req = PDORequest::GetAllMotsCle();
                         while($MotCleReq = $req->fetch())
                         {
                             echo "<tr>";
-                            echo "<th scope=\"row\">" . $MotCleReq['IdMC'] . "</th>"; $iMotCle = $MotCleReq['IdMC'];
+                            //echo "<th scope=\"row\">" . $MotCleReq['IdMC'] . "</th>";
+                            $iMotCle = $MotCleReq['IdMC']; $iNomMc = $MotCleReq['NomMC'];
                             echo "<td>" . $MotCleReq['NomMC'] . "</td>";
                             echo "<td>" . $MotCleReq['ValidationMC'] . "</td>";
-                            echo "<td><a"; echo " <a class='btn btn-outline-warning' href=\"./view/AdminGestion/MotsCleRequete.php?vari=$iMotCle\">Modifier";
-                            echo "<td><a"; echo " <a class='btn btn-outline-danger' href=\"./view/AdminGestion/MotsCleRequete.php?vari=$iMotCle\">Supprimer";
+                            echo "<td>"; echo " <a class='btn btn-outline-warning' href=\"./view/AdminGestion/MotsCleModifyMcForm.php?varModifyIdMC=$iMotCle\">Modify";
+                            echo "<td>"; echo " <a class='btn btn-outline-danger' href=\"./view/AdminGestion/MotsCleRequete.php?varDelete=$iMotCle\">Supprimer";
                             echo "</tr>";
                         }
                     ?>
@@ -61,17 +67,18 @@
                 </table>
             </div>
 
+            <!--Formulaire pour la création Mot Clé-->
+
             <div class="container-fluid">
-                <form action="04-Store_Theme.php" method="post">
+                <form action="./view/AdminGestion/MotsCleRequete.php" method="post">
                     <div class="form-group col-md-3">
                         <label for="exampleInputEmail1">Crée un nouveau mot clé</label>
-                        <input type="text" class="form-control" id="NewMotCle" aria-describedby="NewMotCleHelp">
+                        <input type="text" class="form-control" name="NewMotCle" aria-describedby="NewMotCleHelp">
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </form>
             </div>
         </div>
-
 
         <!-- Footer -->
         <?php include('./view/components/footer.html') ?>

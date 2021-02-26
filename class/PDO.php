@@ -54,10 +54,22 @@
             return $req;
         }
 
-        public static function DeleteMotCle($idmc) {
+        public static function DeleteMotCle($IdMC) {
             self::open();
             $req = self::$bdd->prepare('DELETE FROM `mot-cle` WHERE IdMC = ?');
-            $req->execute(array($idmc));
+            $req->execute(array($IdMC));
+        }
+
+        public static function CreateMotCle($NameMC) {
+            self::open();
+            $req = self::$bdd->prepare('INSERT INTO `mot-cle` (NomMC) VALUES (?)');
+            $req->execute(array($NameMC));
+        }
+
+        public static function ModifyMotCle($NameMC, $IdMC) {
+            self::open();
+            $req = self::$bdd->prepare('UPDATE `mot-cle` SET NomMC = :NameMC WHERE IdMC = :IdMC');
+            $req->execute(array('NameMC' => $NameMC, 'IdMC'=> $IdMC));
         }
     }
 ?>
