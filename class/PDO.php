@@ -84,10 +84,10 @@
             $req->execute(array($idtheme));
         }
         
-        public static function UpdateTheme($idtheme) {
+        public static function UpdateTheme($ThemeName, $ThemeId) {
             self::open();
-            $req = self::$bdd->prepare('UPDATE theme SET NomTheme = ? WHERE IdTheme = ?' );
-            $req->execute(array($idtheme));
+            $req = self::$bdd->prepare('UPDATE theme SET NomTheme = :ThemeName WHERE IdTheme = ThemeId' );
+            $req->execute(array('ThemeName' => $ThemeName, 'ThemeId' => $ThemeId));
         }
     
     
