@@ -9,27 +9,25 @@
     require('../../class/PDO.php');
     require('../../class/UITools.php');
 
-    $VarModifyNameMC = $_POST['VarModifyName'];
-    $VarModifyIdMC = $_POST['VarModifyId'];
-    $VarDeleteMC =  $_GET['varDelete'];
-    $VarNewMC = $_POST['NewMotCle'];
+    if ( isset($_POST['VarModifyName']) && !empty($_POST['VarModifyName']) )
 
-    if ($VarModifyIdMC > 0)
     {
-        PDORequest::ModifyMotCle($VarModifyNameMC, $VarModifyIdMC);
+        PDORequest::ModifyMotCle( $_POST['VarModifyName'], $_GET['VarModifyId'] );
+        header('Location: http://localhost/safe-stock/?route=mcgestion');
+
+    }
+
+    elseif ( isset($_GET['VarDeleteId']))
+    {
+        PDORequest::DeleteMotCle($_GET['VarDeleteId']);
         header('Location: http://localhost/safe-stock/?route=mcgestion');
     }
-    elseif ($VarDeleteMC > 0)
-    {
-        PDORequest::DeleteMotCle($VarDeleteMC);
-        header('Location: http://localhost/safe-stock/?route=mcgestion');
-    }
+
     else
     {
-        PDORequest::CreateMotCle($VarNewMC);
+        PDORequest::CreateMotCle($_POST['NewMotCle']);
         header('Location: http://localhost/safe-stock/?route=mcgestion');
     }
-
 ?>
 </body>
 </html>>
