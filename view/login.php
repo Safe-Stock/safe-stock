@@ -19,7 +19,6 @@
 <body class="bg-primary" id="page-top">
     
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -35,25 +34,31 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenue</h1>
                                     </div>
-                                    <form action="./safe-stock/index.php?route=login" method="post" class="user">
+                                    <?php  if(isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $_SESSION['error'] ?>
+                                        </div>
+                                    <?php unset($_SESSION['error']);
+                                    } ?>
+                                    <form action="./routeur/login.php" method="post" class="user">
                                         <div class="form-group">
-                                            <input type="Identifiant" name="Identifiant" class="form-control form-control-user"
+                                            <input type="email" name="login" class="form-control form-control-user"
                                                 id="exampleInputIdentifiant" aria-describedby="IdentifiantHelp"
-                                                placeholder="Identifiant">
+                                                placeholder="Identifiant" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="Password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Mot de passe">
+                                            <input type="password" name="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Mot de passe" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input name="memorize" type="checkbox" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Se souvenir de moi</label>
                                             </div>
                                         </div>
-                                        <a href="./routeur/login.php" name="SubmitBtn" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" name="SubmitBtn" class="btn btn-primary btn-user btn-block">
                                             Se connecter
-                                        </a>
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">

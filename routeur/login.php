@@ -1,20 +1,33 @@
 <?php
-
-    include('./view/login.html');
-
-    if (isset($_POST["submitBtn"])) //Vérifie qu'un formulaire à bien été envoyer
+require("../class/PDO.php");
+session_start();
+    if(isset($_POST['login'], $_POST['password']) && !empty($_POST['login']) && !empty($_POST['password']))  //Vérifie que identifiant et mdp pas vide
     {
-        echo "Le formulaire à bien été envoyer";
+        $login = htmlspecialchars($_POST['login']);
+        $password = htmlspecialchars($_POST['password']);
 
-        if (isset($_POST["Identifiant"]) && isset($_POST["Password"]))  //Vérifie que identifiant et mdp pas vide
-        {
-            echo "Gg le reuf ta tt rentrer";
+        $userData = PDORequest::GetUserInformation($login);
+        $userData = $userData->fetch();
+
+        if($userData) {
+            if(password_verify($password, $userData['MdpUtil'])) {
+                $_SESSION['user'] = $userData['IdUtil'];
+                if(isset($_POST['SubmitBtn'])){
+                    setcookie('email',$userData['MailUtil'],time()+2629800,"/",null,false,true);
+                    setcookie('password',$password,time()+2629800,"/",null,false,true);
+                }
+                header('location: ../index.php');
+            }  else  {
+                $_SESSION['error'] = "Le mot de passe est incorrect.";
+                header('location: ../index.php');
+            }
+        } else {
+            $_SESSION['error'] = "Cet utilisateur n'existe pas.";
+            header('location: ../index.php');
         }
-        else
-        {
-            echo "Rentrez des valeurs dans les champs de connexion ";
-        }
+    } else
+    {
+        $_SESSION['error'] = "Tout les champs ne sont pas remplis";
+        header('location: ../index.php');
     }
-
-
 ?>

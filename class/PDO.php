@@ -59,5 +59,19 @@
             $req = self::$bdd->prepare('DELETE FROM `mot-cle` WHERE IdMC = ?');
             $req->execute(array($idmc));
         }
+
+        public static function GetUserInformation($login) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM utilisateur WHERE MailUtil =  ?');
+            $req->execute(array($login));
+            return $req;
+        }
+
+        public static function GetUserWithId($id) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT NomUtil, PrenomUtil, MailUtil, AvatarUtil, IdProfil FROM utilisateur WHERE IdUtil = ?');
+            $req->execute(array($id));
+            return $req;
+        }
     }
 ?>

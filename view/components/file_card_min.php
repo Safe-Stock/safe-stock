@@ -1,4 +1,4 @@
-<button type="button" class="bg-white border rounded shadow-sm py-3 mx-4 my-2" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" class="bg-white border rounded shadow-sm py-3 mx-4 my-2" data-toggle="modal" data-target="#modal-<?php echo $doc['IdDoc'] ?>">
     <div style="width: 150px !important;" class="d-flex flex-column justify-content-center align-items-center">
         <img width="100px" src="./assets/icon/svg/<?php echo $doc['TypeDoc'] ?>.svg">
         <p class="text-center mb-0 mt-3"><?php echo $doc['NomDoc'] ?></p>
@@ -6,7 +6,7 @@
 </button>
   
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modal-<?php echo $doc['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 
       <div class="modal-content">
@@ -19,8 +19,8 @@
         </div>
         <div class="modal-body">
           <p class = "m-2"><strong>Taille :  </strong><?php echo UITools::ConvertBytes(filesize("./data/" . $doc['NomDoc'] . "." . $doc['TypeDoc'])) ?></p>
-          <p class = "m-2"><strong>Date de l'importation :  </strong><?php echo $doc['DateImportationDoc'] ?></p>
-          <p class = "m-2"><strong>Date de Modification :  </strong> <?php echo UITools::ConvertDate($doc['DateImportationDoc']) ?> </p>
+          <p class = "m-2"><strong>Date de l'importation :  </strong><?php echo UITools::ConvertDate($doc['DateImportationDoc']) ?></p>
+          <p class = "m-2"><strong>Date de Validation :  </strong> <?php echo UITools::ConvertDate($doc['ValidationDoc']) ?> </p>
           <p class = "m-2"><strong>Type :  </strong>.<?php echo $doc['TypeDoc'] ?></p>
           <p class = "m-2"><strong>Description :   </strong><?php echo $doc['DescriptionDoc'] ?></p>
           <?php if($doc['TypeDoc'] == "pdf") { ?>
