@@ -33,6 +33,18 @@ require('./class/UITools.php');
                 case "mcgestion":
                     include('./view/AdminGestion/MotsCleGestion.php');
                     break;
+                case "settings":
+                    include('./view/settings.php');
+                    break;
+                case "theme":
+                    include('./view/theme.php');
+                    break;
+                case "mcgestion":
+                    include('./view/AdminGestion/MotsCleGestion.php');
+                    break;
+                case "themegestion":
+                        include('./view/settings.php');
+                        break;
                 default:
                     include('./view/404.html');
                     break;

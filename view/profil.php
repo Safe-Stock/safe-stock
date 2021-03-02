@@ -32,58 +32,16 @@
                                 <div class="col-lg-4">
                                    <div class="profile-card-4 z-depth-3">
                                     <div class="card">
-                                      <div class="card-body text-center bg-primary rounded-top">
+                                        <div class="card-body text-center bg-primary rounded-top">
                                        <div class="user-box">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                                        <div style="font-size: 24px; color: white;">
+                                        <i class="fa fa-user fa-10x" aria-hidden="true"></i>
                                     </div>
-                                      <h5 class=" mb-1 text-white">DUPONT Didier</h5>
+                                    </div>
+                                    <br>
+                                    <h5 class=" mb-1 text-white">DUPONT Didier</h5>
                                       <h6 class="text-light">Eleve</h6>
                                      </div>
-                                      <div class="card-body">
-                                        <ul class="list-group shadow-none">
-                                        <li class="list-group-item">
-                                          <div class="list-icon">
-                                            <i class="fa fa-phone-square"></i>
-                                          </div>
-                                          <div class="list-details">
-                                            <span>9910XXXXXX</span>
-                                            <small>Mobile Number</small>
-                                          </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                          <div class="list-icon">
-                                            <i class="fa fa-envelope"></i>
-                                          </div>
-                                          <div class="list-details">
-                                            <span>info@example.com</span>
-                                            <small>Email Address</small>
-                                          </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                          <div class="list-icon">
-                                            <i class="fa fa-globe"></i>
-                                          </div>
-                                          <div class="list-details">
-                                            <span>www.example.com</span>
-                                            <small>Website Address</small>
-                                          </div>
-                                        </li>
-                                        </ul>
-                                        <div class="row text-center mt-4">
-                                          <div class="col p-2">
-                                           <h4 class="mb-1 line-height-5">154</h4>
-                                            <small class="mb-0 font-weight-bold">Projects</small>
-                                           </div>
-                                            <div class="col p-2">
-                                              <h4 class="mb-1 line-height-5">2.2k</h4>
-                                             <small class="mb-0 font-weight-bold">Followers</small>
-                                            </div>
-                                            <div class="col p-2">
-                                             <h4 class="mb-1 line-height-5">9.1k</h4>
-                                             <small class="mb-0 font-weight-bold">Views</small>
-                                            </div>
-                                         </div>
-                                       </div>
                                      </div>
                                    </div>
                                 </div>
@@ -100,20 +58,9 @@
                                     </ul>
                                     <div class="tab-content p-3">
                                         <div class="tab-pane active show" id="profile">
-                                            <h5 class="mb-3">Profil</h5>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <h6>About</h6>
-                                                    <p>
-                                                        Web Designer, UI/UX Engineer
-                                                    </p>
-                                                    <h6>Hobbies</h6>
-                                                    <p>
-                                                        Indie music, skiing and hiking. I love the great outdoors.
-                                                    </p>
-                                                </div>
                                                 <div class="col-md-12">
-                                                    <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-right"></span> Activité </h5>
+                                                    <h5 class="mt-2 mb-3 m-5"><span class="fa fa-clock-o ion-clock float-right"></span> Activité </h5>
                                                     <table class="table table-hover table-striped">
                                                         <tbody>                                    
                                                             <tr>
