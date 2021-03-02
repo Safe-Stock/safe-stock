@@ -51,19 +51,17 @@
                         $iMotCle = 0;
                         $req = PDORequest::GetAllMotsCle();
                         while($MotCleReq = $req->fetch())
-                        {
-                            echo "<tr>";
-                            //echo "<th scope=\"row\">" . $MotCleReq['IdMC'] . "</th>";
-                            $iMotCle = $MotCleReq['IdMC']; $iNomMc = $MotCleReq['NomMC'];
-                            echo "<td>" . $MotCleReq['NomMC'] . "</td>";
-                            echo "<td>" . $MotCleReq['ValidationMC'] . "</td>"; ?>
-                                  <td>          <a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMC-<?php echo $MotCleReq['IdMC'] ?>">Modifier</a></td>
-                                  <td>          <a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteMC-<?php echo $MotCleReq['IdMC'] ?>">Supprimer</a></td>
-                      <?php echo "</tr>"; ?>
+                        { ?>
+                            <tr>
+                            <td><?= $MotCleReq['NomMC'] ?></td>
+                            <td><?= $MotCleReq['ValidationMC'] ?></td>
+                            <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMC-<?= $MotCleReq['IdMC'] ?>">Modifier</a></td>
+                            <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteMC-<?= $MotCleReq['IdMC'] ?>">Supprimer</a></td>
+                            </tr>
 
                             <!-- Génération Modal pour modifier un mot clé-->
-                            <div class="modal fade" id="UpdateMC-<?php echo $MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form action="./view/AdminGestion/MotsCleRequete.php?VarModifyId=<?php echo $MotCleReq['IdMC'] ?>" method="post">
+                            <div class="modal fade" id="UpdateMC-<?=$MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="./view/AdminGestion/MotsCleRequete.php?VarModifyId=<?=$MotCleReq['IdMC'] ?>" method="post">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -87,8 +85,8 @@
 
                             <!-- Génération des modals confirmation suppresion mot clé -->
 
-                            <div class="modal fade" id="DeleteMC-<?php echo $MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form action="./view/AdminGestion/MotsCleRequete.php?VarDeleteId=<?php echo $MotCleReq['IdMC'] ?>" method="post">
+                            <div class="modal fade" id="DeleteMC-<?= $MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="./view/AdminGestion/MotsCleRequete.php?VarDeleteId=<?= $MotCleReq['IdMC'] ?>" method="post">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -108,9 +106,8 @@
                                     </div>
                                 </form>
                             </div>
-
-                    <?php    }
-                    ?>
+                            <?php
+                        } ?>
 
                     </tbody>
                 </table>

@@ -103,6 +103,17 @@
             $req->execute(array($id));
             return $req;
         }
-    
+
+        public static function GetAllUser() {
+            self::open();
+            $req = self::$bdd->query("SELECT * FROM utilisateur ORDER BY IdUtil ASC");
+            return $req;
+        }
+
+        public static function DeleteUser($IdUtil) {
+            self::open();
+            $req = self::$bdd->prepare('DELETE FROM utilisateur WHERE IdUtil = ?');
+            $req->execute(array($IdUtil));
+        }
     }
 ?>
