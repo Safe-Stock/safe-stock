@@ -44,62 +44,68 @@
                                 <?php
                                 $req = PDORequest::GetAllThemes();
                                 while ($fillthemes = $req->fetch()) {
+                                ?>
 
+                                    <tr>;
+                                        <th scope="row"> <?php echo $fillthemes['IdTheme'] ?> </th>
+                                        <?php $themequery = $fillthemes['IdTheme'] ?>
+                                        <td><?php echo $fillthemes['NomTheme'] ?> </td>
+                                        <td>
+                                            <a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateTheme-<?php echo $fillthemes['IdTheme'] ?>">Modifier</a>
+                                            <a class="btn btn-outline-danger" href="./view/theme_queries.php?delete= <?php echo $themequery ?>">Supprimer</a>
+                                    </tr>
 
-                                    echo "<tr>";
-                                    echo "<th scope=\"row\">" . $fillthemes['IdTheme'] . "</th>";
-                                    $themequery = $fillthemes['IdTheme'];
-                                    echo "<td>" . $fillthemes['NomTheme'] . "</td>";
-                                    echo "<td><a";
-                                    echo " <a class='btn btn-outline-warning' data-toggle=\"modal\" data-target=\"#UpdateTheme\">Modifier";
-                                    echo " <a class='btn btn-outline-danger' href=\"./view/theme_queries.php?delete=$themequery\">Supprimer";
-                                    echo "</tr>";
+                                    <!-- Modal pour modifier un thème-->
+                                    <div class="modal fade" id="UpdateTheme-<?php echo $fillthemes['IdTheme'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <form action="./view/theme_queries.php?id=<?php echo $fillthemes['IdTheme'] ?>" method="post">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modifier le thème</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label>Nom</label>
+                                                        <input type="text" class="form-control" name="update_name" placeholder="Entrez un Nom" required="required">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                        <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                    </div>
+                                        </form>
+                                    </div>
+
+                                <?php
                                 }
                                 ?>
 
                                 <!-- Modal pour créer un thème -->
-                                <div class="container-fluid">
-                                    <form action="./view/theme_queries.php" method="post">
-                                        <div class="form-group col-md-3">
-                                            <label for="exampleInputEmail1">Creer un thème</label>
-                                            <input type="text" class="form-control" id="CreateTheme" name="create" aria-describedby="RequestCreateTheme">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Creer</button>
-                                    </form>
-                                </div>
 
-                                <!-- Modal pour modifier un thème-->
-                                <div class="modal fade" id="UpdateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <form action="./view/theme_queries.php" method="post">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modifier le thème</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <input type="text" class="form-control" name="update_name">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                    <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                </div>
-                                    </form>
-                                </div>
+
                     </div>
                 </div>
             </div>
-            <div class="panel-footer navbar-bottom">
-                <!-- Footer -->
-                <?php include('./view/components/footer.html') ?>
-            </div>
+
             </tbody>
+
+            <div class="container-fluid">
+                <form action="./view/theme_queries.php" method="post">
+                    <div class="form-group col-md-3">
+                        <label for="exampleInputEmail1">Creer un thème</label>
+                        <input type="text" class="form-control" id="CreateTheme" name="create" aria-describedby="RequestCreateTheme">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Creer</button>
+                </form>
+            </div>
         </div>
     </div>
 
-
+    <div class="panel-footer navbar-bottom">
+        <!-- Footer -->
+        <?php include('./view/components/footer.html') ?>
+    </div>
     </div>
     </div>
 

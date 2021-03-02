@@ -86,8 +86,8 @@
         
         public static function UpdateTheme($ThemeName, $ThemeId) {
             self::open();
-            $req = self::$bdd->prepare('UPDATE theme SET NomTheme = :ThemeName WHERE IdTheme = ThemeId' );
-            $req->execute(array('ThemeName' => $ThemeName, 'ThemeId' => $ThemeId));
+            $req = self::$bdd->prepare('UPDATE theme SET NomTheme = :ThemeName WHERE IdTheme = :ThemeId' );
+            $req->execute(array('ThemeName' => $ThemeName, 'ThemeId' => $ThemeId)) or die(var_dump($req->errorInfo()));
         }
     
     

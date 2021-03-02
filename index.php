@@ -29,6 +29,9 @@ require('./class/UITools.php');
             case "mcgestion":
                 include('./view/AdminGestion/MotsCleGestion.php');
                 break;
+            case "themegestion":
+                    include('./view/settings.php');
+                    break;
             default:
                 include('./view/404.html');
                 break;
