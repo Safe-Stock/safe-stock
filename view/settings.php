@@ -52,12 +52,12 @@
                                         <td><?php echo $fillthemes['NomTheme'] ?> </td>
                                         <td>
                                             <a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateTheme-<?php echo $fillthemes['IdTheme'] ?>">Modifier</a>
-                                            <a class="btn btn-outline-danger" href="./view/theme_queries.php?delete= <?php echo $themequery ?>">Supprimer</a>
+                                            <a class="btn btn-outline-danger" href="./routeur/theme_queries.php?delete= <?php echo $themequery ?>">Supprimer</a>
                                     </tr>
 
                                     <!-- Modal pour modifier un thème-->
                                     <div class="modal fade" id="UpdateTheme-<?php echo $fillthemes['IdTheme'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form action="./view/theme_queries.php?id=<?php echo $fillthemes['IdTheme'] ?>" method="post">
+                                        <form action="./routeur/theme_queries.php?id=<?php echo $fillthemes['IdTheme'] ?>" method="post">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -74,6 +74,8 @@
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                         <button type="submit" class="btn btn-primary">Confirmer</button>
                                                     </div>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
 
@@ -91,7 +93,7 @@
             </tbody>
 
             <div class="container-fluid">
-                <form action="./view/theme_queries.php" method="post">
+                <form action="./routeur/theme_queries.php" method="post">
                     <div class="form-group col-md-3">
                         <label for="exampleInputEmail1">Creer un thème</label>
                         <input type="text" class="form-control" id="CreateTheme" name="create" aria-describedby="RequestCreateTheme">

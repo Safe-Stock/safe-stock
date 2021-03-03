@@ -99,10 +99,18 @@
 
         public static function GetUserWithId($id) {
             self::open();
-            $req = self::$bdd->prepare('SELECT NomUtil, PrenomUtil, MailUtil, AvatarUtil, IdProfil FROM utilisateur WHERE IdUtil = ?');
+            $req = self::$bdd->prepare('SELECT * FROM utilisateur u INNER JOIN profil p ON u.IdProfil = p.IdProfil WHERE IdUtil = ?'); 
             $req->execute(array($id));
             return $req;
         }
-    
+
+        public static function GetLastDocByUser($id) { 
+        self::open();
+            $id = htmlspecialchars($id);
+            $req = self::$bdd->prepare('SELECT * FROM document d INNER JOIN theme t ON d.IdTheme = t.IdTheme WHERE IdUtil = ?  ORDER BY DateImportationDoc ASC');
+            $req->execute(array($id));
+            return $req;
+        }    
+ 
     }
 ?>
