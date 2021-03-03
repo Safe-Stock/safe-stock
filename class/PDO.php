@@ -48,9 +48,9 @@
             return $req;
         }
 
-        public static function GetAllMotsCle() {
+        public static function GetAllMotsCleV() {
             self::open();
-            $req = self::$bdd->query("SELECT * FROM `mot-cle` ORDER BY IdMC ASC");
+            $req = self::$bdd->query("SELECT * FROM `mot-cle` WHERE ValidationMC IS NOT NULL ORDER BY IdMC ASC");
             return $req;
         }
 
@@ -114,7 +114,7 @@
  
         public static function GetAllUser() {
             self::open();
-            $req = self::$bdd->query("SELECT * FROM utilisateur ORDER BY IdUtil ASC");
+            $req = self::$bdd->query('SELECT * FROM utilisateur ORDER BY IdUtil ASC');
             return $req;
         }
 
@@ -123,5 +123,18 @@
             $req = self::$bdd->prepare('DELETE FROM utilisateur WHERE IdUtil = ?');
             $req->execute(array($IdUtil));
         }
+
+        public static function GetAllMotsCleNonV() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM `mot-cle` WHERE ValidationMC IS NULL ORDER BY IdMC ASC');
+            return $req;
+        }
+
+        public static function ValidationMotCle($IdMC) {
+            self::open();
+            $req = self::$bdd->prepare('UPDATE `mot-cle` SET ValidationMC = NOW() WHERE IdMC = ?');
+            $req->execute(array($IdMC));
+        }
+
     }
 ?>

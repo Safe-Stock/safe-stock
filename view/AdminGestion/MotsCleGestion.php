@@ -26,16 +26,16 @@
 
             <!-- Topbar -->
             <?php include('./view/components/navigation.html') ?>
-            <div class="container-fluid">
 
+            <div class="container-fluid">
                 <!-- Contenu de la page-->
                 <h1 class="h3 mb-4 text-gray-800">Gestion Mots clé</h1>
-
             </div>
 
-            <!--Affichage de tout les mots clé-->
+            <!--Affichage de tout les mots clé valider-->
 
             <div class="container-fluid">
+                <h2 class="h4 mb-4 text-gray-800">Mots clé valider</h2>
                 <table class="table table-bordered col-md-5">
                     <thead>
                     <tr>
@@ -49,12 +49,12 @@
                     <tbody>
                     <?php
                         $iMotCle = 0;
-                        $req = PDORequest::GetAllMotsCle();
+                        $req = PDORequest::GetAllMotsCleV();
                         while($MotCleReq = $req->fetch())
                         { ?>
                             <tr>
                             <td><?= $MotCleReq['NomMC'] ?></td>
-                            <td><?= $MotCleReq['ValidationMC'] ?></td>
+                            <td><?=UITools::ConvertDate($MotCleReq['ValidationMC']) ?></td>
                             <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMC-<?= $MotCleReq['IdMC'] ?>">Modifier</a></td>
                             <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteMC-<?= $MotCleReq['IdMC'] ?>">Supprimer</a></td>
                             </tr>
@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <label>Nom</label>
-                                                <input type="text" class="form-control" name="VarModifyName" placeholder="Entrez un Nom" required="required">
+                                                <input type="text" class="form-control" name="VarModifyName" placeholder="<?=$MotCleReq['NomMC']?>" required="required">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -96,7 +96,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <label>Voulez vous vraiment supprimer ce mot clé ?</label>
+                                                <label>Voulez vous vraiment supprimer le mot clé <?=$MotCleReq['NomMC']?> ?</label>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -113,6 +113,57 @@
                 </table>
             </div>
 
+            <!--Affichage de tout les mots clé Non valider-->
+
+            <div class="container-fluid">
+                <h2 class="h4 mb-4 text-gray-800">Mots clé non valider</h2>
+                <table class="table table-bordered col-md-5">
+                    <thead>
+                    <tr>
+                        <!-- <th scope="col">ID</th> -->
+                        <th scope="col">Nom</th>
+                        <th scope="col">Valider</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $req2 = PDORequest::GetAllMotsCleNonV();
+                    while($MotCleReq2 = $req2->fetch())
+                    { ?>
+                        <tr>
+                            <td><?= $MotCleReq2['NomMC'] ?></td>
+                            <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#ValideMC-<?= $MotCleReq2['IdMC'] ?>">Valider</a></td>
+                        </tr>
+
+                        <!-- Génération Modal pour Valider un mot clé-->
+                        <div class="modal fade" id="ValideMC-<?=$MotCleReq2['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <form action="./view/AdminGestion/MotsCleRequete.php?VarValideMC=<?=$MotCleReq2['IdMC']?>" method="post">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Valider le mot clé</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>Voulez vous vraiment valider le mot clé <?=$MotCleReq2['NomMC']?></label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <?php
+                    } ?>
+
+                    </tbody>
+                </table>
+            </div>
             <!--Formulaire pour la création Mot Clé-->
 
             <div class="container-fluid">

@@ -19,9 +19,14 @@
             PDORequest::DeleteMotCle($_GET['VarDeleteId']);
             header('Location: http://localhost/safe-stock/?route=mcgestion');
         }
-        else
+        elseif (isset($_POST['NewMotCle']))
         {
             PDORequest::CreateMotCle($_POST['NewMotCle']);
+            header('Location: http://localhost/safe-stock/?route=mcgestion?VideMotCle');
+        }
+        elseif (isset($_GET['VarValideMC']))
+        {
+            PDORequest::ValidationMotCle($_GET['VarValideMC']);
             header('Location: http://localhost/safe-stock/?route=mcgestion');
         }
     ?>
