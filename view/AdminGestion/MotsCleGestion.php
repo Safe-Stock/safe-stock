@@ -51,17 +51,63 @@
                         $iMotCle = 0;
                         $req = PDORequest::GetAllMotsCle();
                         while($MotCleReq = $req->fetch())
-                        {
-                            echo "<tr>";
-                            //echo "<th scope=\"row\">" . $MotCleReq['IdMC'] . "</th>";
-                            $iMotCle = $MotCleReq['IdMC']; $iNomMc = $MotCleReq['NomMC'];
-                            echo "<td>" . $MotCleReq['NomMC'] . "</td>";
-                            echo "<td>" . $MotCleReq['ValidationMC'] . "</td>";
-                            echo "<td>"; echo " <a class='btn btn-outline-warning' href=\"./view/AdminGestion/MotsCleModifyMcForm.php?varModifyIdMC=$iMotCle\">Modify";
-                            echo "<td>"; echo " <a class='btn btn-outline-danger' href=\"./view/AdminGestion/MotsCleRequete.php?varDelete=$iMotCle\">Supprimer";
-                            echo "</tr>";
-                        }
-                    ?>
+                        { ?>
+                            <tr>
+                            <td><?= $MotCleReq['NomMC'] ?></td>
+                            <td><?= $MotCleReq['ValidationMC'] ?></td>
+                            <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMC-<?= $MotCleReq['IdMC'] ?>">Modifier</a></td>
+                            <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteMC-<?= $MotCleReq['IdMC'] ?>">Supprimer</a></td>
+                            </tr>
+
+                            <!-- Génération Modal pour modifier un mot clé-->
+                            <div class="modal fade" id="UpdateMC-<?=$MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="./view/AdminGestion/MotsCleRequete.php?VarModifyId=<?=$MotCleReq['IdMC'] ?>" method="post">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modifier le mot clé</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label>Nom</label>
+                                                <input type="text" class="form-control" name="VarModifyName" placeholder="Entrez un Nom" required="required">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Génération des modals confirmation suppresion mot clé -->
+
+                            <div class="modal fade" id="DeleteMC-<?= $MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="./view/AdminGestion/MotsCleRequete.php?VarDeleteId=<?= $MotCleReq['IdMC'] ?>" method="post">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Supprimer le mot clé</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label>Voulez vous vraiment supprimer ce mot clé ?</label>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <?php
+                        } ?>
 
                     </tbody>
                 </table>
