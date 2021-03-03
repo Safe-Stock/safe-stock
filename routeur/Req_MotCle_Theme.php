@@ -37,9 +37,15 @@
             header('Location: http://localhost/safe-stock/?route=gestionmct');
         }
 
+        elseif (isset($_GET['VarRefuserMC']))               //Refuser le mot clé en attente
+        {
+            PDORequest::DeleteMotCle($_GET['VarRefuserMC']);
+            header('Location: http://localhost/safe-stock/?route=gestionmct');
+        }
+
         // Requetes Gestion Thèmes
 
-        if (isset($_POST['VarModifyThemeName']) && !empty($_POST['VarModifyThemeName']))    //Modifier le Thème
+        elseif (isset($_POST['VarModifyThemeName']) && !empty($_POST['VarModifyThemeName']))    //Modifier le Thème
         {
             PDORequest::UpdateTheme($_POST['VarModifyThemeName'], $_GET['VarModifyThemeId']);
             header('Location: http://localhost/safe-stock/?route=gestionmct');
