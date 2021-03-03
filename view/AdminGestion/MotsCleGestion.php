@@ -22,7 +22,7 @@
     <!-- Sidebar -->
     <?php include('./view/components/sidebar.html') ?>
     <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
+        <div id="content" class="container row">
 
             <!-- Topbar -->
             <?php include('./view/components/navigation.html') ?>
@@ -34,7 +34,7 @@
 
             <!--Affichage de tout les mots clé valider-->
 
-            <div class="container-fluid">
+            <div class="container-fluid col">
                 <h2 class="h4 mb-4 text-gray-800">Mots clé valider</h2>
                 <table class="table table-bordered col-md-5">
                     <thead>
@@ -111,6 +111,8 @@
 
                     </tbody>
                 </table>
+
+
             </div>
 
             <!--Affichage de tout les mots clé Non valider-->

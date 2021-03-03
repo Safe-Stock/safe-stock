@@ -22,7 +22,7 @@
         elseif (isset($_POST['NewMotCle']))
         {
             PDORequest::CreateMotCle($_POST['NewMotCle']);
-            header('Location: http://localhost/safe-stock/?route=mcgestion?VideMotCle');
+            header('Location: http://localhost/safe-stock/?route=mcgestion');
         }
         elseif (isset($_GET['VarValideMC']))
         {
