@@ -45,6 +45,9 @@ require('./class/UITools.php');
                 case "themegestion":
                         include('./view/settings.php');
                         break;
+                case "upload":
+                        include('./view/upload.php');
+                        break;
                 default:
                     include('./view/404.html');
                     break;
