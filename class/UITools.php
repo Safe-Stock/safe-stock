@@ -23,7 +23,7 @@
                 return "Il y a " . $day . " jour(s)";
             } elseif($timeDifference <= 31536000) {
                 $months = round($timeDifference / 2592000);
-                return "Il y a " . $months . " moi(s)";
+                return "Il y a " . $months . " mois";
             } else {
                 $years = round($timeDifference / 31536000);
                 return "Il y a " . $years . " an(s)";

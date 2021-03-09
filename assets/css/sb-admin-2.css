@@ -11241,3 +11241,17 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.my-custom-scrollbarB {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+.my-custom-scrollbarL {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+}

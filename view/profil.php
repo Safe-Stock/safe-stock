@@ -39,6 +39,20 @@
                                             <br>
                                             <h5 class=" mb-1 text-white">DUPONT Didier</h5>
                                             <h6 class="text-light">Eleve</h6>
+                                                <div style="font-size: 24px; color: white;">
+                                                    <i class="fa fa-user fa-10x" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <?php
+                                            $query = PDORequest::GetUserWithId($_SESSION['user']);
+                                            while ($getUser = $query->fetch()) {
+                                            ?>
+                                                <h5 class=" mb-1 text-white"><?php echo  $getUser['NomUtil'] . ' ' . $getUser['PrenomUtil'] ?></h5>
+                                                <h6 class="text-light"><?php echo $getUser['NomProfil'] ?></h6>
+                                            <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -63,6 +77,22 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
+                                                            <tbody>        
+                                                                    <?php
+
+                                                                    $query = PDORequest::GetLastDocByUser($_SESSION['user']);
+                                                                    while ($getTheme = $query->fetch()) {
+                                                                        
+                                                                    ?>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <strong><?php echo $getTheme['NomDoc'] . '.' . $getTheme['TypeDoc'] ?></strong> a été crée dans <strong><?php echo $getTheme['NomTheme'] ?></strong>
+                                                                        </td>
+                                                                    </tr>    
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                   <!-- <td>
                                                                         <strong>Test.pdf</strong> a été crée dans <strong>`Theme 1`</strong>
                                                                     </td>
                                                                 </tr>
@@ -85,6 +115,7 @@
                                                                     <td>
                                                                         <strong>Test.docx</strong> a été crée dans <strong>`Theme 1`</strong>
                                                                     </td>
+                                                                    </td>-->
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -123,12 +154,49 @@
                                                         <label class="col-lg-3 col-form-label form-control-label">Image de Profil</label>
                                                         <div class="col-lg-9">
                                                             <input name="avatar" class="form-control-file" type="file">
+                                            <div class="tab-pane" id="edit">
+                                                <form>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Nom</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text" value="DUPONT">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Prénom</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text" value="Didier">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="email" value="email@exemple.com">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Image de Profil</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="file">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Nom d'utilisateur</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text" value="utilisateur1">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-lg-3 col-form-label form-control-label">Mot de passe</label>
                                                         <div class="col-lg-9">
                                                             <input class="form-control" name="password" type="password" placeholder="Entrez votre mot de passe pour valider les changements">
+                                                            <input class="form-control" type="password" value="11111122333">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Confirmer mot de passe</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="password" value="11111122333">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
