@@ -99,10 +99,17 @@
 
         public static function GetUserWithId($id) {
             self::open();
-            $req = self::$bdd->prepare('SELECT NomUtil, PrenomUtil, MailUtil, AvatarUtil, IdProfil FROM utilisateur WHERE IdUtil = ?');
+            $req = self::$bdd->prepare('SELECT * FROM utilisateur WHERE IdUtil = ?');
             $req->execute(array($id));
             return $req;
         }
-    
+
+        public static function UpdateUser($idUser, $avatar) {
+            self::open();
+            $idUser = htmlspecialchars($idUser);
+            $avatar = htmlspecialchars($avatar);
+            $req = self::$bdd->prepare('UPDATE utilisateur SET AvatarUtil = ? WHERE IdUtil = ?');
+            $req->execute(array($avatar, $idUser));
+        }    
     }
 ?>

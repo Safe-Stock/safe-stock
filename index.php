@@ -22,7 +22,7 @@ require('./class/UITools.php');
                     include('./routeur/login.php');
                     break;
                 case "profil":
-                        include('./view/profil.html');
+                        include('./view/profil.php');
                         break;
                 case "theme":
                     include('./view/theme.php');
