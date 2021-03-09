@@ -33,18 +33,9 @@ require('./class/UITools.php');
                 case "gestionmct":
                     include('./view/Administration/MotCle_Theme_Gestion.php');
                     break;
-                case "settings":
-                    include('./view/settings.php');
+                case "gestionuser":
+                    include('./view/Administration/Utilisateur_Gestion.php');
                     break;
-                case "theme":
-                    include('./view/theme.php');
-                    break;
-                case "mcgestion":
-                    include('./view/Administration/MotCle_Theme_Gestion.php');
-                    break;
-                case "themegestion":
-                        include('./view/settings.php');
-                        break;
                 case "upload":
                         include('./view/upload.php');
                         break;

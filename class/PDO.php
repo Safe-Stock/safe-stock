@@ -118,10 +118,42 @@
             return $req;
         }
 
+        public static function GetAllUserProf() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM utilisateur WHERE IdProfil = 2 ORDER BY IdUtil ASC');
+            return $req;
+        }
+
+        public static function GetAllUserEleve() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM utilisateur WHERE IdProfil = 3 ORDER BY IdUtil ASC');
+            return $req;
+        }
+
+        public static function ModifyUser($NomUtil, $PrenomUtil, $IdUtil) {
+            self::open();
+            $req = self::$bdd->prepare("UPDATE utilisateur SET NomUtil = :NomUtil, PrenomUtil = :PrenomUtil WHERE IdUtil = :IdUtil");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdUtil'=> $IdUtil));
+        }
+
         public static function DeleteUser($IdUtil) {
             self::open();
             $req = self::$bdd->prepare('DELETE FROM utilisateur WHERE IdUtil = ?');
             $req->execute(array($IdUtil));
+        }
+
+        public static function CreateUserProf($NomUtil, $PrenomUtil, $MdpUtil) {
+            $PasswordUtil = password_hash($MdpUtil, PASSWORD_DEFAULT);
+            self::open();
+            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :MdpUtil, 2)");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'MdpUtil' => $PasswordUtil));
+        }
+
+        public static function CreateUserEleve($NomUtil, $PrenomUtil, $MdpUtil) {
+            $PasswordUtil = password_hash($MdpUtil, PASSWORD_DEFAULT);
+            self::open();
+            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :MdpUtil, 3)");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'MdpUtil' => $PasswordUtil));
         }
 
         public static function GetAllMotsCleNonV() {
