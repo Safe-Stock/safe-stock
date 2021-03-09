@@ -30,24 +30,26 @@ require('./class/UITools.php');
                 case "disconnect":
                     include('./routeur/disconnect.php');
                     break;
-                case "gestionmct":
-                    include('./view/Administration/MotCle_Theme_Gestion.php');
-                    break;
+                
                 case "settings":
                     include('./view/settings.php');
                     break;
                 case "theme":
                     include('./view/theme.php');
                     break;
-                case "mcgestion":
-                    include('./view/Administration/MotCle_Theme_Gestion.php');
-                    break;
-                case "themegestion":
-                        include('./view/settings.php');
-                        break;
+                
                 case "upload":
                         include('./view/upload.php');
                         break;
+                default:
+                    include('./view/404.html');
+                    break;
+            }
+        } else if(isset($_GET['admin']) && $user['IdProfil'] == 1){
+            switch($_GET['admin']) {
+                case "gestionmct":
+                    include('./view/Administration/MotCle_Theme_Gestion.php');
+                    break;
                 default:
                     include('./view/404.html');
                     break;
