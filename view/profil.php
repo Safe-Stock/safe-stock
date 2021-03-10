@@ -34,6 +34,11 @@
                                     <div class="card">
                                         <div class="card-body text-center bg-primary rounded-top">
                                             <div class="user-box">
+                                                <img src="./data/avatar/<?= $user['AvatarUtil'] ?>" class="rounded">
+                                            </div>
+                                            <br>
+                                            <h5 class=" mb-1 text-white">DUPONT Didier</h5>
+                                            <h6 class="text-light">Eleve</h6>
                                                 <div style="font-size: 24px; color: white;">
                                                     <i class="fa fa-user fa-10x" aria-hidden="true"></i>
                                                 </div>
@@ -69,6 +74,9 @@
                                                     <div class="col-md-12">
                                                         <h5 class="mt-2 mb-3 m-5"><span class="fa fa-clock-o ion-clock float-right"></span> Activité </h5>
                                                         <table class="table table-hover table-striped">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
                                                             <tbody>        
                                                                     <?php
 
@@ -106,6 +114,7 @@
                                                                 <tr>
                                                                     <td>
                                                                         <strong>Test.docx</strong> a été crée dans <strong>`Theme 1`</strong>
+                                                                    </td>
                                                                     </td>-->
                                                                 </tr>
                                                             </tbody>
@@ -115,6 +124,36 @@
                                                 <!--/row-->
                                             </div>
 
+
+                                            <div class="tab-pane" id="edit">
+                                                <?php if(isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <?= $_SESSION['error'] ?>
+                                                    </div>
+                                               <?php unset($_SESSION['error']); } ?>
+                                                <form action="./routeur/updateProfil.php" method="POST" enctype="multipart/form-data">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Nom</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text" value="<?= $user['NomUtil'] ?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Prénom</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text" value="<?= $user['PrenomUtil'] ?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="email" placeholder="email@exemple.com" value="<?= $user['MailUtil'] ?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Image de Profil</label>
+                                                        <div class="col-lg-9">
+                                                            <input name="avatar" class="form-control-file" type="file">
                                             <div class="tab-pane" id="edit">
                                                 <form>
                                                     <div class="form-group row">
@@ -150,6 +189,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-lg-3 col-form-label form-control-label">Mot de passe</label>
                                                         <div class="col-lg-9">
+                                                            <input class="form-control" name="password" type="password" placeholder="Entrez votre mot de passe pour valider les changements">
                                                             <input class="form-control" type="password" value="11111122333">
                                                         </div>
                                                     </div>
@@ -163,7 +203,7 @@
                                                         <label class="col-lg-3 col-form-label form-control-label"></label>
                                                         <div class="col-lg-9">
                                                             <input type="reset" class="btn btn-secondary" value="Annuler">
-                                                            <input type="button" class="btn btn-primary" value="Enregistrer">
+                                                            <input type="submit" class="btn btn-primary" value="Enregistrer">
                                                         </div>
                                                     </div>
                                                 </form>

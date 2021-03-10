@@ -104,6 +104,13 @@
             return $req;
         }
 
+        public static function UpdateUser($idUser, $avatar) {
+            self::open();
+            $idUser = htmlspecialchars($idUser);
+            $avatar = htmlspecialchars($avatar);
+            $req = self::$bdd->prepare('UPDATE utilisateur SET AvatarUtil = ? WHERE IdUtil = ?');
+            $req->execute(array($avatar, $idUser));
+        }    
         public static function GetLastDocByUser($id) { 
         self::open();
             $id = htmlspecialchars($id);

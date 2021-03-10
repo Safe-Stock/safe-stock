@@ -12,9 +12,17 @@
     <!-- Nav Item - Dashboard -->
     <?php if($user['IdProfil'] == 1) { ?>
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDashboard"
+                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Tableau de Bord</span></a>
+                <span>Tableau de Bord</span>
+            </a>
+            <div id="collapseDashboard" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href= "index.php?admin=gestionmct">Gestion themes/mots-clés</a>
+                </div>
+            </div>
         </li>
     <?php  } ?>
     <!-- Divider -->
