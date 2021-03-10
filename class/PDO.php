@@ -92,7 +92,7 @@
     
         public static function GetUserInformation($login) {
             self::open();
-            $req = self::$bdd->prepare('SELECT * FROM utilisateur WHERE MailUtil =  ?');
+            $req = self::$bdd->prepare('SELECT * FROM utilisateur WHERE IdentifiantUtil =  ?');
             $req->execute(array($login));
             return $req;
         }

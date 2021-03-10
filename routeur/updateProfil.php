@@ -22,6 +22,13 @@ if (isset($_POST['password']) && !empty($_POST['password'])) {
                     $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
                     // Si $resultat est vrai alors on upload l'image
                     if ($resultat) {
+
+                        
+                        $req = PDORequest::GetUserWithId($_SESSION['user']);
+                        $req = $req->fetch();
+
+                        unlink("../data/avatar/" . $req['AvatarUtil']);
+
                         // On Update la bdd
                         var_dump("C'est bon");
                         PDORequest::UpdateUser($_SESSION['user'], $newName);

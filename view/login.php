@@ -42,7 +42,7 @@
                                     } ?>
                                     <form action="./routeur/login.php" method="post" class="user">
                                         <div class="form-group">
-                                            <input type="email" name="login" class="form-control form-control-user"
+                                            <input type="text" name="login" class="form-control form-control-user"
                                                 id="exampleInputIdentifiant" aria-describedby="IdentifiantHelp"
                                                 placeholder="Identifiant" required>
                                         </div>
