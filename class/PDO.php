@@ -143,6 +143,13 @@
             $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdUtil'=> $IdUtil));
         }
 
+        public static function ModifyUserPassword($PasswordUtil, $IdUtil) {
+            $PasswordUtilDef = password_hash($PasswordUtil, PASSWORD_DEFAULT);
+            self::open();
+            $req = self::$bdd->prepare("UPDATE utilisateur SET MdpUtil = :MdpUtil WHERE IdUtil = :IdUtil");
+            $req->execute(array('MdpUtil' => $PasswordUtilDef, 'IdUtil' => $IdUtil));
+        }
+
         public static function DeleteUser($IdUtil) {
             self::open();
             $req = self::$bdd->prepare('DELETE FROM utilisateur WHERE IdUtil = ?');
