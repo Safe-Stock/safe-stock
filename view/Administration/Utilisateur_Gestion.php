@@ -70,7 +70,7 @@
                                         <tr>
                                             <td><?= $UtilisateurReq1['NomUtil'] ?></td>
                                             <td><?= $UtilisateurReq1['PrenomUtil'] ?></td>
-                                            <td><?= $UtilisateurReq1['NomUtil'] ?></td>
+                                            <td><?= $UtilisateurReq1['IdentifiantUtil'] ?></td>
                                             <td><a class="btn btn-outline-info" data-toggle="modal" data-target="#UpdateEleve-<?= $UtilisateurReq1['IdUtil'] ?>">Modifier</a></td>
                                             <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMdpEleve-<?= $UtilisateurReq1['IdUtil'] ?>">Modifier</a></td>
                                             <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteEleve-<?= $UtilisateurReq1['IdUtil'] ?>">Supprimer</a></td>
@@ -90,11 +90,15 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <label>Nom</label>
-                                                            <input type="text" class="form-control" name="VarModifyNomUtil" placeholder="<?=$UtilisateurReq1['NomUtil']?>" required="required">
+                                                            <input type="text" class="form-control" name="VarModifyNomUtil" value="<?=$UtilisateurReq1['NomUtil']?>" required="required">
                                                         </div>
                                                         <div class="modal-body">
                                                             <label>Prénom</label>
-                                                            <input type="text" class="form-control" name="VarModifyPrenomUtil" placeholder="<?=$UtilisateurReq1['PrenomUtil']?>" required="required">
+                                                            <input type="text" class="form-control" name="VarModifyPrenomUtil" value="<?=$UtilisateurReq1['PrenomUtil']?>" required="required">
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label>Identifiant</label>
+                                                            <input type="text" class="form-control" name="VarModifyIdentifiantUtil" value="<?=$UtilisateurReq1['IdentifiantUtil']?>" required="required">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -180,6 +184,10 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <label>Identifiant</label>
+                                                <input type="text" class="form-control" name="VarCreateIdentifiantEleve" required="required">
+                                            </div>
+                                            <div class="modal-body">
                                                 <label>Nom</label>
                                                 <input type="text" class="form-control" name="VarCreateNomEleve" required="required">
                                             </div>
@@ -229,9 +237,9 @@
                                     <tr>
                                         <td><?= $UtilisateurReq['NomUtil'] ?></td>
                                         <td><?= $UtilisateurReq['PrenomUtil'] ?></td>
-                                        <td><?= $UtilisateurReq['NomUtil'] ?></td>
+                                        <td><?= $UtilisateurReq['IdentifiantUtil'] ?></td>
                                         <td><a class="btn btn-outline-info" data-toggle="modal" data-target="#UpdateProf-<?= $UtilisateurReq['IdUtil'] ?>">Modifier</a></td>
-                                        <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMdpProf-<?= $UtilisateurReq1['IdUtil'] ?>">Modifier</a></td>
+                                        <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMdpProf-<?= $UtilisateurReq['IdUtil'] ?>">Modifier</a></td>
                                         <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteProf-<?= $UtilisateurReq['IdUtil'] ?>">Supprimer</a></td>
                                     </tr>
 
@@ -248,12 +256,16 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
+                                                        <label>Identifiant</label>
+                                                        <input type="text" class="form-control" name="VarModifyIdentifiantUtil" value="<?=$UtilisateurReq['IdentifiantUtil']?>" required="required">
+                                                    </div>
+                                                    <div class="modal-body">
                                                         <label>Nom</label>
-                                                        <input type="text" class="form-control" name="VarModifyNomUtil" placeholder="<?=$UtilisateurReq['NomUtil']?>" required="required">
+                                                        <input type="text" class="form-control" name="VarModifyNomUtil" value="<?=$UtilisateurReq['NomUtil']?>" required="required">
                                                     </div>
                                                     <div class="modal-body">
                                                         <label>Prénom</label>
-                                                        <input type="text" class="form-control" name="VarModifyPrenomUtil" placeholder="<?=$UtilisateurReq['PrenomUtil']?>" required="required">
+                                                        <input type="text" class="form-control" name="VarModifyPrenomUtil" value="<?=$UtilisateurReq['PrenomUtil']?>" required="required">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -336,6 +348,10 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>Identifiant</label>
+                                            <input type="text" class="form-control" name="VarCreateIdentifiantProf" placeholder="<?=$UtilisateurReq['IdentifiantUtil']?>" required="required">
                                         </div>
                                         <div class="modal-body">
                                             <label>Nom</label>

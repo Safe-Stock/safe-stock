@@ -137,10 +137,10 @@
             return $req;
         }
 
-        public static function ModifyUser($NomUtil, $PrenomUtil, $IdUtil) {
+        public static function ModifyUser($NomUtil, $PrenomUtil, $IdentifiantUtil, $IdUtil) {
             self::open();
-            $req = self::$bdd->prepare("UPDATE utilisateur SET NomUtil = :NomUtil, PrenomUtil = :PrenomUtil WHERE IdUtil = :IdUtil");
-            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdUtil'=> $IdUtil));
+            $req = self::$bdd->prepare("UPDATE utilisateur SET NomUtil = :NomUtil, PrenomUtil = :PrenomUtil, IdentifiantUtil = :IdentifiantUtil WHERE IdUtil = :IdUtil");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdentifiantUtil' => $IdentifiantUtil, 'IdUtil'=> $IdUtil));
         }
 
         public static function ModifyUserPassword($PasswordUtil, $IdUtil) {
@@ -156,18 +156,18 @@
             $req->execute(array($IdUtil));
         }
 
-        public static function CreateUserProf($NomUtil, $PrenomUtil, $MdpUtil) {
+        public static function CreateUserProf($NomUtil, $PrenomUtil, $IdentifiantUtil, $MdpUtil) {
             $PasswordUtil = password_hash($MdpUtil, PASSWORD_DEFAULT);
             self::open();
-            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :MdpUtil, 2)");
-            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'MdpUtil' => $PasswordUtil));
+            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, IdentifiantUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :IdentifiantUtil, :MdpUtil, 2)");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdentifiantUtil' => $IdentifiantUtil, 'MdpUtil' => $PasswordUtil));
         }
 
-        public static function CreateUserEleve($NomUtil, $PrenomUtil, $MdpUtil) {
+        public static function CreateUserEleve($NomUtil, $PrenomUtil, $IdentifiantUtil, $MdpUtil) {
             $PasswordUtil = password_hash($MdpUtil, PASSWORD_DEFAULT);
             self::open();
-            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :MdpUtil, 3)");
-            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'MdpUtil' => $PasswordUtil));
+            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, IdentifiantUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :IdentifiantUtil, :MdpUtil, 3)");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdentifiantUtil' => $IdentifiantUtil, 'MdpUtil' => $PasswordUtil));
         }
 
         public static function GetAllMotsCleNonV() {
