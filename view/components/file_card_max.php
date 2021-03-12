@@ -34,7 +34,7 @@
             </div>
           <?php } ?>
         </div>
-        <div class="modal-footer">
+          <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
           <button type="button" class="btn btn-primary">Télécharger</button>
         </div>
