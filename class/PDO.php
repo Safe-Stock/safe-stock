@@ -18,6 +18,42 @@
             return $req;
         }
 
+        public static function GetAllDocumentsV() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM document WHERE ValidationDoc IS NOT NULL ORDER BY DateImportationDoc ASC');
+            return $req;
+        }
+
+        public static function GetAllDocumentsNV() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM document WHERE ValidationDoc IS NULL ORDER BY DateImportationDoc ASC');
+            return $req;
+        }
+
+        public static function DeleteDoc($IdDoc) {
+            self::open();
+            $req = self::$bdd->prepare('DELETE FROM document WHERE IdDoc = ?');
+            $req->execute(array($IdDoc));
+        }
+
+        public static function ValidationDoc($IdDoc) {
+            self::open();
+            $req = self::$bdd->prepare('UPDATE document SET ValidationDoc = NOW() WHERE IdDoc = ?');
+            $req->execute(array($IdDoc));
+        }
+
+        public static function UpdateDocNv($NomDoc, $DescriptionDoc, $IdDoc) {
+            self::open();
+            $req = self::$bdd->prepare('UPDATE document SET NomDoc = :NomDoc, DescriptionDoc = :DescriptionDoc, ValidationDoc = NOW() WHERE IdDoc = :IdDoc');
+            $req->execute(array('NomDoc' => $NomDoc, 'DescriptionDoc'=> $DescriptionDoc, 'IdDoc' => $IdDoc));
+        }
+
+        public static function UpdateDocV($NomDoc, $DescriptionDoc, $IdDoc) {
+            self::open();
+            $req = self::$bdd->prepare('UPDATE document SET NomDoc = :NomDoc, DescriptionDoc = :DescriptionDoc WHERE IdDoc = :IdDoc');
+            $req->execute(array('NomDoc' => $NomDoc, 'DescriptionDoc'=> $DescriptionDoc, 'IdDoc' => $IdDoc));
+        }
+
         public static function GetAllThemes() {
             self::open();
             $req = self::$bdd->query('SELECT * FROM theme ORDER BY NomTheme ASC');
