@@ -923,50 +923,55 @@ SELECT|sys.sys_config
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="271" parent="239" name="NomUtil">
+    <column id="271" parent="239" name="IdentifiantUtil">
       <Position>2</Position>
-      <DataType>varchar(30)|0s</DataType>
+      <DataType>varchar(55)|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="272" parent="239" name="PrenomUtil">
+    <column id="272" parent="239" name="NomUtil">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="273" parent="239" name="MailUtil">
+    <column id="273" parent="239" name="PrenomUtil">
       <Position>4</Position>
-      <DataType>varchar(70)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="274" parent="239" name="MdpUtil">
-      <Position>5</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="275" parent="239" name="AvatarUtil">
-      <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="276" parent="239" name="IdProfil">
+    <column id="274" parent="239" name="MailUtil">
+      <Position>5</Position>
+      <DataType>varchar(70)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="275" parent="239" name="MdpUtil">
+      <Position>6</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="276" parent="239" name="AvatarUtil">
       <Position>7</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="277" parent="239" name="IdProfil">
+      <Position>8</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <index id="277" parent="239" name="IdProfil">
+    <index id="278" parent="239" name="IdProfil">
       <ColNames>IdProfil</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="278" parent="239" name="PRIMARY">
+    <key id="279" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IdUtil</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="279" parent="239" name="IdProfil">
+    <foreign-key id="280" parent="239" name="IdProfil">
       <ColNames>IdProfil</ColNames>
       <RefTableName>profil</RefTableName>
       <RefColNames>IdProfil</RefColNames>

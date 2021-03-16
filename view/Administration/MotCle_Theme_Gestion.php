@@ -116,6 +116,31 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="mb-4"></div>
+                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateMC">Crée un Mot Clé</a>
+                    </div>
+
+                    <div class="modal fade" id="CreateMC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <form action="./routeur/Req_MotCle_Theme.php" method="post">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Crée un mot clé</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label>Nom du Mot Clé</label>
+                                        <input type="text" class="form-control" name="VarCreateMC" required="required">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <button type="submit" class="btn btn-primary">Confirmer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
                     <!--Affichage de tout les mots clé Non valider-->
@@ -124,7 +149,7 @@
                         <div class="mb-4"></div>
                         <h2 class="h4 mb-4 text-gray-800">Mots clé non valider</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarL">
-                            <table class="table table-bordered col-md-12">
+                            <table class="table table-bordered mb-0 col-md-12">
                                 <thead>
                                 <tr>
                                     <th scope="col">Nom</th>
@@ -206,18 +231,6 @@
                             </table>
                         </div>
                     </div>
-
-                    <!--Formulaire pour la création Mot Clé-->
-                    <div class="mb-4"></div>
-                    <div class="container-fluid">
-                        <form action="./routeur/Req_MotCle_Theme.php" method="post">
-                            <div class="form-group col-md-12">
-                                <label for="exampleInputEmail1">Crée un nouveau mot clé</label>
-                                <input type="text" class="form-control" name="NewMotCle" aria-describedby="NewMotCleHelp">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                        </form>
-                    </div>
                 </div>
 
                     <!--Gestion des Thèmes -->
@@ -231,7 +244,7 @@
                     <div class="container-fluid">
                         <h2 class="h4 mb-4 text-gray-800">Thèmes utiliser</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarB">
-                            <table class="table table-bordered col-md-12">
+                            <table class="table table-bordered mb-0 col-md-12">
                                 <thead>
                                 <tr>
                                     <th scope="col">Nom</th>
@@ -307,13 +320,28 @@
                         <!--Formulaire pour la création Thème-->
 
                         <div class="mb-4"></div>
-                        <div class="container-fluid">
+                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateTheme">Crée un Thème</a>
+
+                        <div class="modal fade" id="CreateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <form action="./routeur/Req_MotCle_Theme.php" method="post">
-                                <div class="form-group col-md-12">
-                                    <label for="exampleInputEmail1">Crée un nouveau thème</label>
-                                    <input type="text" class="form-control" name="NewTheme" aria-describedby="NewMotCleHelp">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Crée un Thème</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>Nom du Thème</label>
+                                            <input type="text" class="form-control" name="VarCreateTheme" required="required">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Ajouter</button>
                             </form>
                         </div>
                     </div>
