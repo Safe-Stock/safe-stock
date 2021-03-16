@@ -23,18 +23,18 @@
           </button>
         </div>
         <div class="modal-body">
-          <p class = "m-2"><strong>Taille :  </strong><?php echo UITools::ConvertBytes(filesize("./data/" . $doc['NomDoc'] . "." . $doc['TypeDoc'])) ?></p>
+          <p class = "m-2"><strong>Taille :  </strong><?php echo UITools::ConvertBytes(filesize("./data/doc/" . $doc['NomDoc'] . "." . $doc['TypeDoc'])) ?></p>
           <p class = "m-2"><strong>Date de l'importation :  </strong><?php echo UITools::ConvertDate($doc['ValidationDoc']) ?></p>
           <p class = "m-2"><strong>Date de Validation :  </strong> <?php echo UITools::ConvertDate($doc['DateImportationDoc']) ?> </p>
           <p class = "m-2"><strong>Type :  </strong>.<?php echo $doc['TypeDoc'] ?></p>
           <p class = "m-2"><strong>Description :   </strong><?php echo $doc['DescriptionDoc'] ?></p>
           <?php if($doc['TypeDoc'] == "pdf") { ?>
             <div class="row">  
-              <iframe class = "m-3" width="1200" height="600" src="./data/<?php echo $doc['NomDoc'] ?>.<?php echo $doc['TypeDoc'] ?>" style=" width: 98%;"></iframe>
+              <iframe class = "m-3" width="1200" height="600" src="./data/doc/<?php echo $doc['NomDoc'] ?>.<?php echo $doc['TypeDoc'] ?>" style=" width: 98%;"></iframe>
             </div>
           <?php } ?>
         </div>
-        <div class="modal-footer">
+          <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
           <button type="button" class="btn btn-primary">Télécharger</button>
         </div>

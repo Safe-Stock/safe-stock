@@ -13,7 +13,7 @@ session_start();
             if(password_verify($password, $userData['MdpUtil'])) {
                 $_SESSION['user'] = $userData['IdUtil'];
                 if(isset($_POST['SubmitBtn'])){
-                    setcookie('email',$userData['MailUtil'],time()+2629800,"/",null,false,true);
+                    setcookie('login',$userData['IdentifiantUtil'],time()+2629800,"/",null,false,true);
                     setcookie('password',$password,time()+2629800,"/",null,false,true);
                 }
                 header('location: ../index.php');

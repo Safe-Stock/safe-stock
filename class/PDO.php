@@ -92,7 +92,7 @@
     
         public static function GetUserInformation($login) {
             self::open();
-            $req = self::$bdd->prepare('SELECT * FROM utilisateur WHERE MailUtil =  ?');
+            $req = self::$bdd->prepare('SELECT * FROM utilisateur WHERE IdentifiantUtil =  ?');
             $req->execute(array($login));
             return $req;
         }
@@ -104,6 +104,13 @@
             return $req;
         }
 
+        public static function UpdateUser($idUser, $avatar) {
+            self::open();
+            $idUser = htmlspecialchars($idUser);
+            $avatar = htmlspecialchars($avatar);
+            $req = self::$bdd->prepare('UPDATE utilisateur SET AvatarUtil = ? WHERE IdUtil = ?');
+            $req->execute(array($avatar, $idUser));
+        }    
         public static function GetLastDocByUser($id) { 
         self::open();
             $id = htmlspecialchars($id);
@@ -118,10 +125,49 @@
             return $req;
         }
 
+        public static function GetAllUserProf() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM utilisateur WHERE IdProfil = 2 ORDER BY IdUtil ASC');
+            return $req;
+        }
+
+        public static function GetAllUserEleve() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM utilisateur WHERE IdProfil = 3 ORDER BY IdUtil ASC');
+            return $req;
+        }
+
+        public static function ModifyUser($NomUtil, $PrenomUtil, $IdentifiantUtil, $IdUtil) {
+            self::open();
+            $req = self::$bdd->prepare("UPDATE utilisateur SET NomUtil = :NomUtil, PrenomUtil = :PrenomUtil, IdentifiantUtil = :IdentifiantUtil WHERE IdUtil = :IdUtil");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdentifiantUtil' => $IdentifiantUtil, 'IdUtil'=> $IdUtil));
+        }
+
+        public static function ModifyUserPassword($PasswordUtil, $IdUtil) {
+            $PasswordUtilDef = password_hash($PasswordUtil, PASSWORD_DEFAULT);
+            self::open();
+            $req = self::$bdd->prepare("UPDATE utilisateur SET MdpUtil = :MdpUtil WHERE IdUtil = :IdUtil");
+            $req->execute(array('MdpUtil' => $PasswordUtilDef, 'IdUtil' => $IdUtil));
+        }
+
         public static function DeleteUser($IdUtil) {
             self::open();
             $req = self::$bdd->prepare('DELETE FROM utilisateur WHERE IdUtil = ?');
             $req->execute(array($IdUtil));
+        }
+
+        public static function CreateUserProf($NomUtil, $PrenomUtil, $IdentifiantUtil, $MdpUtil) {
+            $PasswordUtil = password_hash($MdpUtil, PASSWORD_DEFAULT);
+            self::open();
+            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, IdentifiantUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :IdentifiantUtil, :MdpUtil, 2)");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdentifiantUtil' => $IdentifiantUtil, 'MdpUtil' => $PasswordUtil));
+        }
+
+        public static function CreateUserEleve($NomUtil, $PrenomUtil, $IdentifiantUtil, $MdpUtil) {
+            $PasswordUtil = password_hash($MdpUtil, PASSWORD_DEFAULT);
+            self::open();
+            $req = self::$bdd->prepare("INSERT INTO utilisateur (NomUtil, PrenomUtil, IdentifiantUtil, MdpUtil, IdProfil) VALUES(:NomUtil, :PrenomUtil, :IdentifiantUtil, :MdpUtil, 3)");
+            $req->execute(array('NomUtil' => $NomUtil, 'PrenomUtil' => $PrenomUtil, 'IdentifiantUtil' => $IdentifiantUtil, 'MdpUtil' => $PasswordUtil));
         }
 
         public static function GetAllMotsCleNonV() {

@@ -112,6 +112,7 @@ INSERT INTO `theme` (`IdTheme`, `NomTheme`) VALUES
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `IdUtil` int(11) NOT NULL AUTO_INCREMENT,
+  `IdentifiantUtil` varchar(55) NOT NULL,
   `NomUtil` varchar(30) NOT NULL DEFAULT '0',
   `PrenomUtil` varchar(30) NOT NULL DEFAULT '0',
   `MailUtil` varchar(70) NOT NULL DEFAULT '0',
@@ -125,9 +126,9 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 -- Listage des données de la table filesranks.utilisateur : ~2 rows (environ)
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
-INSERT INTO `utilisateur` (`IdUtil`, `NomUtil`, `PrenomUtil`, `MailUtil`, `MdpUtil`, `AvatarUtil`, `IdProfil`) VALUES
-	(1, 'Cube', 'Steve', 'Steve.cube@hotmail.com', '$2y$10$CXCcP0cSn2pPdZYNdMtRXuDK0zDLT9l.7dyWvXWASCjmLhd7vyJZ2', '0', 3),
-	(2, 'root', ' ', 'root@root.fr', '$2y$10$vtpN.O33BytMrjemPuqOF.SDgknVW6TEjja1qNZaazkVeucpF2c9C', '0', 1);
+INSERT INTO `utilisateur` (`IdUtil`, `IdentifiantUtil`, `NomUtil`, `PrenomUtil`, `MailUtil`, `MdpUtil`, `AvatarUtil`, `IdProfil`) VALUES
+	(1, 'C.Steve', 'Cube', 'Steve', 'Steve.cube@hotmail.com', '$2y$10$CXCcP0cSn2pPdZYNdMtRXuDK0zDLT9l.7dyWvXWASCjmLhd7vyJZ2', '1615372969.jpg', 3),
+	(2, 'root', 'root', ' ', 'root@root.fr', '$2y$10$vtpN.O33BytMrjemPuqOF.SDgknVW6TEjja1qNZaazkVeucpF2c9C', '1615372534.png', 1);
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
