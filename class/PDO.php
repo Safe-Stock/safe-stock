@@ -218,5 +218,11 @@
             $req->execute(array($IdMC));
         }
 
+        public static function SearchBar($keyword) {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM document WHERE NomDoc LIKE "%'.$keyword.'%"');
+            return $req;
+        }
+
     }
 ?>
