@@ -22,8 +22,8 @@ require('./class/UITools.php');
                     include('./routeur/login.php');
                     break;
                 case "profil":
-                        include('./view/profil.php');
-                        break;
+                    include('./view/profil.php');
+                    break;
                 case "theme":
                     include('./view/theme.php');
                     break;
@@ -48,6 +48,9 @@ require('./class/UITools.php');
                 case "upload":
                         include('./view/upload.php');
                         break;
+                case "search":
+                        include('./view/searchbar.php');
+                        break;
                 default:
                     include('./view/404.html');
                     break;
@@ -58,7 +61,7 @@ require('./class/UITools.php');
     } elseif(isset($_COOKIE['email'], $_COOKIE['password']) AND !empty($_COOKIE['email']) AND !empty($_COOKIE['password'])){
         require('./class/user.php');
         User::ConnectWithCookies($_COOKIE['email'], $_COOKIE['password']);
-        header('location: ./index.php');
+        header("location:index.php");
     } else {
         include('./view/login.php');
     }
