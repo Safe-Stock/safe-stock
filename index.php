@@ -52,9 +52,9 @@ require('./class/UITools.php');
         } else {
             include('./view/home.php');
         }
-    } elseif(isset($_COOKIE['email'], $_COOKIE['password']) AND !empty($_COOKIE['email']) AND !empty($_COOKIE['password'])){
+    } elseif(isset($_COOKIE['login'], $_COOKIE['password']) AND !empty($_COOKIE['login']) AND !empty($_COOKIE['password'])){
         require('./class/user.php');
-        User::ConnectWithCookies($_COOKIE['email'], $_COOKIE['password']);
+        User::ConnectWithCookies($_COOKIE['login'], $_COOKIE['password']);
         header('location: ./index.php');
     } else {
         include('./view/login.php');
