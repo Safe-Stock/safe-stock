@@ -8,7 +8,7 @@
 
         public static function GetLatestDocuments() {
             self::open();
-            $req = self::$bdd->query('SELECT * FROM document ORDER BY DateImportationDoc ASC LIMIT 4');
+            $req = self::$bdd->query('SELECT * FROM document WHERE DateImportationDoc IS NOT NULL ORDER BY DateImportationDoc ASC LIMIT 4');
             return $req;
         }
 

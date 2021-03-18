@@ -11,7 +11,13 @@
 
         // Requetes Gestion Documents
 
-        if (isset($_GET['VarDeleteDoc']))
+        if (isset($_GET['VarValideDoc']) && isset($_POST['VarUpdateNameDocNv']) && isset($_POST['VarUpdateDescDocNv']))
+        {
+            PDORequest::UpdateDocNv($_POST['VarUpdateNameDocNv'], $_POST['VarUpdateDescDocNv'], $_GET['VarValideDoc']);
+            header('Location: http://localhost/safe-stock/?admin=gestiondoc');
+        }
+
+        elseif (isset($_GET['VarDeleteDoc']))
         {
             PDORequest::DeleteDoc($_GET['VarDeleteDoc']);
             header('Location: http://localhost/safe-stock/?admin=gestiondoc');
@@ -29,10 +35,10 @@
             header('Location: http://localhost/safe-stock/?admin=gestiondoc');
         }
 
-        elseif (isset($_GET['VarUpdateDocNV']) && isset($_POST['VarUpdateDescDocNv']) && isset($_POST['VarUpdateNameDocNv']))
+        elseif (isset($_GET['VarUpdateDocVH']) && isset($_POST['VarUpdateNameDocV']) && isset($_POST['VarUpdateDescDocV']))
         {
-            PDORequest::UpdateDocNv($_POST['VarUpdateNameDocNv'], $_POST['VarUpdateDescDocNv'], $_GET['VarUpdateDocNV']);
-            header('Location: http://localhost/safe-stock/?admin=gestiondoc');
+            PDORequest::UpdateDocV($_POST['VarUpdateNameDocV'], $_POST['VarUpdateDescDocV'], $_GET['VarUpdateDocVH']);
+            header('Location: http://localhost/safe-stock/index.php');
         }
 
     ?>

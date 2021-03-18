@@ -107,11 +107,11 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <label>Nom</label>
-                                                            <input type="text" class="form-control" name="VarUpdateNameDocV" required="required">
+                                                            <input type="text" class="form-control" value="<?=$DocumentVReq['NomDoc']?>" name="VarUpdateNameDocV" required="required">
                                                         </div>
                                                         <div class="modal-body">
                                                             <label>Description</label>
-                                                            <input type="text" class="form-control" name="VarUpdateDescDocV" required="required">
+                                                            <input type="text" class="form-control" value="<?=$DocumentVReq['DescriptionDoc']?>" name="VarUpdateDescDocV" required="required">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -204,38 +204,32 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label>Voulez vous vraiment valider le document <?=$DocumentNvReq['NomDoc']?></label>
+                                                        <label>Vous allez valider le document <?=$DocumentNvReq['NomDoc']?></label>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <a class="btn btn-warning" data-toggle="modal" data-dismiss="modal" data-target="#UpdateDocNv-<?=$DocumentNvReq['IdDoc']?>">Modifier avant la publication</a>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                        <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
 
-                                        <!-- Modifier un doc avant de le publier -->
+                                                    <!--Formulaire déroulant pour modifier les infos du doc -->
 
-                                    <div class="modal fade" id="UpdateDocNv-<?=$DocumentNvReq['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form action="./routeur/Req_Document.php?VarUpdateDocNV=<?=$DocumentNvReq['IdDoc'] ?>" method="post">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modifier le document avant de le publier</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <div class="col">
+                                                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                                modifier
+                                                            </a>
+                                                        </div>
+                                                    <p></p>
+                                                    <div class="collapse" id="collapseExample">
+                                                        <div class="card card-body">
+                                                            <div class="modal-body">
+                                                                <label>Nom</label>
+                                                                <input type="text" class="form-control" value="<?=$DocumentNvReq['NomDoc']?>" name="VarUpdateNameDocNv" required="required">
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <label>Description</label>
+                                                                <input type="text" class="form-control" value="<?=$DocumentNvReq['DescriptionDoc']?>" name="VarUpdateDescDocNv" required="required">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <label>Nom</label>
-                                                        <input type="text" class="form-control" name="VarUpdateNameDocNv" required="required">
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label>Description</label>
-                                                        <input type="text" class="form-control" name="VarUpdateDescDocNv" required="required">
-                                                    </div>
+
+                                                    <!--Fin du formulaire déroulant pour modification doc -->
+
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                         <button type="submit" class="btn btn-primary">Confirmer</button>
