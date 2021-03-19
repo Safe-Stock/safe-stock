@@ -48,9 +48,9 @@ require('./class/UITools.php');
                 case "gestionuser":
                     include('./view/Administration/Utilisateur_Gestion.php');
                     break;
-                case "upload":
-                        include('./view/upload.php');
-                        break;
+                case "gestiondoc":
+                    include('./view/Administration/Document_Gestion.php');
+                    break;
                 default:
                     include('./view/404.html');
                     break;

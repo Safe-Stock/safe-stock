@@ -38,7 +38,6 @@
 
 
 <?php
-            if(isset($_POST) && !empty($_POST)){
 
                 var_dump($_FILES);
             
@@ -63,10 +62,11 @@
                         echo "le fichier est chargé";
                     }
             
-                }else{
-                    $error = "problème formulaire";
                 }
-            }?>
+                else
+                {
+                    $error = "problème formulaire";
+                }?>
             <?php
    $message="";
    if(isset($_POST["valider"])){
