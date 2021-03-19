@@ -8,7 +8,7 @@
 
         public static function GetLatestDocuments() {
             self::open();
-            $req = self::$bdd->query('SELECT * FROM document WHERE DateImportationDoc IS NOT NULL ORDER BY DateImportationDoc ASC LIMIT 4');
+            $req = self::$bdd->query('SELECT * FROM document WHERE DateImportationDoc IS NOT NULL ORDER BY ValidationDoc DESC LIMIT 4');
             return $req;
         }
 
@@ -36,13 +36,7 @@
             $req->execute(array($IdDoc));
         }
 
-        public static function ValidationDoc($IdDoc) {
-            self::open();
-            $req = self::$bdd->prepare('UPDATE document SET ValidationDoc = NOW() WHERE IdDoc = ?');
-            $req->execute(array($IdDoc));
-        }
-
-        public static function UpdateDocNv($NomDoc, $DescriptionDoc, $IdDoc) {
+        public static function UpdateValidDocNv($NomDoc, $DescriptionDoc, $IdDoc) {
             self::open();
             $req = self::$bdd->prepare('UPDATE document SET NomDoc = :NomDoc, DescriptionDoc = :DescriptionDoc, ValidationDoc = NOW() WHERE IdDoc = :IdDoc');
             $req->execute(array('NomDoc' => $NomDoc, 'DescriptionDoc'=> $DescriptionDoc, 'IdDoc' => $IdDoc));
