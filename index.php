@@ -33,6 +33,9 @@ require('./class/UITools.php');
                 case "upload":
                         include('./view/upload.php');
                         break;
+                case "search":
+                        include('./view/searchbar.php');
+                        break;
                 default:
                     include('./view/404.html');
                     break;
@@ -47,9 +50,6 @@ require('./class/UITools.php');
                     break;
                 case "upload":
                         include('./view/upload.php');
-                        break;
-                case "search":
-                        include('./view/searchbar.php');
                         break;
                 default:
                     include('./view/404.html');

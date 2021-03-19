@@ -34,14 +34,13 @@
                         <h1 class="h1 mb-4 text-gray-800">Résultat de la recherche</h1>
 
                         <?php
-                        $ValidDoc = FALSE;
                         $req = PDORequest::SearchBar($_POST['keyword']);
-
-                        while ($doc = $req->fetch()) {
-                            $ValidDoc = TRUE;
-                            include('./view/components/file_card_min.php');
-                        }
-                        if ($doc != $req->fetch() || $ValidDoc = FALSE) { ?>
+                        $res = $req->fetchAll();
+                        if (count($res) > 0) {
+                            foreach ($res  as $doc) {
+                                include('./view/components/file_card_min.php');
+                            }
+                        } else { ?>
                             <h2 class="h1 mb-4 text-red">Pas de résultat</h1>
 
                         <?php
