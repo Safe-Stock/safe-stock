@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>FilesFranck - Gestion - Utilisateur</title>
+    <title>FilesFranck - Gestion - Document</title>
     <!-- Custom fonts for this template-->
     <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -47,7 +47,7 @@
                     ?>
 
                     <div class="container-fluid">
-                        <h2 class="h4 mb-4 text-gray-800">Gestion espace disque</h2>
+                        <!--<h2 class="h4 mb-4 text-gray-800">Gestion espace disque</h2>-->
                         <div class="progress"> <?php
                             if ($RateStock <= 0.4)
                             {?>
@@ -62,8 +62,8 @@
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: <?=$RateLvl?>%;" aria-valuemin="0" aria-valuemax="100"><?=UITools::ConvertBytes($ValueStock)?> / <?=UITools::ConvertBytes($ds)?></div> <?php
                             }?>
                         </div>
-                            <p class="align-content-center"
-                            <p class="align-content-center">Ils vous reste <?=UITools::ConvertBytes($df_c)?> d'espace libre</p>
+                            <p></p>
+                            <p>Ils vous reste <?=UITools::ConvertBytes($df_c)?> d'espace libre</p>
                     </div>
 
                         <!-- Gestion des Documents Valider -->

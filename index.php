@@ -33,6 +33,9 @@ require('./class/UITools.php');
                 case "upload":
                         include('./view/upload.php');
                         break;
+                case "report":
+                    include('./view/Report_Probleme.php');
+                    break;
                 default:
                     include('./view/404.html');
                     break;
