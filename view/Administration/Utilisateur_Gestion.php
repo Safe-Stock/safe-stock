@@ -40,7 +40,12 @@
                         </div> <?php
                         unset($_SESSION['MdpNonIdentique']);
                     }
-                    ?>
+                     ?>
+                     <?php if(isset($_SESSION['error'])){ ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= $_SESSION['error'] ?>
+                        </div>
+                    <?php } ?>
                     <!-- Gestion des Utilisateurs -->
 
                     <div class="container-fluid">
@@ -173,6 +178,7 @@
                         <div class="mb-4"></div>
                         <div class="container-fluid">
                             <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateEleve">Crée un Elève</a>
+                            <a class="btn btn-outline-success ml-" data-toggle="modal" data-target="#ListEleve">Ajouter liste d'élèves</a>
                             <div class="modal fade" id="CreateEleve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <form action="./routeur/Req_Utilisateur.php" method="post">
                                     <div class="modal-dialog" role="document">
@@ -202,6 +208,31 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                 <button type="submit" class="btn btn-primary">Confirmer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid">
+                            <div class="modal fade" id="ListEleve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="./routeur/Req_Utilisateur.php" method="post" enctype="multipart/form-data">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Ajouter liste d'élèves</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label>Importer fichier .csv</label>
+                                                <input name="VarCsvFile" type="file" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button name="VarCsvFileSubmit" type="submit" class="btn btn-primary">Confirmer</button>
                                             </div>
                                         </div>
                                     </div>
