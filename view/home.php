@@ -41,7 +41,7 @@
                     <h2 class="h4 mb-4 text-gray-500 mt-4">Tout les fichiers</h2>
                     <div class="d-flex flex-row flex-wrap mb-5 mt-2">
                         <?php
-                        $req = PDORequest::GetLatestDocuments();
+                        $req = PDORequest::GetAllDocumentsV();
                         while($doc = $req->fetch()) {
                             include('./view/components/file_card_min.php');
                         } 

@@ -367,6 +367,7 @@
                     </div>
 
                     <!--Formulaire pour la création d'un professeur-->
+
                     <div class="mb-4"></div>
                     <div class="container-fluid">
                         <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateProf">Crée un Professeur</a>

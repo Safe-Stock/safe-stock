@@ -10,7 +10,9 @@
         </div>
     </div>
 </button>
-<!-- Modal -->
+
+<!-- Modal Fichier -->
+
 <div class="modal fade" id="modal-<?php echo $doc['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 
@@ -34,10 +36,45 @@
             </div>
           <?php } ?>
         </div>
-          <div class="modal-footer">
+          <div class="modal-footer"> <?php
+              if( $user['IdProfil'] == 1)
+              {?>
+                    <button type="button" class="btn btn-google" data-dismiss="modal" data-toggle="modal" data-target="#modalUpdate-<?php echo $doc['IdDoc'] ?>">Modifier</button><?php
+              } ?>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
           <button type="button" class="btn btn-primary">Télécharger</button>
         </div>
       </div>
     </div>
   </div>
+
+<!-- Modal Modification Fichier si admin-->
+
+<div class="modal fade" id="modalUpdate-<?php echo $doc['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="./routeur/Req_Document.php?VarUpdateDocVH=<?=$doc['IdDoc']?>" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier le document</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card card-body">
+                    <div class="modal-body">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" value="<?=$doc['NomDoc']?>" name="VarUpdateNameDocV" required="required">
+                    </div>
+                    <div class="modal-body">
+                        <label>Description</label>
+                        <input type="text" class="form-control" value="<?=$doc['DescriptionDoc']?>" name="VarUpdateDescDocV" required="required">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
