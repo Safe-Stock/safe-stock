@@ -36,6 +36,9 @@ require('./class/UITools.php');
                 case "search":
                         include('./view/searchbar.php');
                         break;
+                case "report":
+                    include('./view/Report_Probleme.php');
+                    break;
                 default:
                     include('./view/404.html');
                     break;
