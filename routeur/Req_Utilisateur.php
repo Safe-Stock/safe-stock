@@ -1,18 +1,26 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Utilisateur - Requete</title>
 </head>
+
 <body>
     <?php
-        require('../class/PDO.php');
-        require('../class/UITools.php');
+    require('../class/PDO.php');
+    require('../class/UITools.php');
 
-        // Requetes Gestion Utilisateur
+    // Requetes Gestion Utilisateur
 
-            //Modifier Le nom, prénom d'un utilisateur (meme requette pour un prof et un élève
-        if (isset($_POST['VarModifyNomUtil']) && isset($_POST['VarModifyPrenomUtil']) && isset($_POST['VarModifyIdentifiantUtil']))
+    //Modifier Le nom, prénom d'un utilisateur (meme requette pour un prof et un élève
+    if (isset($_POST['VarModifyNomUtil']) && isset($_POST['VarModifyPrenomUtil']) && isset($_POST['VarModifyIdentifiantUtil'])) {
+        PDORequest::ModifyUser($_POST['VarModifyNomUtil'], $_POST['VarModifyPrenomUtil'], $_POST['VarModifyIdentifiantUtil'], $_GET['VarModifyIdUtil']);
+        header('Location: ../?admin=gestionuser');
+    }
+    //Modifier le mot de passe d'un utilisateur (meme requette pour un prof et un élève)
+    elseif (isset($_POST['VarModifyMdpUtil']) && isset($_POST['VarModifyMdpconfUtil'])) {
+        if ($_POST['VarModifyMdpUtil'] == $_POST['VarModifyMdpconfUtil']) //Vérifie que mdp et confirmation mdp sont Identique)
         {
             PDORequest::ModifyUser($_POST['VarModifyNomUtil'], $_POST['VarModifyPrenomUtil'], $_POST['VarModifyIdentifiantUtil'], $_GET['VarModifyIdUtil']);
             header('Location: ../index.php?admin=gestionuser');
@@ -31,6 +39,12 @@
                 $_SESSION['MdpNonIdentique']="Les deux mdp ne sont pas identiques";
                 header('Location: ../index.php?admin=gestionuser');
             }
+
+            foreach ($champs as $line) {
+                PDORequest::CreateUserEleve($line[0], $line[1], $line[2], $line[3]);
+            }
+        } else {
+            $_SESSION['error'] = "Entrez un fichier csv.";
         }
         elseif (isset($_GET['VarDeleteUtil']))  //Supprimer un Utilisateur (Meme requette pour prof et Utilisateur)
         {
@@ -52,4 +66,5 @@
 
     ?>
 </body>
-</html>>
+
+</html>

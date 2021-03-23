@@ -27,7 +27,9 @@ if (isset($_POST['password']) && !empty($_POST['password'])) {
                         $req = PDORequest::GetUserWithId($_SESSION['user']);
                         $req = $req->fetch();
 
-                        unlink("../data/avatar/" . $req['AvatarUtil']);
+                        if($req['AvatarUtil'] != "base.png") {
+                            unlink("../data/avatar/" . $req['AvatarUtil']);
+                        }
 
                         // On Update la bdd
                         var_dump("C'est bon");
