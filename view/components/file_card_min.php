@@ -35,7 +35,7 @@
             <button type="button" class="btn btn-google" data-dismiss="modal" data-toggle="modal" data-target="#modalUpdate-<?php echo $doc['IdDoc'] ?>">Modifier</button><?php
             } ?>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-          <button type="button" class="btn btn-primary">Télécharger</button>
+          <a type="button" class="btn btn-primary" href="./data/doc/<?php echo $doc['NomDoc'] ?>.<?php echo $doc['TypeDoc'] ?>" download>Télécharger</a>
         </div>
       </div>
     </div>
