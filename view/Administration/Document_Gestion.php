@@ -35,9 +35,41 @@
                     <div class="container-fluid">
                         <h1 class="h3 mb-4 text-gray-800">Gestion Document</h1>
                     </div>
+
+                    <!--Gestion de l'épsace de stockage -->
+
+                    <?php
+                    $df_c = disk_free_space("C:");  //Espace Libre
+                    $ds = disk_total_space("C:");   //Taille total du disque
+                    $ValueStock = $ds - $df_c;              //Calcule espace utiliser
+                    $RateStock = 1 - ($df_c / $ds);         //Calcule % d'espace disk1
+                    $RateLvl = $RateStock * 100;            //Calcule % de la barre a afficher
+                    ?>
+
+                    <div class="container-fluid">
+                        <h2 class="h4 mb-4 text-gray-800">Gestion espace disque</h2>
+                        <div class="progress"> <?php
+                            if ($RateStock <= 0.4)
+                            {?>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?=$RateLvl?>%;" aria-valuemin="0" aria-valuemax="100"><?=UITools::ConvertBytes($ValueStock)?> / <?=UITools::ConvertBytes($ds)?></div> <?php
+                            }
+                            elseif ($RateStock > 0.4 && $RateStock <= 0.8)
+                            {?>
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: <?=$RateLvl?>%;" aria-valuemin="0" aria-valuemax="100"><?=UITools::ConvertBytes($ValueStock)?> / <?=UITools::ConvertBytes($ds)?></div> <?php
+                            }
+                            elseif ($RateStock > 0.8)
+                            {?>
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: <?=$RateLvl?>%;" aria-valuemin="0" aria-valuemax="100"><?=UITools::ConvertBytes($ValueStock)?> / <?=UITools::ConvertBytes($ds)?></div> <?php
+                            }?>
+                        </div>
+                            <p class="align-content-center"
+                            <p class="align-content-center">Ils vous reste <?=UITools::ConvertBytes($df_c)?> d'espace libre</p>
+                    </div>
+
                         <!-- Gestion des Documents Valider -->
 
                         <div class="container-fluid">
+
                             <h2 class="h4 mb-4 text-gray-800">Document Valider</h2>
                             <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                                 <table class="table table-bordered mb-0 col-md-12">
