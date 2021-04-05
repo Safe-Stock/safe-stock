@@ -35,6 +35,16 @@
             header('Location: ../index.php?admin=gestiondoc');
         }   //Modification d'un document déjà valider depuis modal sur le home
 
+        elseif (isset($_GET['VarAddKeyword']) && isset($_POST['IdKeyword'])) {
+            PDORequest::AddKeywordOnDocument($_GET['VarAddKeyword'], $_POST['IdKeyword']);
+            //print("Ajout d'un mot-clé");
+            header('Location: ../index.php?admin=gestiondoc');
+        }
+        elseif (isset($_GET['VarDeleteKeyword']) && isset($_POST['IdKeyword'])) {
+            PDORequest::DeleteKeywordOnDocument($_GET['VarDeleteKeyword'], $_POST['IdKeyword']);
+            //print("Suppression d'un mot-clé");
+            header('Location: ../index.php?admin=gestiondoc');
+        }
     ?>
 </body>
 </html>>

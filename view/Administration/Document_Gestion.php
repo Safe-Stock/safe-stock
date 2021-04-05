@@ -14,7 +14,6 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -81,6 +80,7 @@
                                         <th scope="col">Date Validation</th>
                                         <th scope="col">Taille</th>
                                         <th scope="col">Type</th>
+                                        <th scope="col">Mots-clés</th>
                                         <th scope="col">Modifier</th>
                                         <th scope="col">Supprimer</th>
                                     </tr>
@@ -97,6 +97,7 @@
                                             <td><?= $DocumentVReq['ValidationDoc'] ?></td>
                                             <td><?= $DocumentVReq['TailleDoc'] ?></td>
                                             <td><?= $DocumentVReq['TypeDoc'] ?></td>
+                                            <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#key-document-<?= $DocumentVReq['IdDoc'] ?>">Mots-clés</a></td>
                                             <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateDocV-<?= $DocumentVReq['IdDoc'] ?>">Modifier</a></td>
                                             <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteDocV-<?= $DocumentVReq['IdDoc'] ?>">Supprimer</a></td>
                                         </tr>
@@ -125,6 +126,98 @@
                                             </form>
                                         </div>
 
+                                        <!-- Modal mots-clés document -->
+                                        <div class="modal fade" id="key-document-<?= $DocumentVReq['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Gestion des mots-clés du document <?= $DocumentVReq['NomDoc'] ?></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php $req = PDORequest::GetMotCleFromDoc($DocumentVReq['IdDoc']); ?>
+                                                           <div>
+                                                                <p>Mot-clé assigné à ce document :</p>
+                                                                <ul>
+                                                                    <?php while($keyword = $req->fetch()) { ?>
+                                                                        <li><?= $keyword['NomMC'] ?></li>
+                                                                    <?php } ?>
+                                                                </ul>
+                                                           </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <a class="btn btn-outline-success" data-toggle="modal" data-dismiss="modal"  data-target="#add-key-document-<?= $DocumentVReq['IdDoc'] ?>">Ajouter un mot-clé</a>
+                                                            <a class="btn btn-outline-danger" data-toggle="modal" data-dismiss="modal"  data-target="#delete-key-document-<?= $DocumentVReq['IdDoc'] ?>">Supprimer un mot-clé</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                         <!-- Modal Ajouter mots-clés document -->
+                                         <div class="modal fade" id="add-key-document-<?= $DocumentVReq['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form action="./routeur/Req_Document.php?VarAddKeyword=<?= $DocumentVReq['IdDoc'] ?>" method="post">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Ajout d'un mots-clés au document <?= $DocumentVReq['NomDoc'] ?></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form>
+                                                        <div class="modal-body">
+                                                            <?php $req = PDORequest::GetAllKeyWord() ?>
+                                                            <label>Mots-clés :</label>
+                                                            <select name="IdKeyword">
+                                                                <?php while($keyword = $req->fetch()) { ?>
+                                                                    <option value="<?= $keyword['IdMC'] ?>"><?= $keyword['NomMC'] ?></option>
+                                                               <?php }?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <button type="submit" class="btn btn-outline-success">Ajouter</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                         <!-- Modal Supprimer mots-clés document -->
+                                         <div class="modal fade" id="delete-key-document-<?= $DocumentVReq['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form action="./routeur/Req_Document.php?VarDeleteKeyword=<?= $DocumentVReq['IdDoc'] ?>" method="post">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Suppression d'un mots-clés au document <?= $DocumentVReq['NomDoc'] ?></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form>
+                                                        <div class="modal-body">
+                                                            <?php $req = PDORequest::GetMotCleFromDoc($DocumentVReq['IdDoc']); ?>
+                                                            <label>Mots-clés :</label>
+                                                            <select name="IdKeyword">
+                                                                <?php while($keyword = $req->fetch()) { ?>
+                                                                    <option value="<?= $keyword['IdMC'] ?>"><?= $keyword['NomMC'] ?></option>
+                                                               <?php }?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
                                             <!--Modal Modifier un doc deja valider -->
 
                                         <div class="modal fade" id="UpdateDocV-<?=$DocumentVReq['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -294,6 +387,7 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="./assets/vendor/jquery/jquery.min.js"></script>
+<script src="./assets/jQuery/add_keywords.js"></script>
 <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>

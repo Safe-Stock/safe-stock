@@ -218,5 +218,28 @@
             return $req;
         }
 
+        public static function GetMotCleFromDoc($id_doc) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM `appartient_mot-cle` A INNER JOIN `mot-cle` M ON A.id_keyword = M.IdMC WHERE id_doc = ?');
+            $req->execute(array($id_doc));
+            return $req;
+        }
+
+        public static function GetAllKeyWord() {
+            self::open();
+            $req = self::$bdd->query('SELECT * FROM `mot-cle` ORDER BY NomMC');
+            return $req;
+        }
+
+        public static function AddKeywordOnDocument($id_doc, $id_keyword) {
+            self::open();
+            $req = self::$bdd->prepare('INSERT INTO `appartient_mot-cle`(id_doc, id_keyword) VALUES( ?, ? )');
+            $req->execute(array($id_doc, $id_keyword));
+        }
+
+        public static function DeleteKeywordOnDocument($id_doc, $id_keyword) {
+            self::open();
+            $req = self::$bdd->prepare('DELETE FROM `appartient_mot-cle` WHERE id_doc = ? AND id_keyword = ?');
+            $req->execute(array($id_doc, $id_keyword));
+        }
     }
-?>
