@@ -34,16 +34,16 @@
 
                     <div class="container-fluid">
                         <!-- Contenu de la colone gauche-->
-                        <h1 class="h3 mb-4 text-gray-800">Gestion Mots clé</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Gestion des mots-clés</h1>
                     </div>
 
                     <!--Affichage de tout les mots clé valider-->
 
                     <div class="container-fluid">
-                        <h2 class="h4 mb-4 text-gray-800">Mots clé valider</h2>
+                        <h2 class="h4 mb-4 text-gray-800">Mots-clés validés</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                             <table class="table table-bordered mb-0 col-md-12">
-                                <thead>
+                                <thead style="color:white; background-color:#993366;">
                                     <tr>
                                         <th scope="col">Nom</th>
                                         <th scope="col">Date Validation</th>
@@ -101,7 +101,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <label>Voulez vous vraiment supprimer le mot clé <?=$MotCleReq['NomMC']?> ?</label>
+                                                            <label>Voulez-vous vraiment supprimer le mot-clé <?=$MotCleReq['NomMC']?> ?</label>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -117,7 +117,7 @@
                             </table>
                         </div>
                         <div class="mb-4"></div>
-                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateMC">Crée un Mot Clé</a>
+                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateMC">Créer un mot-clé</a>
                     </div>
 
                     <div class="modal fade" id="CreateMC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,13 +125,13 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Crée un mot clé</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Créer un mot-clé</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <label>Nom du Mot Clé</label>
+                                        <label>Nom du mot-clé</label>
                                         <input type="text" class="form-control" name="VarCreateMC" required="required">
                                     </div>
                                     <div class="modal-footer">
@@ -147,10 +147,10 @@
 
                     <div class="container-fluid">
                         <div class="mb-4"></div>
-                        <h2 class="h4 mb-4 text-gray-800">Mots clé non valider</h2>
+                        <h2 class="h4 mb-4 text-gray-800">Mots-clés non validés</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarL">
                             <table class="table table-bordered mb-0 col-md-12">
-                                <thead>
+                                <thead style="color:white; background-color:#993366;">
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Valider</th>
@@ -177,13 +177,13 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Valider le mot clé</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Valider le mot-clé</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label>Voulez vous vraiment valider le mot clé <?=$MotCleReq2['NomMC']?></label>
+                                                        <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -201,13 +201,13 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Valider le mot clé</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Valider le mot-clé</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label>Voulez vous vraiment valider le mot clé <?=$MotCleReq2['NomMC']?></label>
+                                                        <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -223,7 +223,7 @@
                                 if ($MC_Valid_vide == FALSE)
                                 {?>
                                     <td></td>
-                                    <td>Il n'y a aucun Mot Clé a valider</td>
+                                    <td>Il n'y a aucun mot-clé à valider</td>
                                     <td></td> <?php
                                 }
                                 ?>
@@ -238,14 +238,14 @@
                 <div class="col">
                     <div class="container-fluid">
                         <!-- Contenu de la colone droite-->
-                        <h1 class="h3 mb-4 text-gray-800">Gestion Thèmes</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Gestion des thèmes</h1>
                     </div>
 
                     <div class="container-fluid">
-                        <h2 class="h4 mb-4 text-gray-800">Thèmes utiliser</h2>
+                        <h2 class="h4 mb-4 text-gray-800">Thèmes utilisés</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                             <table class="table table-bordered mb-0 col-md-12">
-                                <thead>
+                                <thead style="color:white; background-color:#993366;">
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Modifier</th>
@@ -301,7 +301,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label>Voulez vous vraiment supprimer le thème <?=$ThemeReq['NomTheme']?> ?</label>
+                                                        <label>Voulez-vous vraiment supprimer le thème <?=$ThemeReq['NomTheme']?> ?</label>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -320,14 +320,14 @@
                         <!--Formulaire pour la création Thème-->
 
                         <div class="mb-4"></div>
-                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateTheme">Crée un Thème</a>
+                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateTheme">Créer un Thème</a>
 
                         <div class="modal fade" id="CreateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <form action="./routeur/Req_MotCle_Theme.php" method="post">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Crée un Thème</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Créer un Thème</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>

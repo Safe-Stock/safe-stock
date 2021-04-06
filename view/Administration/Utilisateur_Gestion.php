@@ -57,7 +57,7 @@
                             <h2 class="h4 mb-4 text-gray-800">Elèves</h2>
                             <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                                 <table class="table table-bordered mb-0 col-md-12">
-                                    <thead>
+                                    <thead style="color:white; background-color:#993366;">
                                     <tr>
                                         <th scope="col">Nom</th>
                                         <th scope="col">Prenom</th>
@@ -250,7 +250,7 @@
                         <h2 class="h4 mb-4 text-gray-800">Professeurs</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                             <table class="table table-bordered mb-0 col-md-12">
-                                <thead>
+                                <thead style="color:white; background-color:#993366;">
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Prenom</th>
