@@ -252,7 +252,7 @@ var_dump($_FILES);
     </div>
     <?php include('./view/components/footer.html') ?>
     </div>
-
+    <script src="./assets/js/sidebar.js"></script>
 </body>
 
 </html>
