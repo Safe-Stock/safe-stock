@@ -369,6 +369,13 @@ $table-head-bg:               $gray-200 !default;
 $table-head-color:            $gray-700 !default;
 $table-th-font-weight:        null !default;
 
+$table-framel-color:          $white !default;
+$table-framel-bg:             $framel !default;
+$table-framel-accent-bg:        rgba($white, .05) !default;
+$table-framel-border-color:   darken($table-framel-bg, 7.5%) !default;
+$table-framel-hover-color:      $table-framel-color !default;
+$table-framel-hover-bg:         rgba($white, .075) !default;
+
 $table-dark-color:            $white !default;
 $table-dark-bg:               $gray-800 !default;
 $table-dark-accent-bg:        rgba($white, .05) !default;

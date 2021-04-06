@@ -33,7 +33,7 @@
                     <!-- Gestion des Documents -->
 
                     <div class="container-fluid">
-                        <h1 class="h3 mb-4 text-gray-800">Gestion Document</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Gestion des documents</h1>
                     </div>
 
                     <!--Gestion de l'épsace de stockage -->
@@ -63,17 +63,17 @@
                             }?>
                         </div>
                             <p></p>
-                            <p>Ils vous reste <?=UITools::ConvertBytes($df_c)?> d'espace libre</p>
+                            <p>Il vous reste <?=UITools::ConvertBytes($df_c)?> d'espace libre</p>
                     </div>
 
                         <!-- Gestion des Documents Valider -->
 
                         <div class="container-fluid">
 
-                            <h2 class="h4 mb-4 text-gray-800">Document Valider</h2>
+                            <h2 class="h4 mb-4 text-gray-800">Documents validés</h2>
                             <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                                 <table class="table table-bordered mb-0 col-md-12">
-                                    <thead>
+                                    <thead style="color:white; background-color:#993366;">
                                     <tr>
                                         <th scope="col">Nom</th>
                                         <th scope="col">Description</th>
@@ -114,7 +114,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <label>Voulez vous vraiment supprimer le document <?=$DocumentVReq['NomDoc']?> ?</label>
+                                                            <label>Voulez-vous vraiment supprimer le document <?=$DocumentVReq['NomDoc']?> ?</label>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -168,7 +168,7 @@
                     </div>
 
                     <div class="container-fluid">
-                        <h2 class="h4 mb-4 text-gray-800">Document Non Valider</h2>
+                        <h2 class="h4 mb-4 text-gray-800">Documents non validés</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                             <table class="table table-bordered mb-0 col-md-12">
                                 <thead>
@@ -212,7 +212,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label>Voulez vous vraiment refuser le document <?=$DocumentNvReq['NomDoc']?> ?</label>
+                                                        <label>Voulez-vous vraiment refuser le document <?=$DocumentNvReq['NomDoc']?> ?</label>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -276,7 +276,7 @@
                                 if ($Doc_NValid_vide == FALSE)
                                     {?>
                                 <td></td>
-                                <td>Il n'y a aucun document a valider</td>
+                                <td>Il n'y a aucun document à valider</td>
                                 <td></td><td></td><td></td><td></td><td></td> <?php
                                 } ?>
                                 </tbody>

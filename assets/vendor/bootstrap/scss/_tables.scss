@@ -125,7 +125,17 @@
       border-color: $table-border-color;
     }
   }
+
+  .thead-framel {
+    th {
+      color: $table-framel-color;
+      background-color: $table-framel-bg;
+      border-color: #692346;
+    }
+  }
 }
+
+
 
 .table-dark {
   color: $table-dark-color;
@@ -152,6 +162,36 @@
       @include hover() {
         color: $table-dark-hover-color;
         background-color: $table-dark-hover-bg;
+      }
+    }
+  }
+}
+
+.table-framel {
+  color: $table-framel-color;
+  background-color: $table-framel-bg;
+
+  th,
+  td,
+  thead th {
+    border-color: $table-framel-border-color;
+  }
+
+  &.table-bordered {
+    border: 0;
+  }
+
+  &.table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+      background-color: $table-framel-accent-bg;
+    }
+  }
+
+  &.table-hover {
+    tbody tr {
+      @include hover() {
+        color: $table-framel-hover-color;
+        background-color: $table-framel-hover-bg;
       }
     }
   }

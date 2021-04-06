@@ -39,6 +39,9 @@ require('./class/UITools.php');
                 case "report":
                     include('./view/Report_Probleme.php');
                     break;
+                case "about":
+                    include('./view/about.html');
+                    break;
                 default:
                     include('./view/404.html');
                     break;
