@@ -32,7 +32,7 @@
           <p class = "m-2"><strong>Description :   </strong><?php echo $doc['DescriptionDoc'] ?></p>
           <?php if($doc['TypeDoc'] == "pdf") { ?>
             <div class="row">  
-              <iframe class = "m-3" width="1200" height="600" src="./data/doc/<?php echo $doc['NomDoc'] ?>.<?php echo $doc['TypeDoc'] ?>" style=" width: 98%;"></iframe>
+              <iframe class = "m-3" width="1200" height="600" src="./data/doc/<?php echo $doc['IdDoc'] ?>.<?php echo $doc['TypeDoc'] ?>" style=" width: 98%;"></iframe>
             </div>
           <?php } ?>
         </div>
