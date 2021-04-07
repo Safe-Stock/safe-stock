@@ -126,8 +126,8 @@
                                             </form>
                                         </div>
 
-                                        <!-- Modal mots-clés document -->
-                                        <div class="modal fade" id="key-document-<?= $DocumentVReq['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <!-- Modal mots-clés document -->
+                                          <div class="modal fade" id="key-document-<?= $DocumentVReq['IdDoc'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -137,11 +137,11 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <?php $req = PDORequest::GetMotCleFromDoc($DocumentVReq['IdDoc']); ?>
+                                                            <?php $req2 = PDORequest::GetMotCleFromDoc($DocumentVReq['IdDoc']); ?>
                                                            <div>
                                                                 <p>Mot-clé assigné à ce document :</p>
                                                                 <ul>
-                                                                    <?php while($keyword = $req->fetch()) { ?>
+                                                                    <?php while($keyword = $req2->fetch()) { ?>
                                                                         <li><?= $keyword['NomMC'] ?></li>
                                                                     <?php } ?>
                                                                 </ul>
@@ -169,10 +169,10 @@
                                                         </div>
                                                         <form>
                                                         <div class="modal-body">
-                                                            <?php $req = PDORequest::GetAllKeyWord() ?>
+                                                            <?php $req3 = PDORequest::GetAllKeyWord() ?>
                                                             <label>Mots-clés :</label>
                                                             <select name="IdKeyword">
-                                                                <?php while($keyword = $req->fetch()) { ?>
+                                                                <?php while($keyword = $req3->fetch()) { ?>
                                                                     <option value="<?= $keyword['IdMC'] ?>"><?= $keyword['NomMC'] ?></option>
                                                                <?php }?>
                                                             </select>
@@ -200,10 +200,10 @@
                                                         </div>
                                                         <form>
                                                         <div class="modal-body">
-                                                            <?php $req = PDORequest::GetMotCleFromDoc($DocumentVReq['IdDoc']); ?>
+                                                            <?php $req4 = PDORequest::GetMotCleFromDoc($DocumentVReq['IdDoc']); ?>
                                                             <label>Mots-clés :</label>
                                                             <select name="IdKeyword">
-                                                                <?php while($keyword = $req->fetch()) { ?>
+                                                                <?php while($keyword = $req4->fetch()) { ?>
                                                                     <option value="<?= $keyword['IdMC'] ?>"><?= $keyword['NomMC'] ?></option>
                                                                <?php }?>
                                                             </select>
@@ -393,7 +393,7 @@
 <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
 <script src="./assets/js/sb-admin-2.min.js"></script>
-
+<script src="./assets/js/sidebar.js"></script>
 </body>
 
 </html>

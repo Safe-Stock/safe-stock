@@ -29,8 +29,11 @@
         <div id="content" class="container">
             <div class="row">
                 <div class="col">
+
+                    <!-- Gestion des Session  -->
+
                     <?php
-                    if (isset($_SESSION['MdpNonIdentique']))
+                    if (isset($_SESSION['MdpNonIdentique']))    //Alerte si deux mot de passe non identique pour modifier un mdp d'user
                     { ?>
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             Les deux mot de passe rentrer doivent etre <strong>Identique !</strong>
@@ -40,12 +43,25 @@
                         </div> <?php
                         unset($_SESSION['MdpNonIdentique']);
                     }
-                     ?>
-                     <?php if(isset($_SESSION['error'])){ ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= $_SESSION['error'] ?>
-                        </div>
-                    <?php } ?>
+
+                    if(isset($_SESSION['errorCsv']))    //Alerte si fichier selectionner n'est pas un SCV
+                    { ?>
+                        <div class="alert alert-danger" role="alert"> Rentrez uniquement un fichier <strong>CSV</strong> !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </div> <?php
+                         unset($_SESSION['errorCsv']);
+                    }
+
+                    if(isset($_SESSION['goodCsv']))     //Alerte si l'ajout des user depuis CSV a fonctionner
+                    { ?>
+                    <div class="alert alert-success" role="alert"> Utilisateur ajouter !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </div> <?php
+                         unset($_SESSION['goodCsv']);
+                    } ?>
+
                     <!-- Gestion des Utilisateurs -->
 
                     <div class="container-fluid">
@@ -383,19 +399,19 @@
                                         </div>
                                         <div class="modal-body">
                                             <label>Identifiant</label>
-                                            <input type="text" class="form-control" name="VarCreateIdentifiantProf" placeholder="<?=$UtilisateurReq['IdentifiantUtil']?>" required="required">
+                                            <input type="text" class="form-control" name="VarCreateIdentifiantProf" placeholder="" required="required">
                                         </div>
                                         <div class="modal-body">
                                             <label>Nom</label>
-                                            <input type="text" class="form-control" name="VarCreateNomProf" placeholder="<?=$UtilisateurReq['NomUtil']?>" required="required">
+                                            <input type="text" class="form-control" name="VarCreateNomProf" placeholder="" required="required">
                                         </div>
                                         <div class="modal-body">
                                             <label>Prénom</label>
-                                            <input type="text" class="form-control" name="VarCreatePrenomProf" placeholder="<?=$UtilisateurReq['PrenomUtil']?>" required="required">
+                                            <input type="text" class="form-control" name="VarCreatePrenomProf" placeholder="" required="required">
                                         </div>
                                         <div class="modal-body">
                                             <label>Mot de Passe</label>
-                                            <input type="password" class="form-control" name="VarCreateMdpProf" placeholder="<?=$UtilisateurReq['PrenomUtil']?>" required="required">
+                                            <input type="password" class="form-control" name="VarCreateMdpProf" placeholder="" required="required">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -422,7 +438,7 @@
 <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
 <script src="./assets/js/sb-admin-2.min.js"></script>
-
+<script src="./assets/js/sidebar.js"></script>
 </body>
 
 </html>
