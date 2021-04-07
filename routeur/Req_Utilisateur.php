@@ -54,6 +54,42 @@
                 header('Location: ../index.php?admin=gestionuser');
             }
 
+            //Update MDP By Profil Page
+
+            if (isset($_GET['UpdateMdpProfilId']))
+            {   //Récupération informations User viser
+                $userData = PDORequest::GetUserWithId($_GET['UpdateMdpProfilId']);
+                $userData = $userData->fetch();
+                $password = htmlspecialchars($_POST['UpdateMdpProfilPassword']);
+                if (password_verify($password, $userData['MdpUtil']))
+                {   //Si mot de passe actuel bon Alors
+                    if (isset($_POST['VarModifyMdpProfil']) && isset($_POST['VarModifyMdpconfProfil']))
+                    {   //Vérifie que les deux nouveaux mdp existe
+                        if ($_POST['VarModifyMdpProfil'] == $_POST['VarModifyMdpconfProfil'])
+                        {   //Vérifie que les deux nouveaux mdp sont identique
+                            PDORequest::ModifyUserPassword($_POST['VarModifyMdpconfProfil'], $userData['IdUtil']);
+                            session_start();
+                            $_SESSION['MdpModifSuccess'] = "Votre Mot de passe à bien été modifier";
+                            header('Location: ../index.php?route=profil');
+                        }
+                        else
+                        {   //Si deux new mdp différent alors afficher erreur via session
+                            session_start();
+                            $_SESSION['NouveauMdpFalse'] = "Les deux nouveaux mot de passe ne sont pas identique";
+                            header('Location: ../?route=profil');
+                        }
+                    }
+                }
+                else
+                {   //Si deux new mdp actuel afficher erreur via session
+                    session_start();
+                    $_SESSION['ActuelMdpFalse'] = "Ancien Mot de passe faux";
+                    header('Location: ../?route=profil');
+                }
+            }
+
+
+
             // Importer User avec fichier Csv
 
             elseif (isset($_FILES['VarCsvFile']) && !empty($_FILES['VarCsvFile']['name']))
