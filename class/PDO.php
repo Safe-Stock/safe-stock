@@ -242,4 +242,11 @@
             $req = self::$bdd->prepare('DELETE FROM `appartient_mot-cle` WHERE id_doc = ? AND id_keyword = ?');
             $req->execute(array($id_doc, $id_keyword));
         }
+
+        public static function AddDocument($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ) {
+            self::open();
+            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, ValidationDoc, TailleDoc ,IdUtil , IdTheme ) VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
+            $req->execute(array($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ));
+        }
+
     }
