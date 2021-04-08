@@ -27,6 +27,34 @@
                 <?php include('./view/components/navigation.html') ?>
                 <div class="container-fluid">
                     <!-- Contenu de la page-->
+                    <?php
+                    if(isset($_SESSION['NouveauMdpFalse']))    //Alerte si fichier selectionner n'est pas un SCV
+                    { ?>
+                    <div class="alert alert-danger" role="alert"> Les deux nouveaux mot de passe sont différent
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </div> <?php
+                         unset($_SESSION['NouveauMdpFalse']);
+                    }
+
+                    if(isset($_SESSION['MdpModifSuccess']))    //Alerte si fichier selectionner n'est pas un SCV
+                    { ?>
+                        <div class="alert alert-success" role="alert"> Votre mot de passe à été modifié avec succès
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </div> <?php
+                        unset($_SESSION['MdpModifSuccess']);
+                    }
+
+                    if(isset($_SESSION['ActuelMdpFalse']))    //Alerte si fichier selectionner n'est pas un SCV
+                    { ?>
+                    <div class="alert alert-danger" role="alert"> Mauvais mot de passe actuel
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </div> <?php
+                         unset($_SESSION['ActuelMdpFalse']);
+                    } ?>
+
                     <div>
                         <div class="container">
                             <div class="row">
@@ -84,30 +112,6 @@
                                                                     <?php
                                                                     }
                                                                     ?>
-                                                                    <!-- <td>
-                                                                        <strong>Test.pdf</strong> a été crée dans <strong>`Theme 1`</strong>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <strong>Test.svg</strong> a été crée dans <strong>`Theme 1`</strong>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <strong>Img.jpg</strong> a été crée dans <strong>`Theme 2`</strong>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <strong>Tableau.csv</strong> a été crée dans <strong>`Theme 2`</strong>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <strong>Test.docx</strong> a été crée dans <strong>`Theme 1`</strong>
-                                                                    </td>
-                                                                    </td>-->
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -152,24 +156,52 @@
                                                         <div class="form-group row mt-5">
                                                             <div class="col-lg-9">
                                                                 <input type="reset" class="btn btn-secondary" value="Annuler">
+                                                                <a class="btn btn-secondary" data-toggle="modal" data-target="#UpdateMdpProfil">Modifier MDP</a>
                                                                 <input type="submit" class="btn btn-primary" value="Enregistrer">
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
-
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="UpdateMdpProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <form action="./routeur/Req_Utilisateur.php?UpdateMdpProfilId=<?=$user['IdUtil'] ?>" method="post">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modifier le mot de passe</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <label>Mot de passe Actuel</label>
+                                    <input type="password" class="form-control" name="UpdateMdpProfilPassword" required="required">
+                                </div>
+                                <div class="modal-body">
+                                    <label>Nouveau Mot De Passe</label>
+                                    <input type="password" class="form-control" name="VarModifyMdpProfil" required="required">
+                                </div>
+                                <div class="modal-body">
+                                    <label>Confirmation Nouveau Mot de passe</label>
+                                    <input type="password" class="form-control" name="VarModifyMdpconfProfil" required="required">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                 <!-- Footer -->
                 <div class="mt-5">
                 <?php include('./view/components/footer.html') ?>
@@ -185,7 +217,7 @@
         <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Custom scripts for all pages-->
         <script src="./assets/js/sb-admin-2.min.js"></script>
-
+        <script src="./assets/js/sidebar.js"></script>
 </body>
 
 </html>

@@ -32,7 +32,7 @@
         elseif (isset($_GET['VarUpdateDocVH']) && isset($_POST['VarUpdateNameDocV']) && isset($_POST['VarUpdateDescDocV']))
         {
             PDORequest::UpdateDocV($_POST['VarUpdateNameDocV'], $_POST['VarUpdateDescDocV'], $_GET['VarUpdateDocVH']);
-            header('Location: ../index.php?admin=gestiondoc');
+            header('Location: ../index.php');
         }   //Modification d'un document déjà valider depuis modal sur le home
 
         elseif (isset($_GET['VarAddKeyword']) && isset($_POST['IdKeyword'])) {
