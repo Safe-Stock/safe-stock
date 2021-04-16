@@ -19,11 +19,11 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
-    <?php include('./view/components/sidebar.html') ?>
+    <?php include('./view/components/sidebar.php') ?>
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Topbar -->
-        <?php include('./view/components/navigation.html') ?>
+        <?php include('./view/components/navigation.php') ?>
 
         <div id="content" class="container">
             <div class="row">
@@ -38,8 +38,8 @@
                     <!--Gestion de l'épsace de stockage -->
 
                     <?php
-                    $df_c = disk_free_space("C:");  //Espace Libre
-                    $ds = disk_total_space("C:");   //Taille total du disque
+                    $df_c = disk_free_space("/");  //Espace Libre
+                    $ds = disk_total_space("/");   //Taille total du disque
                     $ValueStock = $ds - $df_c;              //Calcule espace utiliser
                     $RateStock = 1 - ($df_c / $ds);         //Calcule % d'espace disk1
                     $RateLvl = $RateStock * 100;            //Calcule % de la barre a afficher
@@ -62,7 +62,7 @@
                             }?>
                         </div>
                             <p></p>
-                            <p>Il vous reste <?=UITools::ConvertBytes($df_c)?> d'espace libre</p>
+                            <p class="text-center">Il vous reste <?=UITools::ConvertBytes($df_c)?> d'espace libre</p>
                     </div>
 
                         <!-- Gestion des Documents Valider -->

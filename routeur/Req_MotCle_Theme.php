@@ -25,7 +25,7 @@
         {
             if (!empty($_POST['VarCreateMC']))
             {
-                PDORequest::CreateMotCle($_POST['VarCreateMC']);
+                PDORequest::CreateMotCleV($_POST['VarCreateMC']);
                 header('Location: ../index.php?admin=gestionmct');
             }
             else        //Si le formulaire est vide alors ne pas crée le Thème

@@ -19,15 +19,15 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <?php include('./view/components/sidebar.html') ?>
+        <?php include('./view/components/sidebar.php') ?>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
-                <?php include('./view/components/navigation.html') ?>
+                <?php include('./view/components/navigation.php') ?>
                 <div class="container-fluid">
                     <!-- Contenu de la page-->                   
 
-                    <body class="text-center">
+                    <div class="text-center">
                         <div class="form-group">
                             <div class="col-10  d-flex h-100 p-5 mx-auto flex-column ">
                                 <header class="masthead mb-auto">
@@ -126,7 +126,7 @@
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <div class="input-group">
-                                                                <input type="file" class="form-control" aria-label="file example" name="monfichier2" required>
+                                                                <input type="file" class="form-control-file" aria-label="file example" name="monfichier2" required>
                                                             </div>
                                                         </div>
                                                         <div class="dropzone">
@@ -142,6 +142,7 @@
                                     </form>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

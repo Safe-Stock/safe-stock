@@ -90,7 +90,13 @@
             $req->execute(array($IdMC));
         }
 
-        public static function CreateMotCle($NameMC) {
+        public static function CreateMotCleV($NameMC) {
+            self::open();
+            $req = self::$bdd->prepare('INSERT INTO `mot-cle` (NomMC, ValidationMC) VALUES (?, NOW())');
+            $req->execute(array($NameMC));
+        }
+
+        public static function CreateMotCleNV($NameMC) {
             self::open();
             $req = self::$bdd->prepare('INSERT INTO `mot-cle` (NomMC) VALUES (?)');
             $req->execute(array($NameMC));

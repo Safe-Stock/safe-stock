@@ -2,17 +2,20 @@
 session_start();
 require('./class/PDO.php');
 require('./class/UITools.php');
-    if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+    if(isset($_SESSION['user']) && !empty($_SESSION['user']))
+    {
         $user = PDORequest::GetUserWithId($_SESSION['user']);
         $user = $user->fetch();
-        if(isset($_GET['route'])) {
-            switch($_GET['route']) {
+        if(isset($_GET['route']))
+        {
+            switch($_GET['route'])
+            {
                 case"test":
-                    include('./view/test.html');
+                    include('./view/test.php');
                     break;
     
                 case"blank1":
-                    include('./view/blank.html');
+                    include('./view/blank.php');
                     break;
                 
                 case"themetest":
@@ -40,14 +43,29 @@ require('./class/UITools.php');
                     include('./view/Report_Probleme.php');
                     break;
                 case "about":
-                    include('./view/about.html');
+                    include('./view/about.php');
                     break;
                 default:
-                    include('./view/404.html');
+                    include('./view/404.php');
                     break;
             }
-        } else if(isset($_GET['admin']) && $user['IdProfil'] == 1){
-            switch($_GET['admin']) {
+        }
+        else if(isset($_GET['prof']) && $user['IdProfil'] == 2)
+        {
+            switch($_GET['prof'])
+            {
+                case "gestionmc":
+                    include('./view/Administration/MotCle_Theme_Gestion.php');
+                    break;
+                default:
+                    include('./view/404.php');
+                    break;
+            }
+        }
+        else if(isset($_GET['admin']) && $user['IdProfil'] == 1)
+        {
+            switch($_GET['admin'])
+            {
                 case "gestionmct":
                     include('./view/Administration/MotCle_Theme_Gestion.php');
                     break;
@@ -58,17 +76,23 @@ require('./class/UITools.php');
                     include('./view/Administration/Document_Gestion.php');
                     break;
                 default:
-                    include('./view/404.html');
+                    include('./view/404.php');
                     break;
             }
-        } else {
+        }
+        else
+        {
             include('./view/home.php');
         }
-    } elseif(isset($_COOKIE['login'], $_COOKIE['password']) AND !empty($_COOKIE['login']) AND !empty($_COOKIE['password'])){
+    }
+    elseif(isset($_COOKIE['login'], $_COOKIE['password']) AND !empty($_COOKIE['login']) AND !empty($_COOKIE['password']))
+    {
         require('./class/user.php');
         User::ConnectWithCookies($_COOKIE['login'], $_COOKIE['password']);
         header('location: ./index.php');
-    } else {
+    }
+    else
+    {
         include('./view/login.php');
     }
 ?>

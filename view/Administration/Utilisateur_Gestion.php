@@ -20,11 +20,11 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
-    <?php include('./view/components/sidebar.html') ?>
+    <?php include('./view/components/sidebar.php') ?>
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Topbar -->
-        <?php include('./view/components/navigation.html') ?>
+        <?php include('./view/components/navigation.php') ?>
 
         <div id="content" class="container">
             <div class="row">

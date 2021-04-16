@@ -20,11 +20,11 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <?php include('./view/components/sidebar.html') ?>
+        <?php include('./view/components/sidebar.php') ?>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
-                <?php include('./view/components/navigation.html') ?>
+                <?php include('./view/components/navigation.php') ?>
                 <div class="container-fluid">
                     <!-- Contenu de la page-->
                     <h1 class="h1 mb-4 text-gray-800">Thème : <?php echo PDORequest::GetNameTheme($_GET['id'])->fetch()['NomTheme'] ?></h1>

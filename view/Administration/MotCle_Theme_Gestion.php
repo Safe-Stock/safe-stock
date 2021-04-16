@@ -20,11 +20,11 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
-    <?php include('./view/components/sidebar.html') ?>
+    <?php include('./view/components/sidebar.php') ?>
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Topbar -->
-        <?php include('./view/components/navigation.html') ?>
+        <?php include('./view/components/navigation.php') ?>
 
         <div id="content" class="container">
             <div class="row">
@@ -37,88 +37,92 @@
                         <h1 class="h3 mb-4 text-gray-800">Gestion des mots-clés</h1>
                     </div>
 
-                    <!--Affichage de tout les mots clé valider-->
+                    <?php
+                    if ($user['IdProfil'] == 1)
+                    { ?>
+                        <!--Affichage de tout les mots clé valider-->
 
-                    <div class="container-fluid">
-                        <h2 class="h4 mb-4 text-gray-800">Mots-clés validés</h2>
-                        <div class="table-wrapper-scroll-y my-custom-scrollbarB">
-                            <table class="table table-bordered mb-0 col-md-12">
-                                <thead style="color:white; background-color:#993366;">
-                                    <tr>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Date Validation</th>
-                                        <th scope="col">Modifier</th>
-                                        <th scope="col">Supprimer</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $req = PDORequest::GetAllMotsCleV();
-                                    while($MotCleReq = $req->fetch())
-                                    { ?>
+                        <div class="container-fluid">
+                            <h2 class="h4 mb-4 text-gray-800">Mots-clés validés</h2>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbarB">
+                                <table class="table table-bordered mb-0 col-md-12">
+                                    <thead style="color:white; background-color:#993366;">
                                         <tr>
-                                            <td><?= $MotCleReq['NomMC'] ?></td>
-                                            <td><?=UITools::ConvertDate($MotCleReq['ValidationMC']) ?></td>
-                                            <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMC-<?= $MotCleReq['IdMC'] ?>">Modifier</a></td>
-                                            <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteMC-<?= $MotCleReq['IdMC'] ?>">Supprimer</a></td>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Date Validation</th>
+                                            <th scope="col">Modifier</th>
+                                            <th scope="col">Supprimer</th>
                                         </tr>
-
-                                        <!-- Génération Modal pour modifier un mot clé-->
-
-                                        <div class="modal fade" id="UpdateMC-<?=$MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <form action="./routeur/Req_MotCle_Theme.php?VarModifyId=<?=$MotCleReq['IdMC'] ?>" method="post">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modifier le mot clé</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <label>Nom</label>
-                                                            <input type="text" class="form-control" name="VarModifyName" placeholder="<?=$MotCleReq['NomMC']?>" required="required">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                            <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        <!-- Génération des modals confirmation suppresion mot clé -->
-
-                                        <div class="modal fade" id="DeleteMC-<?= $MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <form action="./routeur/Req_MotCle_Theme.php?VarDeleteId=<?= $MotCleReq['IdMC'] ?>" method="post">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Supprimer le mot clé</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <label>Voulez-vous vraiment supprimer le mot-clé <?=$MotCleReq['NomMC']?> ?</label>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                            <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+                                    </thead>
+                                    <tbody>
                                         <?php
-                                    } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="mb-4"></div>
-                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateMC">Créer un mot-clé</a>
-                    </div>
+                                        $req = PDORequest::GetAllMotsCleV();
+                                        while($MotCleReq = $req->fetch())
+                                        { ?>
+                                            <tr>
+                                                <td><?= $MotCleReq['NomMC'] ?></td>
+                                                <td><?=UITools::ConvertDate($MotCleReq['ValidationMC']) ?></td>
+                                                <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateMC-<?= $MotCleReq['IdMC'] ?>">Modifier</a></td>
+                                                <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteMC-<?= $MotCleReq['IdMC'] ?>">Supprimer</a></td>
+                                            </tr>
+
+                                            <!-- Génération Modal pour modifier un mot clé-->
+
+                                            <div class="modal fade" id="UpdateMC-<?=$MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <form action="./routeur/Req_MotCle_Theme.php?VarModifyId=<?=$MotCleReq['IdMC'] ?>" method="post">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Modifier le mot clé</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <label>Nom</label>
+                                                                <input type="text" class="form-control" name="VarModifyName" placeholder="<?=$MotCleReq['NomMC']?>" required="required">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <!-- Génération des modals confirmation suppresion mot clé -->
+
+                                            <div class="modal fade" id="DeleteMC-<?= $MotCleReq['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <form action="./routeur/Req_MotCle_Theme.php?VarDeleteId=<?= $MotCleReq['IdMC'] ?>" method="post">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Supprimer le mot clé</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <label>Voulez-vous vraiment supprimer le mot-clé <?=$MotCleReq['NomMC']?> ?</label>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <?php
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mb-4"></div>
+                            <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateMC">Créer un mot-clé</a>
+                        </div> <?php
+                    } ?>
 
                     <div class="modal fade" id="CreateMC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <form action="./routeur/Req_MotCle_Theme.php" method="post">
@@ -143,209 +147,226 @@
                         </form>
                     </div>
 
-                    <!--Affichage de tout les mots clé Non valider-->
+                    <?php
+                    if ($user['IdProfil'] == 1 || $user['IdProfil'] == 2)
+                    { ?>
+                        <!--Affichage de tout les mots clé Non valider-->
 
-                    <div class="container-fluid">
-                        <div class="mb-4"></div>
-                        <h2 class="h4 mb-4 text-gray-800">Mots-clés non validés</h2>
-                        <div class="table-wrapper-scroll-y my-custom-scrollbarL">
-                            <table class="table table-bordered mb-0 col-md-12">
-                                <thead style="color:white; background-color:#993366;">
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Valider</th>
-                                    <th scope="col">Refuser</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $MC_Valid_vide =  FALSE;
-                                $req2 = PDORequest::GetAllMotsCleNonV();
-                                while($MotCleReq2 = $req2->fetch())
-                                {
-                                    $MC_Valid_vide =  TRUE;?>
+                        <div class="container-fluid">
+                            <div class="mb-4"></div>
+                            <h2 class="h4 mb-4 text-gray-800">Mots-clés non validés</h2> <?php
+                            if ($user['IdProfil'] == 2) //Si prof alors tableau grand
+                            {
+                                echo '<div class="table-wrapper-scroll-y my-custom-scrollbarB">';
+                            }
+                            elseif ($user['IdProfil'] == 1) //Si Admin alors petit tableau
+                            {
+                                echo '<div class="table-wrapper-scroll-y my-custom-scrollbarL">';
+                            }
+                            ?>
+                                <table class="table table-bordered mb-0 col-md-12">
+                                    <thead style="color:white; background-color:#993366;">
                                     <tr>
-                                        <td><?= $MotCleReq2['NomMC'] ?></td>
-                                        <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#ValideMC-<?= $MotCleReq2['IdMC'] ?>">Valider</a></td>
-                                        <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#RefuserMC-<?= $MotCleReq2['IdMC'] ?>">Refuser</a></td>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Valider</th>
+                                        <th scope="col">Refuser</th>
                                     </tr>
-
-                                    <!-- Génération Modal pour Valider un mot clé-->
-
-                                    <div class="modal fade" id="ValideMC-<?=$MotCleReq2['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form action="./routeur/Req_MotCle_Theme.php?VarValideMC=<?=$MotCleReq2['IdMC']?>" method="post">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Valider le mot-clé</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                        <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <!-- Génération Modal pour Refuser un mot clé-->
-
-                                    <div class="modal fade" id="RefuserMC-<?=$MotCleReq2['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form action="./routeur/Req_MotCle_Theme.php?VarRefuserMC=<?=$MotCleReq2['IdMC']?>" method="post">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Valider le mot-clé</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                        <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
+                                    </thead>
+                                    <tbody>
                                     <?php
-                                }
-                                if ($MC_Valid_vide == FALSE)
-                                {?>
-                                    <td></td>
-                                    <td>Il n'y a aucun mot-clé à valider</td>
-                                    <td></td> <?php
-                                }
-                                ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                    $MC_Valid_vide =  FALSE;
+                                    $req2 = PDORequest::GetAllMotsCleNonV();
+                                    while($MotCleReq2 = $req2->fetch())
+                                    {
+                                        $MC_Valid_vide =  TRUE;?>
+                                        <tr>
+                                            <td><?= $MotCleReq2['NomMC'] ?></td>
+                                            <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#ValideMC-<?= $MotCleReq2['IdMC'] ?>">Valider</a></td>
+                                            <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#RefuserMC-<?= $MotCleReq2['IdMC'] ?>">Refuser</a></td>
+                                        </tr>
+
+                                        <!-- Génération Modal pour Valider un mot clé-->
+
+                                        <div class="modal fade" id="ValideMC-<?=$MotCleReq2['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form action="./routeur/Req_MotCle_Theme.php?VarValideMC=<?=$MotCleReq2['IdMC']?>" method="post">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Valider le mot-clé</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <!-- Génération Modal pour Refuser un mot clé-->
+
+                                        <div class="modal fade" id="RefuserMC-<?=$MotCleReq2['IdMC'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form action="./routeur/Req_MotCle_Theme.php?VarRefuserMC=<?=$MotCleReq2['IdMC']?>" method="post">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Valider le mot-clé</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <?php
+                                    }
+                                    if ($MC_Valid_vide == FALSE)
+                                    {?>
+                                        <td></td>
+                                        <td>Il n'y a aucun mot-clé à valider</td>
+                                        <td></td> <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> <?php
+                    } ?>
                 </div>
 
+
+                <?php
+                if ($user['IdProfil'] == 1)
+                { ?>
                     <!--Gestion des Thèmes -->
 
-                <div class="col">
-                    <div class="container-fluid">
-                        <!-- Contenu de la colone droite-->
-                        <h1 class="h3 mb-4 text-gray-800">Gestion des thèmes</h1>
-                    </div>
+                    <div class="col">
+                        <div class="container-fluid">
+                            <!-- Contenu de la colone droite-->
+                            <h1 class="h3 mb-4 text-gray-800">Gestion des thèmes</h1>
+                        </div>
 
-                    <div class="container-fluid">
-                        <h2 class="h4 mb-4 text-gray-800">Thèmes utilisés</h2>
-                        <div class="table-wrapper-scroll-y my-custom-scrollbarB">
-                            <table class="table table-bordered mb-0 col-md-12">
-                                <thead style="color:white; background-color:#993366;">
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Modifier</th>
-                                    <th scope="col">Supprimer</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $req3 = PDORequest::GetAllThemes();
-                                while($ThemeReq = $req3->fetch())
-                                { ?>
+                        <div class="container-fluid">
+                            <h2 class="h4 mb-4 text-gray-800">Thèmes utilisés</h2>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbarB">
+                                <table class="table table-bordered mb-0 col-md-12">
+                                    <thead style="color:white; background-color:#993366;">
                                     <tr>
-                                        <td><?= $ThemeReq['NomTheme'] ?></td>
-                                        <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateTheme-<?= $ThemeReq['IdTheme'] ?>">Modifier</a></td>
-                                        <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteTheme-<?= $ThemeReq['IdTheme'] ?>">Supprimer</a></td>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Modifier</th>
+                                        <th scope="col">Supprimer</th>
                                     </tr>
-
-                                    <!-- Génération Modal pour modifier un Thème-->
-
-                                    <div class="modal fade" id="UpdateTheme-<?=$ThemeReq['IdTheme'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form action="./routeur/Req_MotCle_Theme.php?VarModifyThemeId=<?=$ThemeReq['IdTheme'] ?>" method="post">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modifier le Thème</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label>Nom</label>
-                                                        <input type="text" class="form-control" name="VarModifyThemeName" placeholder="<?=$ThemeReq['NomTheme']?>" required="required">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                        <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <!-- Génération des modals confirmation suppresion Thème -->
-
-                                    <div class="modal fade" id="DeleteTheme-<?= $ThemeReq['IdTheme'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form action="./routeur/Req_MotCle_Theme.php?VarDeleteThemeId=<?= $ThemeReq['IdTheme'] ?>" method="post">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer le Thème</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label>Voulez-vous vraiment supprimer le thème <?=$ThemeReq['NomTheme']?> ?</label>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                        <button type="submit" class="btn btn-primary">Confirmer</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    </thead>
+                                    <tbody>
                                     <?php
-                                } ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                    $req3 = PDORequest::GetAllThemes();
+                                    while($ThemeReq = $req3->fetch())
+                                    { ?>
+                                        <tr>
+                                            <td><?= $ThemeReq['NomTheme'] ?></td>
+                                            <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateTheme-<?= $ThemeReq['IdTheme'] ?>">Modifier</a></td>
+                                            <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteTheme-<?= $ThemeReq['IdTheme'] ?>">Supprimer</a></td>
+                                        </tr>
 
-                        <!--Formulaire pour la création Thème-->
+                                        <!-- Génération Modal pour modifier un Thème-->
 
-                        <div class="mb-4"></div>
-                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateTheme">Créer un Thème</a>
-
-                        <div class="modal fade" id="CreateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <form action="./routeur/Req_MotCle_Theme.php" method="post">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Créer un Thème</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                        <div class="modal fade" id="UpdateTheme-<?=$ThemeReq['IdTheme'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form action="./routeur/Req_MotCle_Theme.php?VarModifyThemeId=<?=$ThemeReq['IdTheme'] ?>" method="post">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Modifier le Thème</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label>Nom</label>
+                                                            <input type="text" class="form-control" name="VarModifyThemeName" placeholder="<?=$ThemeReq['NomTheme']?>" required="required">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="modal-body">
-                                            <label>Nom du Thème</label>
-                                            <input type="text" class="form-control" name="VarCreateTheme" required="required">
+
+                                        <!-- Génération des modals confirmation suppresion Thème -->
+
+                                        <div class="modal fade" id="DeleteTheme-<?= $ThemeReq['IdTheme'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form action="./routeur/Req_MotCle_Theme.php?VarDeleteThemeId=<?= $ThemeReq['IdTheme'] ?>" method="post">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Supprimer le Thème</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label>Voulez-vous vraiment supprimer le thème <?=$ThemeReq['NomTheme']?> ?</label>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                        <?php
+                                    } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!--Formulaire pour la création Thème-->
+
+                            <div class="mb-4"></div>
+                            <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateTheme">Créer un Thème</a>
+
+                            <div class="modal fade" id="CreateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="./routeur/Req_MotCle_Theme.php" method="post">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Créer un Thème</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label>Nom du Thème</label>
+                                                <input type="text" class="form-control" name="VarCreateTheme" required="required">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div> <?php
+                } ?>
             </div>
         </div>
 
