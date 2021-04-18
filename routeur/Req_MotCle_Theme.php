@@ -34,13 +34,35 @@
         elseif (isset($_GET['VarValideMC']))                                                //Valider le Mot CLé
         {
             PDORequest::ValidationMotCle($_GET['VarValideMC']);
-            header('Location: ../index.php?admin=gestionmct');
+            if ($_POST['TypeProfil'] == 1)
+            {
+                header('Location: ../index.php?admin=gestionmct');
+            }
+            elseif ($_POST['TypeProfil'] == 2)
+            {
+                header('Location: ../index.php?prof=gestionmc');
+            }
+            else
+            {
+                header('Location: ../index.php');
+            }
         }
 
         elseif (isset($_GET['VarRefuserMC']))               //Refuser le mot clé en attente
         {
             PDORequest::DeleteMotCle($_GET['VarRefuserMC']);
-            header('Location: ../index.php?admin=gestionmct');
+            if ($_POST['TypeProfil'] == 1)
+            {
+                header('Location: ../index.php?admin=gestionmct');
+            }
+            elseif ($_POST['TypeProfil'] == 2)
+            {
+                header('Location: ../index.php?prof=gestionmc');
+            }
+            else
+            {
+                header('Location: ../index.php');
+            }
         }
 
         // Requetes Gestion Thèmes

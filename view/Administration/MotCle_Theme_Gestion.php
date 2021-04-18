@@ -200,6 +200,7 @@
                                                         <div class="modal-body">
                                                             <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
                                                         </div>
+                                                        <input type="hidden" name="TypeProfil" value="<?=$user['IdProfil']?>">
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                             <button type="submit" class="btn btn-primary">Confirmer</button>
@@ -222,8 +223,9 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <label>Voulez-vous vraiment valider le mot-clé <?=$MotCleReq2['NomMC']?></label>
+                                                            <label>Voulez-vous vraiment refuser le mot-clé <?=$MotCleReq2['NomMC']?></label>
                                                         </div>
+                                                        <input type="hidden" name="TypeProfil" value="<?=$user['IdProfil']?>">
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                             <button type="submit" class="btn btn-primary">Confirmer</button>
