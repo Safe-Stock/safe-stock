@@ -11247,11 +11247,19 @@ body.sidebar-toggled footer.sticky-footer {
   height: 400px;
   overflow: auto;
 }
+
 .table-wrapper-scroll-y {
   display: block;
 }
+
 .my-custom-scrollbarL {
   position: relative;
   height: 200px;
+  overflow: auto;
+}
+
+.my-custom-scrollbarXB {
+  position: relative;
+  height: 600px;
   overflow: auto;
 }

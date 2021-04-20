@@ -9,11 +9,17 @@
     <title>FilesFranck - Gestion - Mots Cle et Thème</title>
     <!-- Custom fonts for this template-->
     <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        .my-custom-scrollbarXB {
+            position: relative;
+            height: 600px;
+            overflow: auto;
+        }
+    </style> <!-- Ca marche pas dans le ptn de css c'est pour ca j'ai mit ca la  !-->
 
 </head>
 <body id="page-top">
@@ -157,13 +163,14 @@
                             <h2 class="h4 mb-4 text-gray-800">Mots-clés non validés</h2> <?php
                             if ($user['IdProfil'] == 2) //Si prof alors tableau grand
                             {
-                                echo '<div class="table-wrapper-scroll-y my-custom-scrollbarB">';
+                                $TailleTableauVal = "XB";
                             }
                             elseif ($user['IdProfil'] == 1) //Si Admin alors petit tableau
                             {
-                                echo '<div class="table-wrapper-scroll-y my-custom-scrollbarL">';
+                                $TailleTableauVal = "L";
                             }
                             ?>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar<?=$TailleTableauVal?>">
                                 <table class="table table-bordered mb-0 col-md-12">
                                     <thead style="color:white; background-color:#993366;">
                                     <tr>
@@ -371,7 +378,6 @@
                 } ?>
             </div>
         </div>
-
         <!-- Footer -->
         <?php include('./view/components/footer.html') ?>
     </div>

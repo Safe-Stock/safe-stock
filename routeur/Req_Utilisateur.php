@@ -88,8 +88,6 @@
                 }
             }
 
-
-
             // Importer User avec fichier Csv
 
             elseif (isset($_FILES['VarCsvFile']) && !empty($_FILES['VarCsvFile']['name']))

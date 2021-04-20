@@ -55,11 +55,11 @@
 
                     if(isset($_SESSION['goodCsv']))     //Alerte si l'ajout des user depuis CSV a fonctionner
                     { ?>
-                    <div class="alert alert-success" role="alert"> Utilisateur ajouter !
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                    </div> <?php
-                         unset($_SESSION['goodCsv']);
+                        <div class="alert alert-success" role="alert"> Utilisateurs ajoutés via fichier csv avec succès !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </div> <?php
+                             unset($_SESSION['goodCsv']);
                     } ?>
 
                     <!-- Gestion des Utilisateurs -->
@@ -424,11 +424,10 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Footer -->
+        </div>
+        <!-- Footer -->
         <?php include('./view/components/footer.html') ?>
     </div>
-</div>
 
 
 <!-- Bootstrap core JavaScript-->

@@ -14,6 +14,7 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -378,11 +379,10 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Footer -->
+        </div>
+        <!-- Footer -->
         <?php include('./view/components/footer.html') ?>
     </div>
-</div>
 
 
 <!-- Bootstrap core JavaScript-->
