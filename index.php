@@ -55,7 +55,7 @@ require('./class/UITools.php');
             switch($_GET['prof'])
             {
                 case "gestionmc":
-                    include('./view/Administration/MotCle_Theme_Gestion.php');
+                    include('./view/Administration/MotCle_Prof_Gestion.php');
                     break;
                 default:
                     include('./view/404.php');

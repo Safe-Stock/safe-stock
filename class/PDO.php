@@ -80,7 +80,7 @@
 
         public static function GetAllMotsCleV() {
             self::open();
-            $req = self::$bdd->query("SELECT * FROM `mot-cle` WHERE ValidationMC IS NOT NULL ORDER BY IdMC ASC");
+            $req = self::$bdd->query("SELECT * FROM `mot-cle` WHERE ValidationMC IS NOT NULL ORDER BY ValidationMC ASC");
             return $req;
         }
 

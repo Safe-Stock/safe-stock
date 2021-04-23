@@ -1,6 +1,5 @@
 <?php
 require('../class/PDO.php');
-session_start();
 if (
     isset($_POST['theme']) && !empty($_POST['theme'])
     && isset($_POST['MotsCle1']) && !empty($_POST['MotsCle1'])

@@ -33,19 +33,51 @@
         <?php include('./view/components/navigation.php') ?>
 
         <div id="content" class="container">
+
+            <?php
+            if (isset($_SESSION['McAlreadyExistV']))    //Alerte si MotCle create existe Deja
+            { ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Le mot cle que vous voulez ajouter existe deja !
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> <?php
+                unset($_SESSION['McAlreadyExistV']);
+            }
+
+            if (isset($_SESSION['McAlreadyExistNV']))    //Alerte si MotCle deja en attente de validation
+            { ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Ce mot cle est deja en attente de validation !
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> <?php
+                unset($_SESSION['McAlreadyExistNV']);
+            }
+
+            if (isset($_SESSION['ThemeAlreadyExistV']))    //Alerte si MotCle deja en attente de validation
+            { ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Ce theme existe déjà !
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> <?php
+                unset($_SESSION['ThemeAlreadyExistV']);
+            } ?>
+
             <div class="row">
+
+                <!-- Gestion des Mots Clé -->
+
                 <div class="col">
-
-                    <!-- Gestion des Mots Clé -->
-
                     <div class="container-fluid">
                         <!-- Contenu de la colone gauche-->
                         <h1 class="h3 mb-4 text-gray-800">Gestion des mots-clés</h1>
                     </div>
 
-                    <?php
-                    if ($user['IdProfil'] == 1)
-                    { ?>
                         <!--Affichage de tout les mots clé valider-->
 
                         <div class="container-fluid">
@@ -60,8 +92,7 @@
                                             <th scope="col">Supprimer</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php
+                                    <tbody> <?php
                                         $req = PDORequest::GetAllMotsCleV();
                                         while($MotCleReq = $req->fetch())
                                         { ?>
@@ -119,68 +150,55 @@
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div>
-                                            <?php
+                                            </div> <?php
                                         } ?>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="mb-4"></div>
                             <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateMC">Créer un mot-clé</a>
-                        </div> <?php
-                    } ?>
+                        </div>
 
-                    <div class="modal fade" id="CreateMC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <form action="./routeur/Req_MotCle_Theme.php" method="post">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Créer un mot-clé</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label>Nom du mot-clé</label>
-                                        <input type="text" class="form-control" name="VarCreateMC" required="required">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                        <button type="submit" class="btn btn-primary">Confirmer</button>
+                        <!-- Modale Pour cree un nouveau Mot Cle -->
+
+                        <div class="modal fade" id="CreateMC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <form action="./routeur/Req_MotCle_Theme.php" method="post">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Créer un mot-clé</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>Nom du mot-clé</label>
+                                            <input type="text" class="form-control" name="VarCreateMC" required="required">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
 
-                    <?php
-                    if ($user['IdProfil'] == 1 || $user['IdProfil'] == 2)
-                    { ?>
                         <!--Affichage de tout les mots clé Non valider-->
 
-                        <div class="container-fluid">
-                            <div class="mb-4"></div>
-                            <h2 class="h4 mb-4 text-gray-800">Mots-clés non validés</h2> <?php
-                            if ($user['IdProfil'] == 2) //Si prof alors tableau grand
-                            {
-                                $TailleTableauVal = "XB";
-                            }
-                            elseif ($user['IdProfil'] == 1) //Si Admin alors petit tableau
-                            {
-                                $TailleTableauVal = "L";
-                            }
-                            ?>
-                            <div class="table-wrapper-scroll-y my-custom-scrollbar<?=$TailleTableauVal?>">
-                                <table class="table table-bordered mb-0 col-md-12">
-                                    <thead style="color:white; background-color:#993366;">
-                                    <tr>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Valider</th>
-                                        <th scope="col">Refuser</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
+                    <div class="container-fluid">
+                        <div class="mb-4"></div>
+                        <h2 class="h4 mb-4 text-gray-800">Mots-clés non validés</h2>
+                        <div class="table-wrapper-scroll-y my-custom-scrollbarL">
+                            <table class="table table-bordered mb-0 col-md-12">
+                                <thead style="color:white; background-color:#993366;">
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Valider</th>
+                                    <th scope="col">Refuser</th>
+                                </tr>
+                                </thead>
+                                <tbody> <?php
                                     $MC_Valid_vide =  FALSE;
                                     $req2 = PDORequest::GetAllMotsCleNonV();
                                     while($MotCleReq2 = $req2->fetch())
@@ -240,49 +258,40 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
-
-                                        <?php
+                                        </div> <?php
                                     }
                                     if ($MC_Valid_vide == FALSE)
-                                    {?>
+                                    { ?>
                                         <td></td>
                                         <td>Il n'y a aucun mot-clé à valider</td>
                                         <td></td> <?php
-                                    }
-                                    ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div> <?php
-                    } ?>
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
+                <!--Gestion des Thèmes -->
 
-                <?php
-                if ($user['IdProfil'] == 1)
-                { ?>
-                    <!--Gestion des Thèmes -->
+                <div class="col">
+                    <div class="container-fluid">
+                        <!-- Contenu de la colone droite-->
+                        <h1 class="h3 mb-4 text-gray-800">Gestion des thèmes</h1>
+                    </div>
 
-                    <div class="col">
-                        <div class="container-fluid">
-                            <!-- Contenu de la colone droite-->
-                            <h1 class="h3 mb-4 text-gray-800">Gestion des thèmes</h1>
-                        </div>
-
-                        <div class="container-fluid">
-                            <h2 class="h4 mb-4 text-gray-800">Thèmes utilisés</h2>
-                            <div class="table-wrapper-scroll-y my-custom-scrollbarB">
-                                <table class="table table-bordered mb-0 col-md-12">
-                                    <thead style="color:white; background-color:#993366;">
-                                    <tr>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Modifier</th>
-                                        <th scope="col">Supprimer</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
+                    <div class="container-fluid">
+                        <h2 class="h4 mb-4 text-gray-800">Thèmes utilisés</h2>
+                        <div class="table-wrapper-scroll-y my-custom-scrollbarB">
+                            <table class="table table-bordered mb-0 col-md-12">
+                                <thead style="color:white; background-color:#993366;">
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Modifier</th>
+                                    <th scope="col">Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody> <?php
                                     $req3 = PDORequest::GetAllThemes();
                                     while($ThemeReq = $req3->fetch())
                                     { ?>
@@ -339,43 +348,41 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
-                                        <?php
+                                        </div> <?php
                                     } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
+                        </div>
 
-                            <!--Formulaire pour la création Thème-->
+                        <!--Formulaire pour la création Thème-->
 
-                            <div class="mb-4"></div>
-                            <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateTheme">Créer un Thème</a>
+                        <div class="mb-4"></div>
+                        <a class="btn btn-outline-success" data-toggle="modal" data-target="#CreateTheme">Créer un Thème</a>
 
-                            <div class="modal fade" id="CreateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form action="./routeur/Req_MotCle_Theme.php" method="post">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Créer un Thème</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <label>Nom du Thème</label>
-                                                <input type="text" class="form-control" name="VarCreateTheme" required="required">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                <button type="submit" class="btn btn-primary">Confirmer</button>
-                                            </div>
+                        <div class="modal fade" id="CreateTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <form action="./routeur/Req_MotCle_Theme.php" method="post">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Créer un Thème</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>Nom du Thème</label>
+                                            <input type="text" class="form-control" name="VarCreateTheme" required="required">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Confirmer</button>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
-                    </div> <?php
-                } ?>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Footer -->
