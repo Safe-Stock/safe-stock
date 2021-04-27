@@ -2,7 +2,7 @@
 session_start();
 require('./class/PDO.php');
 require('./class/UITools.php');
-    if(isset($_SESSION['user']) && !empty($_SESSION['user']))
+    if(isset($_SESSION['user']) && !empty($_SESSION['user']) && isset($_COOKIE['PHPSESSID']) && !empty($_COOKIE['PHPSESSID']))
     {
         $user = PDORequest::GetUserWithId($_SESSION['user']);
         $user = $user->fetch();
@@ -84,12 +84,6 @@ require('./class/UITools.php');
         {
             include('./view/home.php');
         }
-    }
-    elseif(isset($_COOKIE['login'], $_COOKIE['password']) AND !empty($_COOKIE['login']) AND !empty($_COOKIE['password']))
-    {
-        require('./class/user.php');
-        User::ConnectWithCookies($_COOKIE['login'], $_COOKIE['password']);
-        header('location: ./index.php');
     }
     else
     {

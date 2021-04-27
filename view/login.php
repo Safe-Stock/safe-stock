@@ -50,12 +50,6 @@
                                             <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Mot de passe" required>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input name="memorize" type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Se souvenir de moi</label>
-                                            </div>
-                                        </div>
                                         <button type="submit" name="SubmitBtn" class="btn btn-primary btn-user btn-block">
                                             Se connecter
                                         </button>
