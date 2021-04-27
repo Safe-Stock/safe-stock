@@ -80,7 +80,7 @@
 
         public static function GetAllMotsCleV() {
             self::open();
-            $req = self::$bdd->query("SELECT * FROM `mot-cle` WHERE ValidationMC IS NOT NULL ORDER BY IdMC ASC");
+            $req = self::$bdd->query("SELECT * FROM `mot-cle` WHERE ValidationMC IS NOT NULL ORDER BY ValidationMC ASC");
             return $req;
         }
 
@@ -90,7 +90,13 @@
             $req->execute(array($IdMC));
         }
 
-        public static function CreateMotCle($NameMC) {
+        public static function CreateMotCleV($NameMC) {
+            self::open();
+            $req = self::$bdd->prepare('INSERT INTO `mot-cle` (NomMC, ValidationMC) VALUES (?, NOW())');
+            $req->execute(array($NameMC));
+        }
+
+        public static function CreateMotCleNV($NameMC) {
             self::open();
             $req = self::$bdd->prepare('INSERT INTO `mot-cle` (NomMC) VALUES (?)');
             $req->execute(array($NameMC));
@@ -242,4 +248,11 @@
             $req = self::$bdd->prepare('DELETE FROM `appartient_mot-cle` WHERE id_doc = ? AND id_keyword = ?');
             $req->execute(array($id_doc, $id_keyword));
         }
+
+        public static function AddDocument($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ) {
+            self::open();
+            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, ValidationDoc, TailleDoc ,IdUtil , IdTheme ) VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
+            $req->execute(array($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ));
+        }
+
     }

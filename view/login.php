@@ -60,9 +60,6 @@
                                         </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Mot de passe oublié ?</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

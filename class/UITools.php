@@ -1,5 +1,6 @@
 <?php 
     class UITools {
+
         public static function ResizeText($oldText, $maxCharacters) {
             if(strlen($oldText) > $maxCharacters) {
                 $newText = substr($oldText, 0, $maxCharacters);
@@ -9,6 +10,13 @@
             }
 
             return $newText;
+        }
+
+        public static function DebugVariable($VariableDebug) {
+            echo '<pre>';
+            var_dump($VariableDebug);
+            echo '</pre>';
+            die();
         }
 
         public static function GetTimeAgo($date) {

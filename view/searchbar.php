@@ -20,11 +20,11 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <?php include('./view/components/sidebar.html') ?>
+        <?php include('./view/components/sidebar.php') ?>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
-                <?php include('./view/components/navigation.html') ?>
+                <?php include('./view/components/navigation.php') ?>
                 <div class="container-fluid">
                     <!-- Contenu de la page-->
                     <?php
@@ -41,7 +41,7 @@
                                 include('./view/components/file_card_min.php');
                             }
                         } else { ?>
-                            <h2 class="h1 mb-4 text-red">Pas de résultat</h1>
+                            <h1 class="h1 mb-4 text-red">Pas de résultat</h1>
 
                         <?php
                         }
