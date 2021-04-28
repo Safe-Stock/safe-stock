@@ -43,8 +43,6 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href= "index.php?prof=gestionmc">Verification mots-clés</a>
-                </div>
-                <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href= "index.php?route=upload">Proposer un document</a>
                 </div>
             </div>
@@ -65,8 +63,6 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href= "index.php?route=upload">Proposer un document</a>
-                </div>
-                <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="" data-toggle="modal" data-target="#CreateMC">Proposer un mot-clé</a>
                 </div>
             </div>
