@@ -231,12 +231,6 @@
             return $req;
         }
 
-        public static function GetAllKeyWord() {
-            self::open();
-            $req = self::$bdd->query('SELECT * FROM `mot-cle` ORDER BY NomMC');
-            return $req;
-        }
-
         public static function AddKeywordOnDocument($id_doc, $id_keyword) {
             self::open();
             $req = self::$bdd->prepare('INSERT INTO `appartient_mot-cle`(id_doc, id_keyword) VALUES( ?, ? )');
@@ -249,10 +243,10 @@
             $req->execute(array($id_doc, $id_keyword));
         }
 
-        public static function AddDocument($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ) {
+        public static function AddDocument($DocName, $DocType, $DocDescription, $DocImportDate, $DocValidationDate, $DocSize, $IDuser, $DocTheme ) {
             self::open();
-            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, ValidationDoc, TailleDoc ,IdUtil , IdTheme ) VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
-            $req->execute(array($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ));
+            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, ValidationDoc, TailleDoc ,IdUtil , IdTheme ) VALUES(:DocName, :DocType , :DocDesc, :DocImportDate, :DocValidationDate, :DocTaile, :IdUser, :DocTheme)');
+            $req->execute(array('DocName' => $DocName, 'DocType' => $DocType, 'DocDesc' => $DocDescription, 'DocImportDate' => $DocImportDate, 'DocValidationDate' => $DocValidationDate, 'DocTaille' => $DocSize, 'IdUser' => $IDuser, 'DocTheme' => $DocTheme ));
         }
 
     }

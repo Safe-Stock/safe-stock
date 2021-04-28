@@ -12,6 +12,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
+
+    <!-- NavBar Admin -->
     <?php if($user['IdProfil'] == 1) { ?>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDashboard"
@@ -25,12 +27,13 @@
                     <a class="collapse-item" href= "index.php?admin=gestionmct">Gestion themes/mots-clés</a>
                     <a class="collapse-item" href= "index.php?admin=gestionuser">Gestion Utilisateur</a>
                     <a class="collapse-item" href= "index.php?admin=gestiondoc">Gestion Documents</a>
+                    <a class="collapse-item" href= "index.php?route=upload">Ajouter un document</a>
                 </div>
             </div>
         </li>
-    <?php  } ?>
+    <?php  }
 
-    <?php
+    // NavBar Prof
     if ($user['IdProfil'] == 2)
     { ?>
         <li class="nav-item">
@@ -48,9 +51,8 @@
             </div>
         </li> <?php
     }
-    ?>
 
-    <?php
+    // NavBar Eleve
     if ($user['IdProfil'] == 3)
     { ?>
         <li class="nav-item">

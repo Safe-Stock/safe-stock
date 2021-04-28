@@ -77,12 +77,13 @@
                                     <tr>
                                         <th scope="col">Nom</th>
                                         <th scope="col">Description</th>
+                                        <th scope="col">Theme</th>
                                         <th scope="col">Date Importation</th>
                                         <th scope="col">Date Validation</th>
                                         <th scope="col">Taille</th>
                                         <th scope="col">Type</th>
                                         <th scope="col">Mots-clés</th>
-                                        <th scope="col">Modifier</th>
+                                        <th scope="col">Informations</th>
                                         <th scope="col">Supprimer</th>
                                     </tr>
                                     </thead>
@@ -93,12 +94,16 @@
                                     { ?>
                                         <tr>
                                             <td><?= $DocumentVReq['NomDoc'] ?></td>
-                                            <td><?= $DocumentVReq['DescriptionDoc'] ?></td>
+                                            <td><?= $DocumentVReq['DescriptionDoc'] ?></td><?php
+                                            $NameTheme = PDORequest::GetNameTheme($DocumentVReq['IdDoc']);
+                                            $NameTheme = $NameTheme->fetch();
+                                            ?>
+                                            <td><?= $NameTheme['NomTheme'] ?></td>
                                             <td><?= $DocumentVReq['DateImportationDoc'] ?></td>
                                             <td><?= $DocumentVReq['ValidationDoc'] ?></td>
                                             <td><?= $DocumentVReq['TailleDoc'] ?></td>
                                             <td><?= $DocumentVReq['TypeDoc'] ?></td>
-                                            <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#key-document-<?= $DocumentVReq['IdDoc'] ?>">Mots-clés</a></td>
+                                            <td><a class="btn btn-outline-success" data-toggle="modal" data-target="#key-document-<?= $DocumentVReq['IdDoc'] ?>">Modifier</a></td>
                                             <td><a class="btn btn-outline-warning" data-toggle="modal" data-target="#UpdateDocV-<?= $DocumentVReq['IdDoc'] ?>">Modifier</a></td>
                                             <td><a class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteDocV-<?= $DocumentVReq['IdDoc'] ?>">Supprimer</a></td>
                                         </tr>
@@ -170,7 +175,7 @@
                                                         </div>
                                                         <form>
                                                         <div class="modal-body">
-                                                            <?php $req3 = PDORequest::GetAllKeyWord() ?>
+                                                            <?php $req3 = PDORequest::GetAllMotsCleV() ?>
                                                             <label>Mots-clés :</label>
                                                             <select name="IdKeyword">
                                                                 <?php while($keyword = $req3->fetch()) { ?>
@@ -265,10 +270,11 @@
                         <h2 class="h4 mb-4 text-gray-800">Documents non validés</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbarB">
                             <table class="table table-bordered mb-0 col-md-12">
-                                <thead>
+                                <thead style="color:white; background-color:#993366;">
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Description</th>
+                                    <th scope="col">Theme</th>
                                     <th scope="col">Date Importation</th>
                                     <th scope="col">Taille</th>
                                     <th scope="col">Type</th>
@@ -285,7 +291,11 @@
                                     $Doc_NValid_vide =  TRUE;?>
                                     <tr>
                                         <td><?= $DocumentNvReq['NomDoc'] ?></td>
-                                        <td><?= $DocumentNvReq['DescriptionDoc'] ?></td>
+                                        <td><?= $DocumentNvReq['DescriptionDoc'] ?></td> <?php
+                                        $NameThemeNV = PDORequest::GetNameTheme($DocumentNvReq['IdTheme']);
+                                        $NameThemeNV = $NameThemeNV->fetch();
+                                        ?>
+                                        <td><?= $NameThemeNV['NomTheme'] ?></td>
                                         <td><?= $DocumentNvReq['DateImportationDoc'] ?></td>
                                         <td><?= $DocumentNvReq['TailleDoc'] ?></td>
                                         <td><?= $DocumentNvReq['TypeDoc'] ?></td>
