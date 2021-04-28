@@ -44,10 +44,36 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href= "index.php?prof=gestionmc">Verification mots-clés</a>
                 </div>
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href= "index.php?route=upload">Proposer un document</a>
+                </div>
             </div>
         </li> <?php
     }
     ?>
+
+    <?php
+    if ($user['IdProfil'] == 3)
+    { ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDashboard"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Tableau de Bord</span>
+            </a>
+            <div id="collapseDashboard" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href= "index.php?route=upload">Proposer un document</a>
+                </div>
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="" data-toggle="modal" data-target="#CreateMC">Proposer un mot-clé</a>
+                </div>
+            </div>
+        </li> <?php
+    }
+    ?>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -150,6 +176,31 @@
             </div>
         </div>
     </li>
+
+    <!-- Modale Proposer un mot cle pour eleve -->
+
+    <div class="modal fade" id="CreateMC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="./routeur/Req_MotCle_Theme.php" method="post">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Créer un mot-clé</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nom du mot-clé</label>
+                        <input type="text" class="form-control" name="VarCreateMC" required="required">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

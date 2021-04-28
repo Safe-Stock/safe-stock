@@ -46,6 +46,7 @@
                     $_SESSION['McAlreadyExistNV'] = "Ce mot cle est deja en attente de validation";
                 }
             }
+
             if ($user['IdProfil'] == 1) //Si admin alors rediriger vers page gestion admin Mot Cle
             {
                 if ($McAlreadyExist == 0) //Si le mot cle existe pas alors on le cree

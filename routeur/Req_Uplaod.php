@@ -12,7 +12,7 @@ if (
     $DocName = $_FILES['monfichier2']['name'];
     $DocSize = $_FILES['monfichier2']['size'];
     $DocEx = pathinfo($DocName, PATHINFO_EXTENSION);
-    //$DocTheme = $_POST['theme']; 
+    //$DocTheme = $_POST['theme'];
 
     if ($_POST['theme'] == 6 ) { //verifie que le theme n'est pas null 6 c'est dans ma bdd c'est un theme vide qui s'affiche toujours en premier jsp comment faire autrement
         $DocTheme = NULL;
