@@ -27,7 +27,35 @@
                 <!-- Topbar -->
                 <?php include('./view/components/navigation.php') ?>
                 <div class="container-fluid">
+
+                    <!-- Gestion Session Alert -->
+
+                    <?php
+                    if (isset($_SESSION['McAlreadyExistV']))    //Alerte si MotCle create existe Deja
+                    { ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Le mot cle que vous proposer existe deja !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div> <?php
+                        unset($_SESSION['McAlreadyExistV']);
+                    }
+
+                    if (isset($_SESSION['McAlreadyExistNV']))    //Alerte si MotCle deja en attente de validation
+                    { ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Ce mot cle est deja en attente de validation !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div> <?php
+                        unset($_SESSION['McAlreadyExistNV']);
+                    }
+                    ?>
+
                     <!-- Contenu de la page-->
+
                     <h1 class="h1 mb-4 text-gray-800">Accueil</h1>
                     <h2 class="h4 mb-4 text-gray-500">Fichiers récents</h2>
 

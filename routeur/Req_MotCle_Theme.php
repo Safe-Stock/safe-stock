@@ -2,7 +2,7 @@
     session_start();
     require('../class/PDO.php');
     require('../class/UITools.php');
-
+    
     if(isset($_SESSION['user']) && !empty($_SESSION['user']))
     {
         $user = PDORequest::GetUserWithId($_SESSION['user']);

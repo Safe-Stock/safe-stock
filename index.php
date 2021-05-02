@@ -45,6 +45,9 @@ require('./class/UITools.php');
                 case "about":
                     include('./view/about.php');
                     break;
+                case "searchmc":
+                    include('./view/SearchMC.php');
+                    break;
                 default:
                     include('./view/404.php');
                     break;

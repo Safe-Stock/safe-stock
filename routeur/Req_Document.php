@@ -8,7 +8,7 @@
     <?php
         require('../class/PDO.php');
         require('../class/UITools.php');
-
+        
         // Requetes Gestion Documents
 
         if (isset($_GET['VarValideDoc']) && isset($_POST['VarUpdateNameDocNv']) && isset($_POST['VarUpdateDescDocNv']))

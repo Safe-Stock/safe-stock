@@ -102,6 +102,13 @@
             $req->execute(array($NameMC));
         }
 
+        public static function GetOneMc($IdMC) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM `mot-cle` WHERE IdMC = ?');
+            $req->execute(array($IdMC));
+            return $req;
+        }
+
         public static function ModifyMotCle($NameMC, $IdMC) {
             self::open();
             $req = self::$bdd->prepare('UPDATE `mot-cle` SET NomMC = :NameMC WHERE IdMC = :IdMC');
@@ -228,6 +235,20 @@
             self::open();
             $req = self::$bdd->prepare('SELECT * FROM `appartient_mot-cle` A INNER JOIN `mot-cle` M ON A.id_keyword = M.IdMC WHERE id_doc = ?');
             $req->execute(array($id_doc));
+            return $req;
+        }
+
+        public static function GetLatestDocFromMc($IdMc) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM `document` D INNER JOIN `appartient_mot-cle` M ON D.IdDoc = M.id_doc WHERE id_keyword = ? ORDER BY D.DateImportationDoc ASC LIMIT 4');
+            $req->execute(array($IdMc));
+            return $req;
+        }
+
+        public static function GetAllDocFromMc($IdMc) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM `document` D INNER JOIN `appartient_mot-cle` M ON D.IdDoc = M.id_doc WHERE id_keyword = ? ORDER BY D.DateImportationDoc ASC');
+            $req->execute(array($IdMc));
             return $req;
         }
 

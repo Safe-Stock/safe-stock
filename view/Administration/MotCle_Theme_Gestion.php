@@ -57,7 +57,7 @@
                 unset($_SESSION['McAlreadyExistNV']);
             }
 
-            if (isset($_SESSION['ThemeAlreadyExistV']))    //Alerte si MotCle deja en attente de validation
+            if (isset($_SESSION['ThemeAlreadyExistV']))    //Alerte si theme existe deja
             { ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     Ce theme existe déjà !

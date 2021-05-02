@@ -85,15 +85,36 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
-            </div>
-        </div>
+            <span>Mots Clés</span>
+        </a> <?php
+        //Si Nombre de mot cle > 10 Alors mettre une taille fix et un scroll
+        if (count(PDORequest::GetAllMotsCleV()->fetchAll()) > 10)
+        { ?>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tout les Mots Clés</h6> <?php
+                    $ReqGetAllMc = PDORequest::GetAllMotsCleV();
+                    while ($ResultAllMc = $ReqGetAllMc->fetch())
+                    { ?>
+                        <a class="collapse-item" href="index.php?route=searchmc&mc=<?=$ResultAllMc['IdMC']?>"><?=$ResultAllMc['NomMC']?></a> <?php
+                    } ?>
+                </div>
+            </div> <?php
+        }
+        else //Si nombre MC < 10 Alors afficher tt les mot cles normalement
+        { ?>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tout les Mots Clés</h6> <?php
+                    $ReqGetAllMc = PDORequest::GetAllMotsCleV();
+                    while ($ResultAllMc = $ReqGetAllMc->fetch())
+                    { ?>
+                        <a class="collapse-item" href="index.php?route=searchmc&mc=<?=$ResultAllMc['IdMC']?>"><?=$ResultAllMc['NomMC']?></a> <?php
+                    } ?>
+                </div>
+            </div> <?php
+        }
+        ?>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
