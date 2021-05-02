@@ -90,8 +90,8 @@
         //Si Nombre de mot cle > 10 Alors mettre une taille fix et un scroll
         if (count(PDORequest::GetAllMotsCleV()->fetchAll()) > 10)
         { ?>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"">
-                <div class="bg-white py-2 collapse-inner rounded">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded" style="position: relative;max-height: 350px;overflow-y: scroll">
                     <h6 class="collapse-header">Tout les Mots Clés</h6> <?php
                     $ReqGetAllMc = PDORequest::GetAllMotsCleV();
                     while ($ResultAllMc = $ReqGetAllMc->fetch())
