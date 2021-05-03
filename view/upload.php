@@ -9,70 +9,75 @@
     <title>FilesFranck - Importer des documents</title>
     <!-- Custom fonts for this template-->
     <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
 <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <?php include('./view/components/sidebar.php') ?>
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <!-- Topbar -->
-                <?php include('./view/components/navigation.php') ?>
-                <div class="container-fluid">
-                    <!-- Contenu de la page-->                   
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <?php include('./view/components/sidebar.php') ?>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <!-- Topbar -->
+            <?php include('./view/components/navigation.php') ?>
+            <div class="container-fluid">
+                <!-- Contenu de la page-->
+                <div class="text-center">
+                    <div class="form-group">
+                        <div class="col-10  d-flex h-100 p-5 mx-auto flex-column ">
+                            <header class="masthead mb-auto">
+                                <div class="inner">
+                                <h1>Importer un fichier </h1>
+                                <br>
+                                <div style="color:red">
+                                    <p><?php if (isset($error)) echo $error; ?></p>
+                                </div>
 
-                    <div class="text-center">
-                        <div class="form-group">
-                            <div class="col-10  d-flex h-100 p-5 mx-auto flex-column ">
-                                <header class="masthead mb-auto">
-                                    <div class="inner">
+                                <!--requete Theme mots cle-->
+                                <?php
+                                $req = PDORequest::GetAllThemes();
+                                $THeme = $req->fetchAll();
 
+                                $req = PDORequest::GetAllMotsCleV();
+                                $MC = $req->fetchAll();
+                                ?>
 
-                                        <h1>Choisissez le fichier à téléverser</h1><br>
-                                        <?php                                        
-                                        $req = PDORequest::GetAllThemes();
-                                        while ($THeme = $req->fetchAll()) {
-                                        ?>
-                                    </div>
-                                    <div style="color:red">
-                                        <p><?php if (isset($error)) echo $error; ?></p>
-                                    </div>
+                                <!--Formulaire pour l'upload-->
                                     <form method="POST" action="/routeur/Req_Uplaod.php" enctype="multipart/form-data">
-                                    <?php $user['IdProfil']; ?>
+
+                                     <!--Nom du doc-->
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput" class="form-label">Nom de votre documents</label>
+                                            <input type="text" class="form-control" name="DocName" placeholder="" required>
+                                        </div>
+
                                         <div class="row">
                                             <div class="col">
+                                     <!--theme du doc-->
                                                 <label for="exampleFormControlSelect1">Sélectionner un thème</label>
                                                 <select class="form-control" name="theme">
-                                                    <?php
-                                                    for ($i = 0; $i < count($THeme); $i++) {
-                                                    ?>
+                                                    <?php for ($i = 0; $i < count($THeme); $i++) { ?>
                                                         <option value="<?php echo $THeme[$i]["IdTheme"] ?>"> <?php echo $THeme[$i]["NomTheme"]; ?></option>
 
                                                     <?php } ?>
-                                                </select>
-                                                <br>
+                                                </select>   
                                             </div>
-
-                                            <?php
-                                            $req = PDORequest::GetAllMotsCleV();
-                                            while ($MC = $req->fetchAll()) {
-                                            ?>
-                                                <div class="col">
-                                                    <label for="exampleFormControlSelect1">Sélectionner des Mots clées</label>
+                                            <div class="col">
+                                    <!--Mots clés 1, 2, 3 du doc-->
+                                                <label for="exampleFormControlSelect1">Sélectionner des Mots clées</label>
                                                     <select class="form-control" name="MotsCle1">
                                                         <?php
                                                         ?><option>. . .</option><?php
-                                                            for ($i = 0; $i < count($MC); $i++) {
-                                                            ?>
-                                                            <option><?php echo $MC[$i]["NomMC"] ?></option>
+                                                                                for ($i = 0; $i < count($MC); $i++) {
+                                                                                ?>
+                                                            <option value="<?php echo $MC[$i]["IdMC"] ?>"><?php echo $MC[$i]["NomMC"] ?></option>
                                                         <?php
-                                                            }
+                                                                                }
                                                         ?>
                                                     </select><br>
                                                     <select class="form-control" name="MotsCle2">
@@ -85,7 +90,7 @@
                                                         }
                                                         ?>
                                                     </select><br>
-                                                    <select class="form-control" name="MotsCle3" >
+                                                    <select class="form-control" name="MotsCle3">
                                                         <option>. . .</option>
                                                         <?php
                                                         for ($i = 0; $i < count($MC); $i++) {
@@ -95,60 +100,53 @@
                                                         }
                                                         ?>
                                                     </select>
-                                            <?php
-                                            }
-                                        }
-                                            ?>
                                                 </div>
-                                                <div class="input-group mb-3">
+                                            
 
-                                                    <div class="col">
-                                                        <label for="exampleFormControlTextarea1"></label>
-                                                        <br>
-                                                        <textarea class="form-control " name="DocDescription" rows="4" placeholder="Description" required></textarea>
-                                                        
-                                                        <br>
-                                                        <div class="mb-3">
-    
-                                                        </div>
+                                            <div class="input-group mb-3">
+                                                <div class="col">
+                                                <br>
+                                        <!--Description du doc-->
+                                                    <label for="formGroupExampleInput" class="form-label">Description</label>
+                                                    <textarea class="form-control " name="DocDescription" rows="4" placeholder="" required></textarea>
+
+                                        <!--Document-->
+                                                    <br>
+                                                    <label for="formGroupExampleInput" class="form-label">Document à importer</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" aria-label="file example" name="monfichier2" required>
                                                     </div>
-                                                    <!--<div class="custom-file">
-                                                    <div>
-                                                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                                        <label class="custom-file-label" for="validatedCustomFile">Choisir le fichier à téléverser</label>
-                                                        <div class="invalid-feedback">Votre fichier seras mis dans une fille d’attend le temps qu’un administrateur vérifie son contenu</div>
-                                                        </div>
-                                                    </div>-->
-
-                                                </div>
-                                                <div class="input-group mb-3">
-
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <div class="input-group">
-                                                                <input type="file" class="form-control-file" aria-label="file example" name="monfichier2" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="dropzone">
-                                                        </div>
-                                                        <br>
-
-
-                                                        <div class="form-group">
+                                                    <div class="form-group">
                                                             <br><br>
                                                             <input class="btn btn-outline-primary" type="submit" name="chargement" value="Téléverser">
                                                         </div>
-                                                    </div>
-                                    </form>
-                            </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </from>
+
+                                </div>
+                            </header>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <?php include('./view/components/footer.html') ?>
     </div>
-    <?php include('./view/components/footer.html') ?>
-    </div>
-    <script src="./assets/js/sidebar.js"></script>
+</div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="./assets/vendor/jquery/jquery.min.js"></script>
+<script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="./assets/js/sb-admin-2.min.js"></script>
+<script src="./assets/js/sidebar.js"></script>
 </body>
+
 </html>
