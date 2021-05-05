@@ -45,7 +45,7 @@
             <div id="collapseDashboard" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href= "index.php?prof=gestionmc">Verification mots-clés</a>
+                    <a class="collapse-item" href= "index.php?prof=gestionmc">Validation mots-clés</a>
                     <a class="collapse-item" href= "index.php?route=upload">Proposer un document</a>
                 </div>
             </div>
@@ -80,15 +80,16 @@
         Interface
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Mots Cle -->
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Mots Clés</span>
         </a> <?php
-        //Si Nombre de mot cle > 10 Alors mettre une taille fix et un scroll
-        if (count(PDORequest::GetAllMotsCleV()->fetchAll()) > 10)
+        //Si Nombre de mot cle > 8 Alors mettre une taille fix et un scroll
+        if (count(PDORequest::GetAllMotsCleV()->fetchAll()) > 8)
         { ?>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded" style="position: relative;max-height: 350px;overflow-y: scroll">
@@ -117,83 +118,41 @@
         ?>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
-            </div>
-        </div>
-    </li> -->
-
-
-
-
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <!-- <li class="nav-item active">
-         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-             aria-controls="collapsePages">
-             <i class="fas fa-fw fa-folder"></i>
-             <span>Pages</span>
-         </a>
-         <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-             data-parent="#accordionSidebar">
-             <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">Login Screens:</h6>
-                 <a class="collapse-item" href="login.html">Login</a>
-                 <a class="collapse-item" href="register.html">Register</a>
-                 <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                 <div class="collapse-divider"></div>
-                 <h6 class="collapse-header">Other Pages:</h6>
-                 <a class="collapse-item" href="404.html">404 Page</a>
-                 <a class="collapse-item " href="index.php?route=blank1">Blank Page</a>
-                 <a class="collapse-item " href="index.php?route=test">Page Test</a>
-             </div>
-         </div>
-     </li>-->
-
-    <!-- Nav Item - Charts -->
-    <!-- <li class="nav-item">
-         <a class="nav-link" href="charts.html">
-             <i class="fas fa-fw fa-chart-area"></i>
-             <span>Charts</span></a>
-     </li> -->
-
-    <!-- Nav Item - Tables -->
-    <!-- <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-    </li> -->
+    <!-- Nav Item - Theme -->
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-folder"></i>
             <span>Themes</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <?php
-                $req = PDORequest::GetAllThemes();
-                while($themes = $req->fetch()) { ?>
-                    <a class="collapse-item" href= "index.php?route=theme&id=<?php echo $themes['IdTheme'] ?>"><?php echo $themes['NomTheme'] ?></a>
-                <?php } ?>
-            </div>
-        </div>
+        </a> <?php
+        if (count(PDORequest::GetAllThemes()->fetchall()) > 8)
+        { ?>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded" style="position: relative;max-height: 350px;overflow-y: scroll">
+                    <h6 class="collapse-header">Tout les Thèmes</h6> <?php
+                    $ReqGetAllTheme = PDORequest::GetAllThemes();
+                    while ($ResultAllTheme = $ReqGetAllTheme->fetch())
+                    { ?>
+                        <a class="collapse-item" href="index.php?route=theme&id=<?=$ResultAllTheme['IdTheme']?>"><?=$ResultAllTheme['NomTheme']?></a> <?php
+                    } ?>
+                </div>
+            </div> <?php
+        }
+        else
+        { ?>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tout les Thèmes</h6> <?php
+                    $ReqGetAllTheme = PDORequest::GetAllThemes();
+                    while ($ResultAllTheme = $ReqGetAllTheme->fetch())
+                    { ?>
+                        <a class="collapse-item" href="index.php?route=theme&id=<?=$ResultAllTheme['IdTheme']?>"><?=$ResultAllTheme['NomTheme']?></a> <?php
+                    } ?>
+                </div>
+            </div> <?php
+        }
+        ?>
     </li>
 
     <!-- Modale Proposer un mot cle pour eleve -->

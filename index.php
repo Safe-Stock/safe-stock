@@ -28,7 +28,7 @@ require('./class/UITools.php');
                     include('./view/profil.php');
                     break;
                 case "theme":
-                    include('./view/theme.php');
+                    include('./view/SearchTheme.php');
                     break;
                 case "disconnect":
                     include('./routeur/disconnect.php');

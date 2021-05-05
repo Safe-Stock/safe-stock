@@ -34,22 +34,25 @@
                         <?php 
                              if(count(PDORequest::GetLatestDocumentsByTheme($_GET['id'])->fetchAll()) >= 1) {
                                 $req = PDORequest::GetLatestDocumentsByTheme($_GET['id']);
-                                while($doc = $req->fetch()) {
+                                while($doc = $req->fetch())
+                                {
                                     include('./view/components/file_card_max.php');
                                 }
                             } else { ?>
                                <div class="h5"> <?php echo 'Aucun document pour ce thème =(' ?> </div>
                            <?php }  ?>
-                     </div>
-                     <h2 class="h4 mb-4 text-gray-500 mt-4">Tout les fichiers</h2>
-                     <div class="d-flex flex-row flex-wrap mb-5 mt-2">
-                         <?php
-                         $req = PDORequest::GetDocumentsByTheme($_GET['id']);
-                         while($doc = $req->fetch()) {
-                             include('./view/components/file_card_min.php');
-                         } 
-                         ?>
-                     </div>
+                     </div> <?php
+                    if(count(PDORequest::GetLatestDocumentsByTheme($_GET['id'])->fetchAll()) >= 1)
+                        { ?>
+                            <h2 class="h4 mb-4 text-gray-500 mt-4">Tout les fichiers</h2>
+                            <div class="d-flex flex-row flex-wrap mb-5 mt-2"> <?php
+                                $req = PDORequest::GetDocumentsByTheme($_GET['id']);
+                                 while($doc = $req->fetch())
+                                 {
+                                     include('./view/components/file_card_min.php');
+                                 } ?>
+                            </div> <?php
+                        } ?>
                 </div>
             </div>
             <!-- Footer -->
