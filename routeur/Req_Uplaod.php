@@ -11,31 +11,61 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 if (isset($_POST['DocDescription']) && !empty($_POST['DocDescription'])) {
         $DocDescription = $_POST['DocDescription'];
     }else{
-        $ErrorFrom = "Il ni a pas de description";
+        $ErrorFrom = "aucun nom";
+        $_SESSION['DocUplaodRouge'] = '<strong>Vous devez mettre une description.</strong>';
+        header('Location: http://safe-stock.test/index.php?route=upload');
     }
 if (isset($_POST['DocName']) && !empty($_POST['DocName'])) {
-        $DocName = $_POST['theme'];
+        $DocName = $_POST['DocName'];
+        if ($_POST['DocName'] > 50)
+        {
+        $ErrorFrom = "nom trop long";
+        $_SESSION['DocUplaodRouge'] = '<strong>Le nom de votre document ne doit pas dépasser 50 caractères. </strong>';
+        header('Location: http://safe-stock.test/index.php?route=upload');
+
+        }
     }else{
-        $ErrorFrom ="le titre est vide";
+        $ErrorFrom = "aucun nom";
+        $_SESSION['DocUplaodRouge'] = '<strong>Vous devez mettre un nom à votre document.</strong>';
+        header('Location: http://safe-stock.test/index.php?route=upload');
+}
+
+if (isset($_FILES['monfichier2']['name']) && !empty($_FILES['monfichier2']['name'])) {
+    $DocN1 = $_FILES['monfichier2']['name'];
+}else{
+    $ErrorFrom = "aucun doc";
+    $_SESSION['DocUplaodRouge'] = '<strong>Vous n’avez pas sélectionné de documents, réessayer !</strong>';
+    header('Location: http://safe-stock.test/index.php?route=upload');
 }
 
         //parametre du doc 
-        $DocN1 = $_FILES['monfichier2']['name'];
         $DocSize = $_FILES['monfichier2']['size'];
         $DocEx = pathinfo($DocN1, PATHINFO_EXTENSION);
         $today = date("Y-m-d");
-        $IDuser = $user['IdProfil'];
-        if($IDuser == 1 || 2) 
-        {
-            echo "sale chien";
-            $DateV = $today;
+        $IDuser = $user['IdUtil'];
+        $DateV = $today;
+
+        //getion des thme / mots cle pour le rendre null
+        if ($_POST['theme'] == 0) {
+            $DocTheme = NULL;
         }else{
-            $DateV = NULL;
-        }
-        $DocTheme = $_POST['theme'];
-        $DocMc1 = $_POST['MotsCle1'];
-        $DocMc2 = $_POST['MotsCle2'];
-        $DocMc3 = $_POST['MotsCle3'];
+            $DocTheme = $_POST['theme']; }
+
+        if ($_POST['MotsCle1'] == 0) {
+            $DocMc1 = NULL;
+        }else{
+            $DocMc1 = $_POST['MotsCle1']; }
+
+        if ($_POST['MotsCle2'] == 0) {
+            $DocMc2 = NULL;
+        }else{
+            $DocMc2 = $_POST['MotsCle2']; }
+
+        if ($_POST['MotsCle3'] == 0) {
+            $DocMc3 = NULL;
+        }else{
+            $DocMc3 = $_POST['MotsCle3']; }
+        
 
 
     ?><pre><?php print_r($_POST) ?></pre>        
@@ -50,31 +80,65 @@ if (isset($_POST['DocName']) && !empty($_POST['DocName'])) {
                                                                     //test la taille du doc 32Mb
             if ($_FILES['monfichier2']['size'] > 3200000) {
                 $error = "Votre fichier est trop lourd.";
+                $_SESSION['DocUplaodRouge'] = '<strong>Votre document est trop volumineux il ne doit pas dépasser 32Mo</strong>';
+                header('Location: http://safe-stock.test/index.php?route=upload');
+
             }
             echo"Voici de recap de votre document :";
-                                                                    // test extension ca marche pas bien
+                                                                    // test extension ca marche pas
             /*$extensionsValid = array('.png', '.gif', '.jpg', '.jpeg' );
             $extension = strrchr($_FILES['monfichier2']['name'],'.');
-            if($extension !=  '.docx' || '.pdf')
+            if($extension =  '.txt')
             {
-                $error = "Votre fichier n'est pas conforme.";
-            }*/
+                $oui = "Votre fichier n'est pas conforme.";
+            }
+            $error = "Votre fichier n'est pas conforme.";
+            $_SESSION['DocUplaodRouge'] = '<strong> Vous ne pouvez pas mettre des document avec cette extension !</strong>';
+            header('Location: http://safe-stock.test/index.php?route=upload');*/
+
 
             if (!isset($error)) {
 
-                $req = PDORequest::AddDocument($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme );
+                if($user['IdProfil'] == 3) {
+                    $req = PDORequest::AddDocumentNV($DocName, $DocEx, $DocDescription, $today, $DocSize, $IDuser, $DocTheme);
+                    echo "requete id user = 3 : " . $user['IdProfil'];
+                }else{
+                    $req = PDORequest::AddDocumentV($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme );
+                }
 
+
+                // recup il du doc
                 $req2 = PDORequest::GetLastIdDoc();
                 $req2 = $req2->fetch();
+
+
                 //ajoute les mots clés
-                $req3 = PDORequest::InsertMC($req2, $DocMc1);
-                echo $req2['IdDoc'];         
-               
+                $IdDoc1 = $req2['IdDoc']; 
+                $req3 = PDORequest::InsertMC($IdDoc1, $DocMc1, $DocMc2, $DocMc3);
+                 
+                
                 $extensionUpload = strtolower(substr(strrchr($_FILES['monfichier2']['name'], '.'), 1));
                 move_uploaded_file($_FILES['monfichier2']['tmp_name'], '../data/doc/' .  $req2['IdDoc'] . "." . $extensionUpload);
                     
-                    echo "le fichier est chargé";  
-                    
+
+                //Alerte success
+                if($user['IdProfil'] == 3) {
+                    $_SESSION['DocUplaodVert'] = '<strong>Bien joué !</strong>
+                    <br>
+                    Votre document a été importer avec succès, il sera mis dans une file d’attend en attendant la validation par un professeurs ou administrateur.    
+                    <br>
+                    À tout moment vous pouvez le retrouver dans votre espace personnel.
+                    ';
+                }else{
+                    $_SESSION['DocUplaodVert'] = '<strong>Bien joué !</strong>
+                    <br>
+                    Votre document a été importer avec succès.
+                    <br>
+                    À tout moment vous pouvez le retrouver dans votre espace personnel.
+                    ';         
+                }
+                    header('Location: http://safe-stock.test/index.php?route=upload');
+
             }
         }
         
@@ -84,3 +148,5 @@ if (isset($_POST['DocName']) && !empty($_POST['DocName'])) {
     {
         echo $ErrorFrom;
     } 
+
+    header('Location: http://safe-stock.test/index.php?route=upload');

@@ -264,22 +264,22 @@
             $req->execute(array($id_doc, $id_keyword));
         }
 
-        public static function AddDocument1($DocName, $DocType, $DocDescription, $DocImportDate, $DocValidationDate, $DocSize, $IDuser, $DocTheme ) {
+        public static function AddDocumentV($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ) {
             self::open();
-            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, ValidationDoc, TailleDoc ,IdUtil , IdTheme ) VALUES(:DocName, :DocType , :DocDesc, :DocImportDate, :DocValidationDate, :DocTaile, :IdUser, :DocTheme)');
-            $req->execute(array('DocName' => $DocName, 'DocType' => $DocType, 'DocDesc' => $DocDescription, 'DocImportDate' => $DocImportDate, 'DocValidationDate' => $DocValidationDate, 'DocTaille' => $DocSize, 'IdUser' => $IDuser, 'DocTheme' => $DocTheme ));
+            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, ValidationDoc, TailleDoc, IdUtil, IdTheme) VALUES(:DocName, :TypeDoc, :DescriptionDoc, :DateImportationDoc, :ValidationDoc, :TailleDoc, :IdUtil, :IdTheme)');
+            $req->execute(array('DocName' => $DocName, 'TypeDoc' => $DocEx, 'DescriptionDoc' => $DocDescription, 'DateImportationDoc' => $today, 'ValidationDoc' => $DateV, 'TailleDoc' => $DocSize, 'IdUtil' => $IDuser, 'IdTheme' => $DocTheme));
         }
 
-        public static function AddDocument($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ) {
+        public static function AddDocumentNV($DocName, $DocEx, $DocDescription, $today, $DocSize, $IDuser, $DocTheme) {
             self::open();
-            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, ValidationDoc, TailleDoc ,IdUtil , IdTheme ) VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
-            $req->execute(array($DocName, $DocEx, $DocDescription, $today, $DateV, $DocSize, $IDuser, $DocTheme ));
+            $req = self::$bdd->prepare('INSERT INTO document (NomDoc, TypeDoc, DescriptionDoc, DateImportationDoc, TailleDoc, IdUtil, IdTheme) VALUES(:DocName, :TypeDoc, :DescriptionDoc, :DateImportationDoc, :TailleDoc, :IdUtil, :IdTheme)');
+            $req->execute(array('DocName' => $DocName, 'TypeDoc' => $DocEx, 'DescriptionDoc' => $DocDescription, 'DateImportationDoc' => $today, 'TailleDoc' => $DocSize, 'IdUtil' => $IDuser, 'IdTheme' => $DocTheme));
         }
         
-        public static function InsertMC($req2, $DocMc1) {
+        public static function InsertMC($IdDoc1, $DocMc1, $DocMc2, $DocMc3) {
             self::open();
-            $req = self::$bdd->prepare('INSERT INTO `appartient_mot-cle` (id_doc, id_keyword) VALUES(:id_doc, :id_keyword)');
-            $req->execute(array('id_doc' => $req2, 'id_keyword' => $DocMc1));
+            $req = self::$bdd->prepare('INSERT INTO `appartient_mot-cle` (id_doc, id_keyword_1, id_keyword_2, id_keyword_3) VALUES(:id_doc, :id_keyword_1, :id_keyword_2, :id_keyword_3)');
+            $req->execute(array('id_doc' => $IdDoc1, 'id_keyword_1' => $DocMc1, 'id_keyword_2' => $DocMc2, 'id_keyword_3' => $DocMc3));
         }
         
         public static function GetLastIdDoc() {
@@ -288,4 +288,31 @@
             return $req;
         }
 
+        public static function GetOneTheme($id) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM theme WHERE IdTheme = ?');
+            $req->execute(array($id));
+            return $req;
+        }
+
+        public static function GetNameMc1($id_doc) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM `appartient_mot-cle` A INNER JOIN `mot-cle` M ON A.id_keyword_1 = M.IdMC WHERE id_doc = ?');
+            $req->execute(array($id_doc));
+            return $req;
+        }
+
+        public static function GetNameMc2($id_doc) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM `appartient_mot-cle` A INNER JOIN `mot-cle` M ON A.id_keyword_2 = M.IdMC WHERE id_doc = ?');
+            $req->execute(array($id_doc));
+            return $req;
+        }
+
+        public static function GetNameMc3($id_doc) {
+            self::open();
+            $req = self::$bdd->prepare('SELECT * FROM `appartient_mot-cle` A INNER JOIN `mot-cle` M ON A.id_keyword_3 = M.IdMC WHERE id_doc = ?');
+            $req->execute(array($id_doc));
+            return $req;
+        }       
     }
