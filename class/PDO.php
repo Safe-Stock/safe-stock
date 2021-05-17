@@ -240,15 +240,15 @@
 
         public static function GetLatestDocFromMc($IdMc) {
             self::open();
-            $req = self::$bdd->prepare('SELECT * FROM `document` D INNER JOIN `appartient_mot-cle` M ON D.IdDoc = M.id_doc WHERE id_keyword = ? ORDER BY D.DateImportationDoc ASC LIMIT 4');
-            $req->execute(array($IdMc));
+            $req = self::$bdd->prepare('SELECT * FROM `document` D INNER JOIN `appartient_mot-cle` M ON D.IdDoc = M.id_doc WHERE id_keyword_1 = :IdMc OR id_keyword_2 = :IdMc OR id_keyword_3 = :IdMc ORDER BY D.DateImportationDoc ASC LIMIT 4');
+            $req->execute(array('IdMc' => $IdMc));
             return $req;
         }
 
         public static function GetAllDocFromMc($IdMc) {
             self::open();
-            $req = self::$bdd->prepare('SELECT * FROM `document` D INNER JOIN `appartient_mot-cle` M ON D.IdDoc = M.id_doc WHERE id_keyword = ? ORDER BY D.DateImportationDoc ASC');
-            $req->execute(array($IdMc));
+            $req = self::$bdd->prepare('SELECT * FROM `document` D INNER JOIN `appartient_mot-cle` M ON D.IdDoc = M.id_doc WHERE id_keyword_1 = :IdMc OR id_keyword_2 = :IdMc OR id_keyword_3 = :IdMc ORDER BY D.DateImportationDoc ASC');
+            $req->execute(array('IdMc' => $IdMc));
             return $req;
         }
 
