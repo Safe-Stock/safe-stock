@@ -29,7 +29,7 @@
           <div class="col-md-8">
             <p class="m-2"><strong>Taille : </strong><?php echo UITools::ConvertBytes(filesize("./data/doc/" . $doc['IdDoc'] . "." . $doc['TypeDoc'])) ?></p>
             <p class="m-2"><strong>Date de l'importation : </strong><?php echo UITools::ConvertDate($doc['ValidationDoc']) ?></p>
-            <p class="m-2"><strong>Date de Validation : </strong> <?php echo UITools::ConvertDate($doc['DateImportationDoc']) ?> </p>
+            <p class="m-2"><strong>Date de validation : </strong> <?php echo UITools::ConvertDate($doc['DateImportationDoc']) ?> </p>
             <p class="m-2"><strong>Type : </strong>.<?php echo $doc['TypeDoc'] ?></p>
             <p class="m-2"><strong>Description : </strong><?php echo $doc['DescriptionDoc'] ?></p>
             <br>

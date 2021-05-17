@@ -76,7 +76,7 @@
                                     <thead style="color:white; background-color:#993366;">
                                     <tr>
                                         <th scope="col">Nom</th>
-                                        <th scope="col">Prenom</th>
+                                        <th scope="col">Prénom</th>
                                         <th scope="col">Identifiant</th>
                                         <th scope="col">Information</th>
                                         <th scope="col">Mot de Passe</th>
@@ -269,7 +269,7 @@
                                 <thead style="color:white; background-color:#993366;">
                                 <tr>
                                     <th scope="col">Nom</th>
-                                    <th scope="col">Prenom</th>
+                                    <th scope="col">Prénom</th>
                                     <th scope="col">Identifiant</th>
                                     <th scope="col">Information</th>
                                     <th scope="col">Mot de passe</th>

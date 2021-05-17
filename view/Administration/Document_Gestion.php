@@ -77,7 +77,7 @@
                                     <tr>
                                         <th scope="col">Nom</th>
                                         <th scope="col">Description</th>
-                                        <th scope="col">Theme</th>
+                                        <th scope="col">Thème</th>
                                         <th scope="col">Date Importation</th>
                                         <th scope="col">Date Validation</th>
                                         <th scope="col">Taille</th>
@@ -274,7 +274,7 @@
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Theme</th>
+                                    <th scope="col">Thème</th>
                                     <th scope="col">Date Importation</th>
                                     <th scope="col">Taille</th>
                                     <th scope="col">Type</th>

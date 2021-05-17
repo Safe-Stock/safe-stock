@@ -80,11 +80,11 @@ if (isset($_FILES['monfichier2']['name']) && !empty($_FILES['monfichier2']['name
                                                                     //test la taille du doc 32Mb
             if ($_FILES['monfichier2']['size'] > 3200000) {
                 $error = "Votre fichier est trop lourd.";
-                $_SESSION['DocUplaodRouge'] = '<strong>Votre document est trop volumineux il ne doit pas dépasser 32Mo</strong>';
+                $_SESSION['DocUplaodRouge'] = '<strong>Votre document est trop volumineux, il ne doit pas dépasser 32Mo</strong>';
                 header('Location: http://safe-stock.test/index.php?route=upload');
 
             }
-            echo"Voici de recap de votre document :";
+            echo"Voici le recap de votre document :";
                                                                     // test extension ca marche pas
             /*$extensionsValid = array('.png', '.gif', '.jpg', '.jpeg' );
             $extension = strrchr($_FILES['monfichier2']['name'],'.');
@@ -93,7 +93,7 @@ if (isset($_FILES['monfichier2']['name']) && !empty($_FILES['monfichier2']['name
                 $oui = "Votre fichier n'est pas conforme.";
             }
             $error = "Votre fichier n'est pas conforme.";
-            $_SESSION['DocUplaodRouge'] = '<strong> Vous ne pouvez pas mettre des document avec cette extension !</strong>';
+            $_SESSION['DocUplaodRouge'] = '<strong> Vous ne pouvez pas importer de document avec cette extension !</strong>';
             header('Location: http://safe-stock.test/index.php?route=upload');*/
 
 
@@ -125,7 +125,7 @@ if (isset($_FILES['monfichier2']['name']) && !empty($_FILES['monfichier2']['name
                 if($user['IdProfil'] == 3) {
                     $_SESSION['DocUplaodVert'] = '<strong>Bien joué !</strong>
                     <br>
-                    Votre document a été importer avec succès, il sera mis dans une file d’attend en attendant la validation par un professeurs ou administrateur.    
+                    Votre document a été importer avec succès, il sera mis dans une file d’attente en attendant la validation par un professeur ou un administrateur.    
                     <br>
                     À tout moment vous pouvez le retrouver dans votre espace personnel.
                     ';

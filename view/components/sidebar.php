@@ -24,8 +24,8 @@
             <div id="collapseDashboard" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href= "index.php?admin=gestionmct">Gestion themes/mots-clés</a>
-                    <a class="collapse-item" href= "index.php?admin=gestionuser">Gestion Utilisateur</a>
+                    <a class="collapse-item" href= "index.php?admin=gestionmct">Gestion thèmes/mots-clés</a>
+                    <a class="collapse-item" href= "index.php?admin=gestionuser">Gestion Utilisateurs</a>
                     <a class="collapse-item" href= "index.php?admin=gestiondoc">Gestion Documents</a>
                     <a class="collapse-item" href= "index.php?route=upload">Ajouter un document</a>
                 </div>
@@ -124,7 +124,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Themes</span>
+            <span>Thèmes</span>
         </a> <?php
         if (count(PDORequest::GetAllThemes()->fetchall()) > 8)
         { ?>

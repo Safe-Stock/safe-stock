@@ -74,8 +74,8 @@
 
                                             <!--Nom du doc-->
                                             <div class="mb-3">
-                                                <label for="formGroupExampleInput" class="form-label">Nom de votre documents</label>
-                                                <input type="text" class="form-control" name="DocName" placeholder="">
+                                                <label for="formGroupExampleInput" class="form-label">Nom de votre document</label>
+                                                <input type="text" class="form-control" name="DocName" placeholder="" required>
                                             </div>
 
                                             <div class="row">
@@ -92,7 +92,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <!--Mots clés 1, 2, 3 du doc-->
-                                                    <label for="exampleFormControlSelect1">Sélectionner des Mots clées</label>
+                                                    <label for="exampleFormControlSelect1">Sélectionner des Mots clés</label>
                                                     <select class="form-control" name="MotsCle1">
                                                         <option value="<?php echo 0; ?>"></option>
                                                         <?php
